@@ -88,7 +88,7 @@ extension MyMenuVC{
         tableSide.dataSource = self
         arrImgOptions = [#imageLiteral(resourceName: "close"),#imageLiteral(resourceName: "vehicleGray"),#imageLiteral(resourceName: "timeGray"),#imageLiteral(resourceName: "userGray")]
         arrSelectedImgOptions = [#imageLiteral(resourceName: "close"),#imageLiteral(resourceName: "vehicle"),#imageLiteral(resourceName: "time"),#imageLiteral(resourceName: "user")]
-
+        
         tableSide.reloadData()
     }
 }
@@ -110,7 +110,7 @@ extension MyMenuVC{
                 cell.backgroundColor = whiteColor
             }
             cell.imgOption.image = arrImgOptions[indexPath.row]
-
+            
             let vcId = ["",cabVC,myRidesVC,userProfileVC]
             if  vcId[indexPath.row] == UserDefaults.standard.string(forKey: "vc") {
                 cell.imgOption.image = arrSelectedImgOptions[indexPath.row]
@@ -127,41 +127,19 @@ extension MyMenuVC{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         if indexPath.row == 1 {
-            let sb2 = UIStoryboard.init(name: homeStoryBoard, bundle:Bundle.main)
-            let objChatHistory = sb2.instantiateViewController(withIdentifier: cabVC) as! CabVC
-            let navigationcontroller = UINavigationController.init(rootViewController: objChatHistory)
-            objChatHistory.navigationController?.navigationBar.isHidden = true
-            self.revealViewController().pushFrontViewController(navigationcontroller, animated: true)
+            setRevelVC(storyBoardID: homeStoryBoard, vc_id: cabVC, currentVC: self)
         }
         else if indexPath.row == 2 {
-            let sb2 = UIStoryboard.init(name: homeStoryBoard, bundle:Bundle.main)
-            let objChatHistory = sb2.instantiateViewController(withIdentifier: myRidesVC) as! MyRidesVC
-            let navigationcontroller = UINavigationController.init(rootViewController: objChatHistory)
-            objChatHistory.navigationController?.navigationBar.isHidden = true
-            self.revealViewController().pushFrontViewController(navigationcontroller, animated: true)
+            setRevelVC(storyBoardID: homeStoryBoard, vc_id: myRidesVC, currentVC: self)
         }
         else if indexPath.row == 3 {
-            let sb2 = UIStoryboard.init(name: homeStoryBoard, bundle:Bundle.main)
-            let objChatHistory = sb2.instantiateViewController(withIdentifier: userProfileVC) as! UserProfileVC
-            let navigationcontroller = UINavigationController.init(rootViewController: objChatHistory)
-            objChatHistory.navigationController?.navigationBar.isHidden = true
-            self.revealViewController().pushFrontViewController(navigationcontroller, animated: true)
+            setRevelVC(storyBoardID: homeStoryBoard, vc_id: userProfileVC, currentVC: self)
         } else {
             if let currentCV = UserDefaults.standard.string(forKey: "vc") {
-                goToNextVC(VC_ID: currentCV)
+                setRevelVC(storyBoardID: homeStoryBoard, vc_id: currentCV, currentVC: self)
             }
         }
     }
-    
-    
-    func goToNextVC(VC_ID: String) {
-        let sb2 = UIStoryboard.init(name: homeStoryBoard, bundle:Bundle.main)
-        let objChatHistory = sb2.instantiateViewController(withIdentifier: VC_ID)
-        let navigationcontroller = UINavigationController.init(rootViewController: objChatHistory)
-        objChatHistory.navigationController?.navigationBar.isHidden = true
-        self.revealViewController().pushFrontViewController(navigationcontroller, animated: true)
-    }
-    
 }
 
 

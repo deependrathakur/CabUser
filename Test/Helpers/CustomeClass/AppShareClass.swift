@@ -23,9 +23,6 @@ let loginVC = "LoginVC"
 let otpVC = "OTPVC"
 let uploadDocVC = "UploadDocVC"
 
-
-
-
 let homeStoryBoard = "Home"
 //UIViewController name
 let myRidesVC = "MyRidesVC"
@@ -41,4 +38,12 @@ let myMenuCell = "MyMenuCell"
 func goToNextVC(storyBoardID: String, vc_id: String, currentVC: UIViewController) {
     let vc = UIStoryboard.init(name: storyBoardID, bundle: Bundle.main).instantiateViewController(withIdentifier: vc_id)
     currentVC.navigationController?.pushViewController(vc, animated: true)
+}
+
+func setRevelVC(storyBoardID: String, vc_id: String, currentVC: UIViewController) {
+    let sb2 = UIStoryboard.init(name: storyBoardID, bundle:Bundle.main)
+    let objChatHistory = sb2.instantiateViewController(withIdentifier: vc_id)
+    let navigationcontroller = UINavigationController.init(rootViewController: objChatHistory)
+    objChatHistory.navigationController?.navigationBar.isHidden = true
+    currentVC.revealViewController().pushFrontViewController(navigationcontroller, animated: true)
 }
