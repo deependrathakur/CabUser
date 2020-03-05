@@ -18,7 +18,7 @@
         <!--Navigation Controller-->
         <scene sceneID="4JS-hB-U4o">
             <objects>
-                <navigationController navigationBarHidden="YES" id="Psd-Ai-pwM" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="main" navigationBarHidden="YES" id="Psd-Ai-pwM" sceneMemberID="viewController">
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hJA-wA-9Cz">

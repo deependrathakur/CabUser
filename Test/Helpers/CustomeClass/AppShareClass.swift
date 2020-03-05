@@ -47,3 +47,13 @@ func setRevelVC(storyBoardID: String, vc_id: String, currentVC: UIViewController
     objChatHistory.navigationController?.navigationBar.isHidden = true
     currentVC.revealViewController().pushFrontViewController(navigationcontroller, animated: true)
 }
+
+func getCurrentTimeStampWOMiliseconds(dateToConvert: NSDate) -> String {
+    let objDateformat: DateFormatter = DateFormatter()
+    objDateformat.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS+00:00"
+    let strTime: String = objDateformat.string(from: dateToConvert as Date)
+    let objUTCDate: NSDate = objDateformat.date(from: strTime)! as NSDate
+    let milliseconds: Int64 = Int64(objUTCDate.timeIntervalSince1970)
+    let strTimeStamp: String = "\(milliseconds)"
+    return strTimeStamp
+}

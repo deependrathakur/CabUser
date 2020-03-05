@@ -8,8 +8,11 @@
 
 import UIKit
 import MapKit
+import GooglePlaces
 
-class CabVC: UIViewController, SWRevealViewControllerDelegate {
+class CabVC: UIViewController, SWRevealViewControllerDelegate, UITextFieldDelegate, GMSAutocompleteViewControllerDelegate {
+    
+    
     @IBOutlet weak var txtPicupLocation:UITextField!
     @IBOutlet weak var txtDroupLocation:UITextField!
     
@@ -39,6 +42,11 @@ class CabVC: UIViewController, SWRevealViewControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.txtPicupLocation.delegate = self
+        self.txtDroupLocation.delegate = self
+        self.txtPicupLocationPopup.delegate = self
+        self.txtDroupLocationPopup.delegate = self
+        
         onTheWay(onTheWayBy: "car")
         self.vwPopup.isHidden = true
         menuButton.addTarget(revealViewController, action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
@@ -72,6 +80,51 @@ fileprivate extension CabVC {
             self.imgCab.image = #imageLiteral(resourceName: "carWhite")
             self.vwCab.backgroundColor = appColor
         }
+    }
+}
+
+//MARK: - Textfield delegate method
+extension CabVC {
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        if textField == self.txtPicupLocation {
+            let placePickerController = GMSAutocompleteViewController()
+            placePickerController.delegate = self
+            present(placePickerController, animated: true, completion: nil)
+        }else{
+            let placePickerController = GMSAutocompleteViewController()
+            placePickerController.delegate = self
+            present(placePickerController, animated: true, completion: nil)
+        }
+        return true
+    }
+    
+}
+
+//MARK: - location view extension
+extension CabVC {
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        print("Place name: \(place.name)")
+        print("Place address: \(place.formattedAddress)")
+        print("Place attributions: \(place.attributions)")
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        print("Error: ", error.localizedDescription)
+    }
+    
+    // User canceled the operation.
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // Turn the network activity indicator on and off again.
+    func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
 }
 

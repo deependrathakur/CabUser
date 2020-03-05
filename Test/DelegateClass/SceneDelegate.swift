@@ -7,17 +7,20 @@
 //
 
 import UIKit
+import Firebase
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var navigationcontroller:UINavigationController?
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        
+//        FirebaseApp.configure()
+//        self.setNavigationRootStoryboard()
         guard let _ = (scene as? UIWindowScene) else { return }
     }
 
@@ -49,7 +52,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
-
+    func setNavigationRootStoryboard() {
+//        if !UserDefaults.standard.bool(forKey: "isLogin") as Bool == true {
+//            let sb: UIStoryboard = UIStoryboard(name: homeStoryBoard, bundle:Bundle.main)
+//            navigationcontroller = sb.instantiateViewController(withIdentifier: "HomeNav") as? UINavigationController
+//            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//            appDelegate.window?.rootViewController = navigationcontroller
+//            window?.makeKeyAndVisible()
+//        }
+    }
 }
 
 

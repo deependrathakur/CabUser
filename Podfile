@@ -6,14 +6,16 @@ target 'Test' do
  use_frameworks!
 
  # Pods for Test
- pod 'Firebase/Core'
- pod 'Firebase/Messaging'
- pod 'Firebase/Database'
- pod 'Firebase/Auth'
- pod 'Firebase/Storage'
+ 
  pod 'Alamofire'
  pod 'AlamofireImage'
  pod 'HCSStarRatingView'
+ pod 'Firebase/Firestore'
+ pod 'FirebaseFirestoreSwift'
+
+pod 'GooglePlaces'
+  pod 'GooglePlacePicker'
+  pod 'GoogleMaps'
 
  target 'TestTests' do
    inherit! :search_paths

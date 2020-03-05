@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class RegisterVC: UIViewController {
     
@@ -17,9 +18,11 @@ class RegisterVC: UIViewController {
     
     @IBOutlet weak var btnLogin:UIButton!
     @IBOutlet weak var btnRegister:UIButton!
-    
+    let db = Firestore.firestore()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
     }
 }
 
@@ -50,9 +53,33 @@ fileprivate extension RegisterVC {
         } else if self.txtPassword.isValidateEmail() {
             self.txtPassword.shakeTextField()
         } else {
+            
+            var ref: DocumentReference? = nil
+            let dict = [
+                "created":getCurrentTimeStampWOMiliseconds(dateToConvert: Date() as NSDate),
+                "email":self.txtEmail.text ?? "",
+                "mobile":self.txtMobile.text ?? "",
+                "mobileVerity":false,
+                "emailVerify":false,
+                "otp":"1234",
+                "password":self.txtPassword.text ?? "",
+                "userType":1,
+                "wallet":0,
+                "name":self.txtFullName.text ?? ""
+                ] as [String : Any]
+            UserDefaults.standard.set(dict, forKey: "userDetail")
+            UserDefaults.standard.set(true, forKey: "isLogin")
+            ref = db.collection("user").addDocument(data: dict) { err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                } else {
+                    print("Document added with ID: \(ref!.documentID)")
+                }
+            }
+        
             let sb: UIStoryboard = UIStoryboard(name: homeStoryBoard, bundle:Bundle.main)
             let vcNew = sb.instantiateViewController(withIdentifier: "HomeNav") as? UINavigationController
-             UIApplication.shared.keyWindow?.rootViewController = vcNew
+            UIApplication.shared.keyWindow?.rootViewController = vcNew
         }
     }
 }
