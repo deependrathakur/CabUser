@@ -7,11 +7,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="helvetica.ttf">
-            <string>HelveticaNeueLTStd-Th</string>
-        </array>
         <array key="museo700.ttf">
             <string>Museo-700</string>
+        </array>
+        <array key="myriad.ttf">
+            <string>MyriadPro-Regular</string>
         </array>
     </customFonts>
     <scenes>
@@ -50,22 +50,22 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gQG-vE-Ad7">
-                                                        <rect key="frame" x="5" y="202.5" width="404" height="413"/>
+                                                        <rect key="frame" x="5" y="203.5" width="404" height="411.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UF3-6r-J2Y">
-                                                                <rect key="frame" x="10" y="10" width="384" height="42"/>
-                                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="35"/>
+                                                                <rect key="frame" x="10" y="10" width="384" height="40.5"/>
+                                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="35"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fast cab booking in a few click." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UL6-ez-zM2">
-                                                                <rect key="frame" x="10" y="60" width="384" height="24"/>
+                                                                <rect key="frame" x="10" y="58.5" width="384" height="24"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="3BA-Qa-fpY">
-                                                                <rect key="frame" x="20" y="114" width="364" height="289"/>
+                                                                <rect key="frame" x="20" y="112.5" width="364" height="289"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4T0-rz-TKS">
                                                                         <rect key="frame" x="0.0" y="0.0" width="364" height="46"/>
@@ -78,7 +78,7 @@
                                                                                     <constraint firstAttribute="height" constant="46" id="Pof-DR-ty4"/>
                                                                                 </constraints>
                                                                                 <color key="textColor" red="0.22352004049999999" green="0.047561280429999998" blue="0.060397692019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
                                                                                 <textInputTraits key="textInputTraits"/>
                                                                                 <userDefinedRuntimeAttributes>
                                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -132,7 +132,7 @@
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="46" id="PvI-vc-3jY"/>
                                                                                 </constraints>
-                                                                                <fontDescription key="fontDescription" name="Museo-700" family="Museo" pointSize="17"/>
+                                                                                <fontDescription key="fontDescription" name="Museo-700" family="Museo" pointSize="18"/>
                                                                                 <state key="normal" title="LOGIN">
                                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 </state>
@@ -163,7 +163,7 @@
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="46" id="LsQ-Ok-Lpb"/>
                                                                                 </constraints>
-                                                                                <fontDescription key="fontDescription" name="HelveticaNeueLTStd-Th" family="Helvetica Neue LT Std" pointSize="17"/>
+                                                                                <fontDescription key="fontDescription" name="Museo-700" family="Museo" pointSize="18"/>
                                                                                 <state key="normal" title="REGISTER">
                                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 </state>
@@ -177,12 +177,12 @@
                                                                                 </connections>
                                                                             </button>
                                                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UBz-gK-fUw">
-                                                                                <rect key="frame" x="109.5" y="49" width="145" height="30"/>
+                                                                                <rect key="frame" x="111.5" y="49" width="141" height="30"/>
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="30" id="JO3-FV-ZfL"/>
                                                                                 </constraints>
-                                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                                                <fontDescription key="fontDescription" name="Museo-700" family="Museo" pointSize="17"/>
                                                                                 <state key="normal" title="forgot password?">
                                                                                     <color key="titleColor" red="0.2268484831" green="0.042643167080000002" blue="0.06398250908" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 </state>
@@ -432,7 +432,7 @@
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="46" id="2ws-zY-K08"/>
                                                                                 </constraints>
-                                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                                                <fontDescription key="fontDescription" name="Museo-700" family="Museo" pointSize="18"/>
                                                                                 <state key="normal" title="REGISTER">
                                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 </state>
@@ -463,7 +463,7 @@
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="46" id="W76-wp-pYD"/>
                                                                                 </constraints>
-                                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                                                <fontDescription key="fontDescription" name="Museo-700" family="Museo" pointSize="18"/>
                                                                                 <state key="normal" title="LOGIN">
                                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 </state>
@@ -596,7 +596,7 @@
                                                                         <subviews>
                                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="OTP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gC9-CW-OhE" customClass="textFieldBorder" customModule="Test" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="364" height="46"/>
-                                                                                <color key="backgroundColor" red="0.89410596529999997" green="0.88855251209999997" blue="0.89965941849999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <color key="backgroundColor" red="0.89411764705882346" green="0.88855251209999997" blue="0.89965941849999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <color key="tintColor" red="0.22352004049999999" green="0.047561280429999998" blue="0.060397692019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="46" id="kOD-B1-u2s"/>
@@ -627,7 +627,7 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="46" id="Kx8-2F-MH1"/>
                                                                 </constraints>
-                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                                <fontDescription key="fontDescription" name="Museo-700" family="Museo" pointSize="18"/>
                                                                 <state key="normal" title="VERIFY">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>

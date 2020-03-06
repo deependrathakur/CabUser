@@ -18,6 +18,9 @@
 		EE3AC76E240EDCDB00AD4779 /* museo700.ttf in Sources */ = {isa = PBXBuildFile; fileRef = EE67719D240C321500DE8D25 /* museo700.ttf */; };
 		EE3AC76F240EDCE100AD4779 /* myriad.ttf in Sources */ = {isa = PBXBuildFile; fileRef = EE67719E240C321C00DE8D25 /* myriad.ttf */; };
 		EE3AC770240EDCE300AD4779 /* helvetica.ttf in Sources */ = {isa = PBXBuildFile; fileRef = EE67719C240C320C00DE8D25 /* helvetica.ttf */; };
+		EE3BC7BC2412B17A0075C28E /* helvetica.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE67719C240C320C00DE8D25 /* helvetica.ttf */; };
+		EE3BC7BD2412B17D0075C28E /* myriad.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE67719E240C321C00DE8D25 /* myriad.ttf */; };
+		EE3BC7BE2412B17F0075C28E /* museo700.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE67719D240C321500DE8D25 /* museo700.ttf */; };
 		EE3E1DD624102E5D004AA01E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE3E1DD524102E5D004AA01E /* GoogleService-Info.plist */; };
 		EE677198240C2E2600DE8D25 /* UserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE677197240C2E2600DE8D25 /* UserProfileVC.swift */; };
 		EE71EF172406C25D00B6028D /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EE71EF142406C25D00B6028D /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
@@ -372,8 +375,8 @@
 				EED85431240556D900E225EE /* Sources */,
 				EED85432240556D900E225EE /* Frameworks */,
 				EED85433240556D900E225EE /* Resources */,
-				B704A60CC374B576BBF44CA1 /* [CP] Embed Pods Frameworks */,
-				48B2EF032AB7BDA6BB37217A /* [CP] Copy Pods Resources */,
+				F83DEF907C6936984CBE5CEF /* [CP] Embed Pods Frameworks */,
+				C0586364776E994DFE71AFCA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -411,8 +414,8 @@
 				EED85452240556E800E225EE /* Sources */,
 				EED85453240556E800E225EE /* Frameworks */,
 				EED85454240556E800E225EE /* Resources */,
-				0714604F512C75F7A9C52BAB /* [CP] Embed Pods Frameworks */,
-				5DB296216111F8155ACDE1F5 /* [CP] Copy Pods Resources */,
+				0645C96CCC04AFA4108BCF2C /* [CP] Embed Pods Frameworks */,
+				F682A788E15648C580D78317 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -476,8 +479,11 @@
 				EED85445240556E500E225EE /* LaunchScreen.storyboard in Resources */,
 				EED85442240556E500E225EE /* Assets.xcassets in Resources */,
 				EE3E1DD624102E5D004AA01E /* GoogleService-Info.plist in Resources */,
+				EE3BC7BE2412B17F0075C28E /* museo700.ttf in Resources */,
 				EED85440240556D900E225EE /* Main.storyboard in Resources */,
+				EE3BC7BD2412B17D0075C28E /* myriad.ttf in Resources */,
 				EEE4963A24080BE000C0734B /* Home.storyboard in Resources */,
+				EE3BC7BC2412B17A0075C28E /* helvetica.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,7 +504,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0714604F512C75F7A9C52BAB /* [CP] Embed Pods Frameworks */ = {
+		0645C96CCC04AFA4108BCF2C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -537,40 +543,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		48B2EF032AB7BDA6BB37217A /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Test/Pods-Test-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Test/Pods-Test-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Test/Pods-Test-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5DB296216111F8155ACDE1F5 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Test-TestUITests/Pods-Test-TestUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Test-TestUITests/Pods-Test-TestUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Test-TestUITests/Pods-Test-TestUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		80B51BB19F5AB61E6C7CE1A8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -593,21 +565,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B704A60CC374B576BBF44CA1 /* [CP] Embed Pods Frameworks */ = {
+		C0586364776E994DFE71AFCA /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Test/Pods-Test-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Test/Pods-Test-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Test/Pods-Test-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Test/Pods-Test-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Test/Pods-Test-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Test/Pods-Test-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C1FC1B7CE488E9F35AE3BA05 /* [CP] Check Pods Manifest.lock */ = {
@@ -630,6 +602,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F682A788E15648C580D78317 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Test-TestUITests/Pods-Test-TestUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Test-TestUITests/Pods-Test-TestUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Test-TestUITests/Pods-Test-TestUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F83DEF907C6936984CBE5CEF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Test/Pods-Test-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Test/Pods-Test-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Test/Pods-Test-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -835,7 +841,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Test/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -843,6 +851,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Deependra.Test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = /Users/harshit/Downloads/CabUser/Test/BridgeHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -856,7 +865,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Test/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -864,6 +875,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Deependra.Test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = /Users/harshit/Downloads/CabUser/Test/BridgeHeader.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

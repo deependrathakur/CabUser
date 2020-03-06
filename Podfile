@@ -2,28 +2,26 @@
 # platform :ios, '9.0'
 
 target 'Test' do
- # Comment the next line if you don't want to use dynamic frameworks
- use_frameworks!
-
- # Pods for Test
- 
- pod 'Alamofire'
- pod 'AlamofireImage'
- pod 'HCSStarRatingView'
- pod 'Firebase/Firestore'
- pod 'FirebaseFirestoreSwift'
-
-pod 'GooglePlaces'
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+  
+  # Pods for Test
+  
+  pod 'HCSStarRatingView'
+  pod 'Firebase/Firestore'
+  pod 'FirebaseFirestoreSwift'
+  
+  pod 'GooglePlaces'
   pod 'GooglePlacePicker'
   pod 'GoogleMaps'
-
- target 'TestTests' do
-   inherit! :search_paths
-   # Pods for testing
- end
-
- target 'TestUITests' do
-   # Pods for testing
- end
-
+  
+  target 'TestTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+  
+  target 'TestUITests' do
+    # Pods for testing
+  end
+  
 end

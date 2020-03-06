@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import GooglePlaces
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -21,6 +22,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 //        FirebaseApp.configure()
 //        self.setNavigationRootStoryboard()
+        GMSPlacesClient.provideAPIKey("AIzaSyDxub2Kgfrs4UP4a8DH0FbRHnwRIheOZpI")// info.plist
+
         guard let _ = (scene as? UIWindowScene) else { return }
     }
 
