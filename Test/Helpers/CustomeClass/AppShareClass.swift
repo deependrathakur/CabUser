@@ -57,3 +57,44 @@ func getCurrentTimeStampWOMiliseconds(dateToConvert: NSDate) -> String {
     let strTimeStamp: String = "\(milliseconds)"
     return strTimeStamp
 }
+
+
+func getDistanceOfTwoPoint(startPoint: String, endPoint: String) -> String {
+    let arrStartPoint =  startPoint.components(separatedBy: ",")
+    let arrEndPoint =  endPoint.components(separatedBy: ",")
+    
+    if arrStartPoint.count > 1 && arrEndPoint.count > 1 {
+        let a = distance(lat1: Double(arrStartPoint[0])!,
+                         lon1: Double(arrStartPoint[1])!,
+                         lat2: Double(arrEndPoint[0])!,
+                         lon2: Double(arrEndPoint[1])!, unit: "K")
+        return String(a)
+    }
+    return "0"
+}
+    func distance(lat1:Double, lon1:Double, lat2:Double, lon2:Double, unit:String) -> Double {
+        let theta = lon1 - lon2
+        var dist = sin(deg2rad(deg: lat1)) * sin(deg2rad(deg: lat2)) + cos(deg2rad(deg: lat1)) * cos(deg2rad(deg: lat2)) * cos(deg2rad(deg: theta))
+        dist = acos(dist)
+        dist = rad2deg(rad: dist)
+        dist = dist * 60 * 1.1515
+        if (unit == "K") {
+            dist = dist * 1.609344
+        }
+        else if (unit == "N") {
+            dist = dist * 0.8684
+        }
+        return dist
+    }
+    
+    func deg2rad(deg:Double) -> Double {
+        return deg * M_PI / 180
+    }
+
+    ///////////////////////////////////////////////////////////////////////
+    ///  This function converts radians to decimal degrees              ///
+    ///////////////////////////////////////////////////////////////////////
+    func rad2deg(rad:Double) -> Double {
+        return rad * 180.0 / M_PI
+    }
+
