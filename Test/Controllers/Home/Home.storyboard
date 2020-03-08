@@ -32,7 +32,7 @@
         <!--My RidesVC-->
         <scene sceneID="J22-Zs-iAo">
             <objects>
-                <viewController storyboardIdentifier="MyRidesVC" id="oIN-oK-I5j" customClass="MyRidesVC" customModule="Test" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyRidesVC" id="oIN-oK-I5j" customClass="MyRidesVC" customModule="CabUser" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="csZ-wg-Apg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -165,7 +165,7 @@
                                         <color key="backgroundColor" white="0.93275931629999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="sectionIndexBackgroundColor" white="0.93275931629999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellMyRides" rowHeight="150" id="7if-as-TTn" customClass="CellMyRides" customModule="Test" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellMyRides" rowHeight="150" id="7if-as-TTn" customClass="CellMyRides" customModule="CabUser" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="412" height="150"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7if-as-TTn" id="6Ko-5V-MAN">
@@ -231,7 +231,7 @@
                                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_ico_setting" translatesAutoresizingMaskIntoConstraints="NO" id="Idg-a2-deb" customClass="imageBorder" customModule="Test" customModuleProvider="target">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_ico_setting" translatesAutoresizingMaskIntoConstraints="NO" id="Idg-a2-deb" customClass="imageBorder" customModule="CabUser" customModuleProvider="target">
                                                                     <rect key="frame" x="336" y="69" width="56" height="56"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="56" id="74p-QW-YtF"/>
@@ -309,12 +309,18 @@
                                         <color key="textColor" red="0.22352941179999999" green="0.047058823530000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="LtN-az-TQG">
+                                        <rect key="frame" x="188.5" y="350.5" width="37" height="37"/>
+                                        <color key="color" red="0.22352941179999999" green="0.047058823530000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.93275931629999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="dBE-c4-9lb" firstAttribute="centerY" secondItem="bvy-dl-ylm" secondAttribute="centerY" id="1xo-0j-WpM"/>
                                     <constraint firstItem="dFn-x3-7ko" firstAttribute="leading" secondItem="bvy-dl-ylm" secondAttribute="leading" constant="1" id="5NF-fe-drd"/>
                                     <constraint firstItem="Qag-Gj-y0Y" firstAttribute="leading" secondItem="bvy-dl-ylm" secondAttribute="leading" constant="1" id="5bu-Tu-rLd"/>
+                                    <constraint firstItem="LtN-az-TQG" firstAttribute="centerX" secondItem="bvy-dl-ylm" secondAttribute="centerX" id="AZf-NH-Xzu"/>
+                                    <constraint firstItem="LtN-az-TQG" firstAttribute="centerY" secondItem="bvy-dl-ylm" secondAttribute="centerY" constant="-40" id="M8X-7a-moK"/>
                                     <constraint firstItem="upc-Mq-Q8k" firstAttribute="leading" secondItem="bvy-dl-ylm" secondAttribute="leading" id="TT1-pi-7m4"/>
                                     <constraint firstAttribute="trailing" secondItem="upc-Mq-Q8k" secondAttribute="trailing" id="VM5-Ft-9Vb"/>
                                     <constraint firstAttribute="trailing" secondItem="dFn-x3-7ko" secondAttribute="trailing" constant="1" id="Ww6-af-onF"/>
@@ -341,6 +347,7 @@
                         <outlet property="button1" destination="iR5-pr-AV8" id="xRy-0q-4fa"/>
                         <outlet property="button2" destination="Ugx-mu-ChW" id="RXL-u0-Bzl"/>
                         <outlet property="button3" destination="VPu-Kv-k8p" id="I1m-Re-BDj"/>
+                        <outlet property="indicator" destination="LtN-az-TQG" id="LNl-BX-e4t"/>
                         <outlet property="menuButton" destination="uUf-TA-jgH" id="CDq-SP-e7R"/>
                         <outlet property="noRecord" destination="dBE-c4-9lb" id="3Rl-4z-1aV"/>
                         <outlet property="tableView" destination="Qag-Gj-y0Y" id="5RU-kg-o0s"/>
@@ -354,7 +361,7 @@
         <!--CabVC-->
         <scene sceneID="wFX-gw-Qt1">
             <objects>
-                <viewController storyboardIdentifier="CabVC" id="jbe-zU-zkU" customClass="CabVC" customModule="Test" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CabVC" id="jbe-zU-zkU" customClass="CabVC" customModule="CabUser" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bpa-DM-790">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -564,7 +571,7 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="voM-gH-ZwZ" customClass="viewBorder" customModule="Test" customModuleProvider="target">
+                                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="voM-gH-ZwZ" customClass="viewBorder" customModule="CabUser" customModuleProvider="target">
                                                                         <rect key="frame" x="20" y="5" width="50" height="50"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nanoGray" translatesAutoresizingMaskIntoConstraints="NO" id="PFM-zg-07T">
@@ -621,7 +628,7 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fs9-f2-tEA" customClass="viewBorder" customModule="Test" customModuleProvider="target">
+                                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fs9-f2-tEA" customClass="viewBorder" customModule="CabUser" customModuleProvider="target">
                                                                         <rect key="frame" x="20" y="5" width="50" height="50"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="carWhite" translatesAutoresizingMaskIntoConstraints="NO" id="h0e-Bk-o9v">
@@ -678,7 +685,7 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E8O-jD-Xqn" customClass="viewBorder" customModule="Test" customModuleProvider="target">
+                                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E8O-jD-Xqn" customClass="viewBorder" customModule="CabUser" customModuleProvider="target">
                                                                         <rect key="frame" x="20" y="5" width="50" height="50"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="truckGray" translatesAutoresizingMaskIntoConstraints="NO" id="Ukr-FN-ccz">
@@ -791,7 +798,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BcJ-OK-56H">
                                                         <rect key="frame" x="0.0" y="150.5" width="334" height="314"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f31-PU-hFK" customClass="viewBorder" customModule="Test" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f31-PU-hFK" customClass="viewBorder" customModule="CabUser" customModuleProvider="target">
                                                                 <rect key="frame" x="8" y="8" width="318" height="77"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VIM-BK-8gg">
@@ -969,6 +976,10 @@
                                             <constraint firstItem="dgf-Eb-Kx1" firstAttribute="centerY" secondItem="73G-OH-kwL" secondAttribute="centerY" multiplier="0.8" id="qno-FM-DR9"/>
                                         </constraints>
                                     </view>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="TWJ-vy-wEW">
+                                        <rect key="frame" x="188.5" y="390.5" width="37" height="37"/>
+                                        <color key="color" red="0.22352941179999999" green="0.047058823530000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.93275931629999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -977,7 +988,9 @@
                                     <constraint firstItem="tsg-Qr-Hub" firstAttribute="leading" secondItem="xll-oV-Ajy" secondAttribute="leading" id="2bZ-D8-6BJ"/>
                                     <constraint firstItem="Y2l-KW-zTW" firstAttribute="leading" secondItem="E81-sp-33E" secondAttribute="leading" id="4Hc-g5-phN"/>
                                     <constraint firstAttribute="trailing" secondItem="tsg-Qr-Hub" secondAttribute="trailing" id="ELQ-LO-QFO"/>
+                                    <constraint firstItem="TWJ-vy-wEW" firstAttribute="centerX" secondItem="xll-oV-Ajy" secondAttribute="centerX" id="Fo0-XY-stq"/>
                                     <constraint firstItem="DnN-Sq-8jG" firstAttribute="top" secondItem="tsg-Qr-Hub" secondAttribute="bottom" id="J0b-fl-LXv"/>
+                                    <constraint firstItem="TWJ-vy-wEW" firstAttribute="centerY" secondItem="xll-oV-Ajy" secondAttribute="centerY" id="QLu-KI-hlZ"/>
                                     <constraint firstItem="tsg-Qr-Hub" firstAttribute="top" secondItem="xll-oV-Ajy" secondAttribute="top" id="ZEn-bQ-lfF"/>
                                     <constraint firstAttribute="trailing" secondItem="73G-OH-kwL" secondAttribute="trailing" id="aCY-py-D1D"/>
                                     <constraint firstItem="73G-OH-kwL" firstAttribute="leading" secondItem="xll-oV-Ajy" secondAttribute="leading" id="sUS-8E-TVz"/>
@@ -1001,6 +1014,7 @@
                         <outlet property="imgCab" destination="h0e-Bk-o9v" id="mnG-W9-WYw"/>
                         <outlet property="imgCar" destination="PFM-zg-07T" id="VIa-xy-Lj4"/>
                         <outlet property="imgTruck" destination="Ukr-FN-ccz" id="TxZ-OV-43t"/>
+                        <outlet property="indicator" destination="TWJ-vy-wEW" id="H58-nu-mcp"/>
                         <outlet property="lblCab" destination="wNw-Dq-aiJ" id="tVA-eV-dlx"/>
                         <outlet property="lblCar" destination="lyp-JX-6WC" id="Esa-0W-MI7"/>
                         <outlet property="lblPrice" destination="nNz-n0-0iH" id="BsA-XR-4D2"/>
@@ -1025,7 +1039,7 @@
         <!--Waiting For DriverVC-->
         <scene sceneID="cdu-7t-KdY">
             <objects>
-                <viewController storyboardIdentifier="WaitingForDriverVC" id="DGq-eI-XXB" customClass="WaitingForDriverVC" customModule="Test" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WaitingForDriverVC" id="DGq-eI-XXB" customClass="WaitingForDriverVC" customModule="CabUser" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="S3E-hT-Bvn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1125,7 +1139,7 @@
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToMounds" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_ico_setting" translatesAutoresizingMaskIntoConstraints="NO" id="zUZ-O2-3fs" customClass="imageBorder" customModule="Test" customModuleProvider="target">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_ico_setting" translatesAutoresizingMaskIntoConstraints="NO" id="zUZ-O2-3fs" customClass="imageBorder" customModule="CabUser" customModuleProvider="target">
                                                         <rect key="frame" x="20" y="16" width="80" height="80"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="80" id="GxI-hV-tJP"/>
@@ -1366,7 +1380,7 @@
         <!--My MenuVC-->
         <scene sceneID="3y9-dB-E7b">
             <objects>
-                <viewController storyboardIdentifier="MyMenuVC" id="JuY-fG-OjS" customClass="MyMenuVC" customModule="Test" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyMenuVC" id="JuY-fG-OjS" customClass="MyMenuVC" customModule="CabUser" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CPe-8w-8Nl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1378,14 +1392,14 @@
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="762"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellForSideIdentifier" rowHeight="50" id="qPG-OW-1OT" customClass="MyMenuCell" customModule="Test" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellForSideIdentifier" rowHeight="50" id="qPG-OW-1OT" customClass="MyMenuCell" customModule="CabUser" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="60" height="50"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qPG-OW-1OT" id="dZh-ij-FfS">
                                                     <rect key="frame" x="0.0" y="0.0" width="60" height="50"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J2D-y7-uzm" customClass="CornerView" customModule="Test" customModuleProvider="target">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J2D-y7-uzm" customClass="CornerView" customModule="CabUser" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="60" height="50"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QTx-KE-29Z">
@@ -1419,7 +1433,7 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yp4-zB-aA1" customClass="CornerView" customModule="Test" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yp4-zB-aA1" customClass="CornerView" customModule="CabUser" customModuleProvider="target">
                                         <rect key="frame" x="1" y="782" width="58" height="50"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logout" translatesAutoresizingMaskIntoConstraints="NO" id="ZCi-AB-A9g">
@@ -1494,7 +1508,7 @@
         <!--Write ReviewVC-->
         <scene sceneID="Okm-1w-ndM">
             <objects>
-                <viewController storyboardIdentifier="WriteReviewVC" id="KPV-AS-Pop" customClass="WriteReviewVC" customModule="Test" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WriteReviewVC" id="KPV-AS-Pop" customClass="WriteReviewVC" customModule="CabUser" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zry-xr-2Tx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1585,7 +1599,7 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WoV-Jb-Ma1">
                                                                 <rect key="frame" x="0.0" y="147" width="414" height="613"/>
                                                                 <subviews>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A5K-CM-Rdw" customClass="viewBorder" customModule="Test" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A5K-CM-Rdw" customClass="viewBorder" customModule="CabUser" customModuleProvider="target">
                                                                         <rect key="frame" x="8" y="8" width="398" height="77"/>
                                                                         <subviews>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AnP-eo-dhD">
@@ -1824,7 +1838,7 @@
         <!--User ProfileVC-->
         <scene sceneID="Y8P-ez-baZ">
             <objects>
-                <viewController storyboardIdentifier="UserProfileVC" id="u1U-JY-a9f" customClass="UserProfileVC" customModule="Test" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserProfileVC" id="u1U-JY-a9f" customClass="UserProfileVC" customModule="CabUser" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7aZ-RE-d7F">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

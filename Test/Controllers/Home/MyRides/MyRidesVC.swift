@@ -17,6 +17,8 @@ class MyRidesVC: UIViewController, UITableViewDelegate, UITableViewDataSource, S
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var tableView:UITableView!
     @IBOutlet weak var noRecord:UILabel!
+    @IBOutlet var indicator: UIActivityIndicatorView!
+
     @IBOutlet var viewForSide: UIView!
     
     var arrBooking = [ModelMyRides]()
@@ -25,6 +27,7 @@ class MyRidesVC: UIViewController, UITableViewDelegate, UITableViewDataSource, S
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.indicator.isHidden = true
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.getBookingList()
@@ -63,6 +66,7 @@ extension MyRidesVC {
             let object = self.arrBooking[indexPath.row]
             cell.lblPicLocation.text = object.pickup
             cell.lblDropLocation.text = object.drop
+            cell.lblPrice.text = "$" + object.amount
             return cell
         }
         return UITableViewCell()
@@ -101,8 +105,10 @@ fileprivate extension MyRidesVC {
 fileprivate extension MyRidesVC {
     func getBookingList() {
         self.arrBooking.removeAll()
+        self.indicator.isHidden = false
         db.collection("booking").getDocuments() { (querySnapshot, err) in
             if let err = err {
+                self.indicator.isHidden = true
                 self.tableView.reloadData()
                 print("Error getting documents: \(err)")
             } else {
@@ -117,8 +123,8 @@ fileprivate extension MyRidesVC {
                         self.arrBooking.append(modelObject)
                     }
                 }
-            
                 self.tableView.reloadData()
+                self.indicator.isHidden = true
             }
         }
     }

@@ -15,7 +15,8 @@ class CabVC: UIViewController, SWRevealViewControllerDelegate, UITextFieldDelega
     
     @IBOutlet weak var txtPicupLocation:UITextField!
     @IBOutlet weak var txtDroupLocation:UITextField!
-    
+    @IBOutlet var indicator: UIActivityIndicatorView!
+
     @IBOutlet weak var lblTruck:UILabel!
     @IBOutlet weak var lblCar:UILabel!
     @IBOutlet weak var lblCab:UILabel!
@@ -40,13 +41,14 @@ class CabVC: UIViewController, SWRevealViewControllerDelegate, UITextFieldDelega
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var menuButton: UIButton!
     
-    var placeForIndex = 1
-    var bookingDict = [String:Any]()
-    let db = Firestore.firestore()
-    let locationManager = CLLocationManager()
+    fileprivate var placeForIndex = 1
+    fileprivate var bookingDict = [String:Any]()
+    fileprivate let db = Firestore.firestore()
+    fileprivate let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.indicator.isHidden = true
         self.getCurrentLocation()
         self.txtPicupLocation.delegate = self
         self.txtDroupLocation.delegate = self
@@ -90,15 +92,19 @@ fileprivate extension CabVC {
             self.vwCab.backgroundColor = appColor
         }
     }
-}
-
-//MARK: - Button method
-extension CabVC {
-    @IBAction func placePickerAction(sender: UIButton) {
-        placeForIndex = sender.tag
-        let placePickerController = GMSAutocompleteViewController()
-        placePickerController.delegate = self
-        present(placePickerController, animated: true, completion: nil)
+    
+    func validationForBooking() {
+        if self.txtPicupLocation.isEmptyText() {
+            showAlertVC(title: kAlertTitle, message: "Please select pikup location.", controller: self)
+        } else if self.txtDroupLocation.isEmptyText() {
+            showAlertVC(title: kAlertTitle, message: "Please select drop location.", controller: self)
+        } else {
+            
+            bookingDict["date"] = Date()
+            let distance = getDistanceOfTwoPoint(startPoint: bookingDict["pickupPoint"] as? String ?? "", endPoint: bookingDict["dropPoint"] as? String ?? "")
+            bookingDict["km"] = distance
+            self.sendBookingOnFirebase()
+        }
     }
 }
 
@@ -173,6 +179,116 @@ extension CabVC : CLLocationManagerDelegate {
     }
 }
 
+//MARK: - Firebase method extension
+extension CabVC {
+    func sendBookingOnFirebase() {
+        self.sendNotificationOnFirebase()
+        let distance = getDistanceOfTwoPointInDouble(startPoint: bookingDict["pickupPoint"] as? String ?? "", endPoint: bookingDict["dropPoint"] as? String ?? "")
+        let amount = Int(distance*2)
+        bookingDict["amount"] = amount
+        self.indicator.isHidden = false
+
+        var ref: DocumentReference? = nil
+        ref = db.collection("booking").addDocument(data: bookingDict) { err in
+            if let _ = err {
+                self.indicator.isHidden = true
+                showAlertVC(title: kAlertTitle, message: kErrorMessage, controller: self)
+            } else {
+                self.indicator.isHidden = true
+                self.vwPopup.isHidden = true
+                self.txtDroupLocationPopup.text = ""
+                self.txtPicupLocationPopup.text = ""
+                self.txtDroupLocation.text = ""
+                self.txtPicupLocation.text = ""
+                let vc = UIStoryboard.init(name: homeStoryBoard, bundle: Bundle.main).instantiateViewController(withIdentifier: waitingForDriverVC) as? WaitingForDriverVC
+                self.navigationController?.pushViewController(vc!, animated: true)
+                showAlertVC(title: kAlertTitle, message: "Booking successfully submited.", controller: self)
+            }
+        }
+    }
+    
+    func sendNotificationOnFirebase() {
+
+        let dictionary = ["bookingTime" : Date(),
+                          "create": Date(),
+                          "dropLocation":bookingDict["drop"] as? String ?? "",
+                          "pickup": bookingDict["pickupPoint"] as? String ?? "",
+                          "pickupLocation": bookingDict["picup"] as? String ?? "",
+                          "ride":bookingDict["ride"] as? String ?? "",
+                          "status": 0,
+                          "userId": "90er3wWq0"] as [String : Any]
+        var ref: DocumentReference? = nil
+        ref = db.collection("bookingAlert").addDocument(data: dictionary) { err in
+            if let _ = err {
+            } else {
+            }
+        }
+    }
+}
+//MARK: - Button Method extension
+fileprivate extension CabVC {
+    
+    @IBAction func placePickerAction(sender: UIButton) {
+        placeForIndex = sender.tag
+        let placePickerController = GMSAutocompleteViewController()
+        placePickerController.delegate = self
+        present(placePickerController, animated: true, completion: nil)
+    }
+    
+    @IBAction func CancelRideLaterAction(sender: UIButton) {
+        self.view.endEditing(true)
+        self.vwPopup.isHidden = true
+        self.txtPicupLocationPopup.text = ""
+        self.txtDroupLocation.text = ""
+    }
+    
+    @IBAction func RideNowAction(sender: UIButton) {
+        self.view.endEditing(true)
+        bookingDict["ride"] = "now"
+        if self.txtPicupLocation.isEmptyText() {
+            showAlertVC(title: kAlertTitle, message: "Please select pikup location.", controller: self)
+        } else if self.txtDroupLocation.isEmptyText() {
+            showAlertVC(title: kAlertTitle, message: "Please select drop location.", controller: self)
+        } else {
+            bookingDict["km"] = distance
+            self.vwPopup.isHidden = false
+        }
+    }
+    
+    @IBAction func RideLaterAction(sender: UIButton) {
+        self.view.endEditing(true)
+        bookingDict["ride"] = "later"
+        if self.txtPicupLocation.isEmptyText() {
+            showAlertVC(title: kAlertTitle, message: "Please select pikup location.", controller: self)
+        } else if self.txtDroupLocation.isEmptyText() {
+            showAlertVC(title: kAlertTitle, message: "Please select drop location.", controller: self)
+        } else {
+            bookingDict["km"] = distance
+            self.vwPopup.isHidden = false
+        }
+    }
+    
+    @IBAction func ConfirmAction(sender: UIButton) {
+        self.view.endEditing(true)
+        self.validationForBooking()
+    }
+    
+    @IBAction func MenuAction(sender: UIButton) {
+        self.view.endEditing(true)
+    }
+    
+    @IBAction func selectDriveTypeAction(sender: UIButton) {
+        self.view.endEditing(true)
+        if sender.tag == 0 {
+            onTheWay(onTheWayBy: "car")
+        } else if sender.tag == 1 {
+            onTheWay(onTheWayBy: "cab")
+        } else if sender.tag == 2 {
+            onTheWay(onTheWayBy: "truck")
+        }
+    }
+}
+
 // MARK: - ENSideMenu Delegate
 extension CabVC {
     func revealController(_ revealController: SWRevealViewController!, didMoveTo position: FrontViewPosition) {
@@ -220,97 +336,5 @@ extension CabVC {
     }
     func sideMenuDidOpen() {
         print("sideMenuDidOpen")
-    }
-}
-//MARK: - Button Method extension
-fileprivate extension CabVC {
-    @IBAction func CancelRideLaterAction(sender: UIButton) {
-        self.view.endEditing(true)
-        self.vwPopup.isHidden = true
-        self.txtPicupLocationPopup.text = ""
-        self.txtDroupLocation.text = ""
-    }
-    
-    @IBAction func RideNowAction(sender: UIButton) {
-        self.view.endEditing(true)
-        bookingDict["ride"] = "now"
-        if self.txtPicupLocation.isEmptyText() {
-            showAlertVC(title: kAlertTitle, message: "Please select pikup location.", controller: self)
-        } else if self.txtDroupLocation.isEmptyText() {
-            showAlertVC(title: kAlertTitle, message: "Please select drop location.", controller: self)
-        } else {
-            let distance = getDistanceOfTwoPoint(startPoint: bookingDict["pickupPoint"] as? String ?? "", endPoint: bookingDict["dropPoint"] as? String ?? "")
-            //            let a = String(format: "%.2f", distance)
-            
-            bookingDict["km"] = distance
-            self.vwPopup.isHidden = false
-        }
-    }
-    
-    @IBAction func RideLaterAction(sender: UIButton) {
-        self.view.endEditing(true)
-        bookingDict["ride"] = "later"
-        if self.txtPicupLocation.isEmptyText() {
-            showAlertVC(title: kAlertTitle, message: "Please select pikup location.", controller: self)
-        } else if self.txtDroupLocation.isEmptyText() {
-            showAlertVC(title: kAlertTitle, message: "Please select drop location.", controller: self)
-        } else {
-            let distance = getDistanceOfTwoPoint(startPoint: bookingDict["pickupPoint"] as? String ?? "", endPoint: bookingDict["dropPoint"] as? String ?? "")
-            //let a = String(format: "%.2f", distance)
-            bookingDict["km"] = distance
-            self.vwPopup.isHidden = false
-        }
-    }
-    
-    @IBAction func ConfirmAction(sender: UIButton) {
-        self.view.endEditing(true)
-        self.validationForBooking()
-    }
-    
-    @IBAction func MenuAction(sender: UIButton) {
-        self.view.endEditing(true)
-    }
-    
-    @IBAction func selectDriveTypeAction(sender: UIButton) {
-        self.view.endEditing(true)
-        if sender.tag == 0 {
-            onTheWay(onTheWayBy: "car")
-        } else if sender.tag == 1 {
-            onTheWay(onTheWayBy: "cab")
-        } else if sender.tag == 2 {
-            onTheWay(onTheWayBy: "truck")
-        }
-    }
-}
-
-//MARK: - Button Method extension
-fileprivate extension CabVC {
-    func validationForBooking() {
-        if self.txtPicupLocation.isEmptyText() {
-            showAlertVC(title: kAlertTitle, message: "Please select pikup location.", controller: self)
-        } else if self.txtDroupLocation.isEmptyText() {
-            showAlertVC(title: kAlertTitle, message: "Please select drop location.", controller: self)
-        } else {
-            
-            bookingDict["date"] = Date()
-            let distance = getDistanceOfTwoPoint(startPoint: bookingDict["pickupPoint"] as? String ?? "", endPoint: bookingDict["dropPoint"] as? String ?? "")
-            bookingDict["km"] = distance
-            
-            var ref: DocumentReference? = nil
-            ref = db.collection("booking").addDocument(data: bookingDict) { err in
-                if let _ = err {
-                    showAlertVC(title: kAlertTitle, message: kErrorMessage, controller: self)
-                } else {
-                    self.vwPopup.isHidden = true
-                    self.txtDroupLocationPopup.text = ""
-                    self.txtPicupLocationPopup.text = ""
-                    self.txtDroupLocation.text = ""
-                    self.txtPicupLocation.text = ""
-                    let vc = UIStoryboard.init(name: homeStoryBoard, bundle: Bundle.main).instantiateViewController(withIdentifier: waitingForDriverVC) as? WaitingForDriverVC
-                    self.navigationController?.pushViewController(vc!, animated: true)
-                    showAlertVC(title: kAlertTitle, message: "Booking successfully submited.", controller: self)
-                }
-            }
-        }
     }
 }

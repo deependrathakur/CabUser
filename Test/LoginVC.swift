@@ -57,6 +57,7 @@ fileprivate extension LoginVC {
                 }
                 if registeredUser {
                     UserDefaults.standard.set(true, forKey: "isLogin")
+                    dictUser["created"] = ""
                     UserDefaults.standard.set(dictUser, forKey: "userDetail")
                     self.setNavigationRootStoryboard()
                 } else {

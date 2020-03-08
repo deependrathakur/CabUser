@@ -69,9 +69,26 @@ func getDistanceOfTwoPoint(startPoint: String, endPoint: String) -> String {
                          lon1: Double(arrStartPoint[1])!,
                          lat2: Double(arrEndPoint[0])!,
                          lon2: Double(arrEndPoint[1])!, unit: "K")
-        return String(a)
+        let doubleStr = String(format: "%.2f", a)
+        return doubleStr
     }
     return "0"
+}
+
+
+func getDistanceOfTwoPointInDouble(startPoint: String, endPoint: String) -> Double {
+    let arrStartPoint =  startPoint.components(separatedBy: ",")
+    let arrEndPoint =  endPoint.components(separatedBy: ",")
+    
+    if arrStartPoint.count > 1 && arrEndPoint.count > 1 {
+        let a = distance(lat1: Double(arrStartPoint[0])!,
+                         lon1: Double(arrStartPoint[1])!,
+                         lat2: Double(arrEndPoint[0])!,
+                         lon2: Double(arrEndPoint[1])!, unit: "K")
+        let doubleStr = String(format: "%.2f", a)
+        return Double(doubleStr) ?? 0.00
+    }
+    return 0.00
 }
     func distance(lat1:Double, lon1:Double, lat2:Double, lon2:Double, unit:String) -> Double {
         let theta = lon1 - lon2
