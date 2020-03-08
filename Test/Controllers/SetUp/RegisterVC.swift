@@ -56,7 +56,7 @@ fileprivate extension RegisterVC {
             
             var ref: DocumentReference? = nil
             let dict = [
-                "created":getCurrentTimeStampWOMiliseconds(dateToConvert: Date() as NSDate),
+                "created":Date(),//getCurrentTimeStampWOMiliseconds(dateToConvert: Date() as NSDate),
                 "email":self.txtEmail.text ?? "",
                 "mobile":self.txtMobile.text ?? "",
                 "mobileVerity":false,

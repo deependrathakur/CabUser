@@ -8,7 +8,8 @@
 
 import UIKit
 
-class WaitingForDriverVC: UIViewController {
+class WaitingForDriverVC: UIViewController, SWRevealViewControllerDelegate {
+    @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var txtPicupLocation:UITextField!
     @IBOutlet weak var txtDroupLocation:UITextField!
     @IBOutlet weak var lblName:UILabel!
@@ -17,6 +18,9 @@ class WaitingForDriverVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        menuButton.addTarget(revealViewController, action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
+        self.revealViewController().delegate = self
+        revealViewController()?.rearViewRevealWidth = 60
     }
 }
 //MARK: - Button Method extension
@@ -30,11 +34,5 @@ extension WaitingForDriverVC {
     @IBAction func CallAction(sender: UIButton) {
         self.view.endEditing(true)
         self.navigationController?.popViewController(animated: true)
-    }
-    
-    @IBAction func reviewAction(sender: UIButton) {
-        self.view.endEditing(true)
-        let vc = UIStoryboard.init(name: homeStoryBoard, bundle: Bundle.main).instantiateViewController(withIdentifier: writeReviewVC) as? WriteReviewVC
-        self.navigationController?.pushViewController(vc!, animated: true)
     }
 }

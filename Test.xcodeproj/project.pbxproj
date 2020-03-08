@@ -92,7 +92,7 @@
 		EE71EF162406C25D00B6028D /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
 		EE71EF1D2406DD6200B6028D /* customClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customClass.swift; sourceTree = "<group>"; };
 		EE71EF1F2406E14700B6028D /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
-		EED85435240556D900E225EE /* Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EED85435240556D900E225EE /* CabUser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CabUser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EED85438240556D900E225EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EED8543A240556D900E225EE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		EED8543C240556D900E225EE /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginVC.swift; path = ../../LoginVC.swift; sourceTree = "<group>"; };
@@ -312,7 +312,7 @@
 		EED85436240556D900E225EE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EED85435240556D900E225EE /* Test.app */,
+				EED85435240556D900E225EE /* CabUser.app */,
 				EED8544B240556E800E225EE /* TestTests.xctest */,
 				EED85456240556E800E225EE /* TestUITests.xctest */,
 			);
@@ -387,7 +387,7 @@
 			);
 			name = Test;
 			productName = Test;
-			productReference = EED85435240556D900E225EE /* Test.app */;
+			productReference = EED85435240556D900E225EE /* CabUser.app */;
 			productType = "com.apple.product-type.application";
 		};
 		EED8544A240556E800E225EE /* TestTests */ = {
@@ -854,7 +854,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Deependra.Test;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = CabUser;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = /Users/harshit/Downloads/CabUser/Test/BridgeHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -878,7 +878,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Deependra.Test;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = CabUser;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = /Users/harshit/Downloads/CabUser/Test/BridgeHeader.h;
 				SWIFT_VERSION = 5.0;

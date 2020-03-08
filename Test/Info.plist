@@ -58,11 +58,11 @@
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleDarkContent</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string></string>
+	<string>Location required for picup address and drop address</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Location required for picup address and drop address</string>
 	<key>NSLocationUsageDescription</key>
-	<string></string>
+	<string>Location required for picup address and drop address</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

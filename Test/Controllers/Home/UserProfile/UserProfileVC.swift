@@ -10,7 +10,6 @@ import UIKit
 
 class UserProfileVC: UIViewController, SWRevealViewControllerDelegate {
     @IBOutlet weak var menuButton: UIButton!
-    
     @IBOutlet weak var txtName: UITextField!
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPhone: UITextField!

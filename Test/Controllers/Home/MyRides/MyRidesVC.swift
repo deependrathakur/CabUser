@@ -16,6 +16,7 @@ class MyRidesVC: UIViewController, UITableViewDelegate, UITableViewDataSource, S
     @IBOutlet weak var button3:UIButton!
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var tableView:UITableView!
+    @IBOutlet weak var noRecord:UILabel!
     @IBOutlet var viewForSide: UIView!
     
     var arrBooking = [ModelMyRides]()
@@ -49,6 +50,11 @@ class MyRidesVC: UIViewController, UITableViewDelegate, UITableViewDataSource, S
 //MARK: - Tableview Extension
 extension MyRidesVC {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.arrBooking.count > 0 {
+            self.noRecord.isHidden = true
+        } else {
+            self.noRecord.isHidden = false
+        }
         return self.arrBooking.count
     }
     
@@ -100,6 +106,7 @@ fileprivate extension MyRidesVC {
                 self.tableView.reloadData()
                 print("Error getting documents: \(err)")
             } else {
+                self.arrBooking.removeAll()
                 for document in querySnapshot!.documents {
                     let modelObject = ModelMyRides.init(dict: document.data())
                     if self.selectSegment == 0 && modelObject.status == "3" {

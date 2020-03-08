@@ -12,7 +12,7 @@ import HCSStarRatingView
 class WriteReviewVC: UIViewController {
     @IBOutlet weak var txtPicupLocation:UITextField!
     @IBOutlet weak var txtDroupLocation:UITextField!
-    
+
     @IBOutlet weak var lblPrice:UILabel!
     @IBOutlet weak var lblTimeDate:UILabel!
     
