@@ -58,7 +58,7 @@ class CabVC: UIViewController, SWRevealViewControllerDelegate, UITextFieldDelega
         revealViewController()?.rearViewRevealWidth = 60
         
         bookingDict = ["amount": "123",  "date":"","driveId": "123132",
-                       "driverId": "0", "drop": "", "geopoint":  "", "km": "0", "pickup": "0",  "reviewComment": "",  "reviewStar": 3, "status": 1, "tax": "22"]
+                       "driverId": "0", "drop": "", "geopoint":  "", "km": "0", "pickup": "0",  "reviewComment": "",  "reviewStar": 3, "status": 3, "tax": "22"]
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -228,6 +228,16 @@ fileprivate extension CabVC {
         self.view.endEditing(true)
     }
     
+    @IBAction func selectDriveTypeAction(sender: UIButton) {
+        self.view.endEditing(true)
+        if sender.tag == 0 {
+            onTheWay(onTheWayBy: "car")
+        } else if sender.tag == 1 {
+            onTheWay(onTheWayBy: "cab")
+        } else if sender.tag == 2 {
+            onTheWay(onTheWayBy: "truck")
+        }
+    }
 }
 
 //MARK: - Button Method extension

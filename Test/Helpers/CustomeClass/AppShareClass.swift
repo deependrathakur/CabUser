@@ -34,6 +34,7 @@ let myMenuVC = "MyMenuVC"
 
 //cell
 let myMenuCell = "MyMenuCell"
+let cellMyRides = "CellMyRides"
 
 func goToNextVC(storyBoardID: String, vc_id: String, currentVC: UIViewController) {
     let vc = UIStoryboard.init(name: storyBoardID, bundle: Bundle.main).instantiateViewController(withIdentifier: vc_id)
@@ -97,4 +98,18 @@ func getDistanceOfTwoPoint(startPoint: String, endPoint: String) -> String {
     func rad2deg(rad:Double) -> Double {
         return rad * 180.0 / M_PI
     }
+
+////////////////////
+func dictToStringKeyParam(dict: [String:Any], key: String) -> String {
+    if let value = dict[key] as? String {
+        return value
+    } else if let value = dict[key] as? Int {
+        return String(value)
+    } else if let value = dict[key] as? Double {
+        return String(value)
+    } else if let value = dict[key] as? Float {
+        return String(value)
+    } else { return "" }
+}
+
 

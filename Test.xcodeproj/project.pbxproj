@@ -22,6 +22,7 @@
 		EE3BC7BD2412B17D0075C28E /* myriad.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE67719E240C321C00DE8D25 /* myriad.ttf */; };
 		EE3BC7BE2412B17F0075C28E /* museo700.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE67719D240C321500DE8D25 /* museo700.ttf */; };
 		EE3E1DD624102E5D004AA01E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE3E1DD524102E5D004AA01E /* GoogleService-Info.plist */; };
+		EE40FC6C2413CA98002A5076 /* ModelMyRides.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE40FC6B2413CA98002A5076 /* ModelMyRides.swift */; };
 		EE677198240C2E2600DE8D25 /* UserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE677197240C2E2600DE8D25 /* UserProfileVC.swift */; };
 		EE71EF172406C25D00B6028D /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EE71EF142406C25D00B6028D /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
 		EE71EF182406C25D00B6028D /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE71EF162406C25D00B6028D /* TPKeyboardAvoidingScrollView.m */; };
@@ -79,6 +80,7 @@
 		EE38A9F1240AA57900E97C34 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		EE38A9F5240AC47E00E97C34 /* WriteReviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewVC.swift; sourceTree = "<group>"; };
 		EE3E1DD524102E5D004AA01E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EE40FC6B2413CA98002A5076 /* ModelMyRides.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelMyRides.swift; sourceTree = "<group>"; };
 		EE677197240C2E2600DE8D25 /* UserProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileVC.swift; sourceTree = "<group>"; };
 		EE67719C240C320C00DE8D25 /* helvetica.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = helvetica.ttf; sourceTree = "<group>"; };
 		EE67719D240C321500DE8D25 /* museo700.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = museo700.ttf; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				EEE4963C2408181000C0734B /* MyRidesVC.swift */,
+				EE40FC6B2413CA98002A5076 /* ModelMyRides.swift */,
 				EEE4963F24082D6D00C0734B /* CellMyRides.swift */,
 			);
 			path = MyRides;
@@ -657,6 +660,7 @@
 				EE71EF172406C25D00B6028D /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				EEE496362407FD7C00C0734B /* AppShareClass.swift in Sources */,
 				EED85439240556D900E225EE /* AppDelegate.swift in Sources */,
+				EE40FC6C2413CA98002A5076 /* ModelMyRides.swift in Sources */,
 				EE3AC770240EDCE300AD4779 /* helvetica.ttf in Sources */,
 				EE3AC76F240EDCE100AD4779 /* myriad.ttf in Sources */,
 				EE38A9F2240AA57900E97C34 /* SWRevealViewController.m in Sources */,
@@ -771,7 +775,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -825,7 +829,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

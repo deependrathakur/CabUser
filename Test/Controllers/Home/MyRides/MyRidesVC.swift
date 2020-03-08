@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class MyRidesVC: UIViewController, UITableViewDelegate, UITableViewDataSource, SWRevealViewControllerDelegate {
     
@@ -17,11 +18,15 @@ class MyRidesVC: UIViewController, UITableViewDelegate, UITableViewDataSource, S
     @IBOutlet weak var tableView:UITableView!
     @IBOutlet var viewForSide: UIView!
     
+    var arrBooking = [ModelMyRides]()
+    let db = Firestore.firestore()
+    var selectSegment = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.reloadData()
+        self.getBookingList()
         button1.setTitle("ONGOING", for: .normal)
         button2.setTitle("COMPLETED", for: .normal)
         button3.setTitle("CANCLED", for: .normal)
@@ -39,6 +44,81 @@ class MyRidesVC: UIViewController, UITableViewDelegate, UITableViewDataSource, S
     @IBAction func btnMenuAction(_ sender: UIButton) {
         viewForSide.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
     }
+}
+
+//MARK: - Tableview Extension
+extension MyRidesVC {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.arrBooking.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: cellMyRides, for: indexPath as IndexPath) as? CellMyRides {
+            let object = self.arrBooking[indexPath.row]
+            cell.lblPicLocation.text = object.pickup
+            cell.lblDropLocation.text = object.drop
+            return cell
+        }
+        return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = UIStoryboard.init(name: homeStoryBoard, bundle: Bundle.main).instantiateViewController(withIdentifier: cabVC) as? CabVC
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
+}
+
+//MARK: - Button Method extension
+fileprivate extension MyRidesVC {
+    
+    @IBAction func changeSegmentAction(sender: UIButton) {
+        self.view.endEditing(true)
+        selectSegment = sender.tag
+        if sender.tag == 0 {
+            button1.addBottomLineWithColor(color: appColor, lineHeight: 2, textColor: appColor)
+            button2.addBottomLineWithColor(color: whiteColor, lineHeight: 2, textColor: grayColor)
+            button3.addBottomLineWithColor(color: whiteColor, lineHeight: 2, textColor: grayColor)
+        } else if sender.tag == 1 {
+            button2.addBottomLineWithColor(color: appColor, lineHeight: 2, textColor: appColor)
+            button1.addBottomLineWithColor(color: whiteColor, lineHeight: 2, textColor: grayColor)
+            button3.addBottomLineWithColor(color: whiteColor, lineHeight: 2, textColor: grayColor)
+        } else if sender.tag == 2 {
+            button3.addBottomLineWithColor(color: appColor, lineHeight: 2, textColor: appColor)
+            button2.addBottomLineWithColor(color: whiteColor, lineHeight: 2, textColor: grayColor)
+            button1.addBottomLineWithColor(color: whiteColor, lineHeight: 2, textColor: grayColor)
+        }
+        self.getBookingList()
+    }
+}
+
+//MARK: - Firebase method extension
+fileprivate extension MyRidesVC {
+    func getBookingList() {
+        self.arrBooking.removeAll()
+        db.collection("booking").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                self.tableView.reloadData()
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let modelObject = ModelMyRides.init(dict: document.data())
+                    if self.selectSegment == 0 && modelObject.status == "3" {
+                        self.arrBooking.append(modelObject)
+                    } else if self.selectSegment == 1 && modelObject.status == "4" {
+                        self.arrBooking.append(modelObject)
+                    } else if self.selectSegment == 2 && modelObject.status == "5" {
+                        self.arrBooking.append(modelObject)
+                    }
+                }
+            
+                self.tableView.reloadData()
+            }
+        }
+    }
+}
+
+//MARK: - Revel extension
+extension MyRidesVC {
     
     // MARK: - ENSideMenu Delegate
     func revealController(_ revealController: SWRevealViewController!, didMoveTo position: FrontViewPosition) {
@@ -89,45 +169,5 @@ class MyRidesVC: UIViewController, UITableViewDelegate, UITableViewDataSource, S
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-}
-
-//MARK: - Tableview Extension
-extension MyRidesVC {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "CellMyRides", for: indexPath as IndexPath) as? CellMyRides {
-            return cell
-        }
-        return UITableViewCell()
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = UIStoryboard.init(name: homeStoryBoard, bundle: Bundle.main).instantiateViewController(withIdentifier: cabVC) as? CabVC
-        self.navigationController?.pushViewController(vc!, animated: true)
-    }
-}
-
-//MARK: - Button Method extension
-fileprivate extension MyRidesVC {
-    
-    @IBAction func changeSegmentAction(sender: UIButton) {
-        self.view.endEditing(true)
-        if sender.tag == 0 {
-            button1.addBottomLineWithColor(color: appColor, lineHeight: 2, textColor: appColor)
-            button2.addBottomLineWithColor(color: whiteColor, lineHeight: 2, textColor: grayColor)
-            button3.addBottomLineWithColor(color: whiteColor, lineHeight: 2, textColor: grayColor)
-        } else if sender.tag == 1 {
-            button2.addBottomLineWithColor(color: appColor, lineHeight: 2, textColor: appColor)
-            button1.addBottomLineWithColor(color: whiteColor, lineHeight: 2, textColor: grayColor)
-            button3.addBottomLineWithColor(color: whiteColor, lineHeight: 2, textColor: grayColor)
-        } else if sender.tag == 2 {
-            button3.addBottomLineWithColor(color: appColor, lineHeight: 2, textColor: appColor)
-            button2.addBottomLineWithColor(color: whiteColor, lineHeight: 2, textColor: grayColor)
-            button1.addBottomLineWithColor(color: whiteColor, lineHeight: 2, textColor: grayColor)
-        }
     }
 }
