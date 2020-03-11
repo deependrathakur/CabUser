@@ -35,4 +35,9 @@ extension WaitingForDriverVC {
         self.view.endEditing(true)
         self.navigationController?.popViewController(animated: true)
     }
+    
+    @IBAction func reviewAction(sender: UIButton) {
+         self.view.endEditing(true)
+        goToNextVC(storyBoardID: homeStoryBoard, vc_id: writeReviewVC, currentVC: self)
+     }
 }

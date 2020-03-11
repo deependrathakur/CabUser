@@ -106,6 +106,11 @@ fileprivate extension CabVC {
             self.sendBookingOnFirebase()
         }
     }
+     
+    func getDistanceInInt() -> Int {
+         let value = getDistanceOfTwoPointInDouble(startPoint: bookingDict["pickupPoint"] as? String ?? "", endPoint: bookingDict["dropPoint"] as? String ?? "")
+        return Int(value)
+    }
 }
 
 //MARK: - location view extension
@@ -251,6 +256,8 @@ fileprivate extension CabVC {
             showAlertVC(title: kAlertTitle, message: "Please select drop location.", controller: self)
         } else {
             bookingDict["km"] = distance
+            self.lblPrice.text = "$" + String(getDistanceInInt()*2)
+            self.lblTimeDistance.text = "$\(getDistanceInInt()) KM, \(getDistanceInInt()) min"
             self.vwPopup.isHidden = false
         }
     }
@@ -264,6 +271,8 @@ fileprivate extension CabVC {
             showAlertVC(title: kAlertTitle, message: "Please select drop location.", controller: self)
         } else {
             bookingDict["km"] = distance
+            self.lblPrice.text = "$" + String(getDistanceInInt())
+            self.lblTimeDistance.text = "$\(getDistanceInInt()) KM, \(getDistanceInInt()) min"
             self.vwPopup.isHidden = false
         }
     }
@@ -271,6 +280,12 @@ fileprivate extension CabVC {
     @IBAction func ConfirmAction(sender: UIButton) {
         self.view.endEditing(true)
         self.validationForBooking()
+    }
+    @IBAction func selectTimeAction(sender: UIButton) {
+        self.view.endEditing(true)
+        if let vc = UIStoryboard.init(name: homeStoryBoard, bundle: Bundle.main).instantiateViewController(withIdentifier: "PickerViewVC") as? PickerViewVC {
+        self.present(vc, animated: true, completion: nil)
+        }
     }
     
     @IBAction func MenuAction(sender: UIButton) {

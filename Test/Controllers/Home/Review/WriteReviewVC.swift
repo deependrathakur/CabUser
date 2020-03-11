@@ -17,12 +17,13 @@ class WriteReviewVC: UIViewController {
     @IBOutlet weak var lblTimeDate:UILabel!
     
     @IBOutlet weak var txtViewComment:UITextView!
-    
+    @IBOutlet weak var starView:HCSStarRatingView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
 }
+
 //MARK: - Button Method extension
 extension WriteReviewVC {
     
