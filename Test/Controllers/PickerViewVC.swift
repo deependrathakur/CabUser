@@ -8,10 +8,14 @@
 
 import UIKit
 
+protocol PickerDelegate
+{  func onSelectPicker(date: Date) }
+
 class PickerViewVC: UIViewController {
    
     @IBOutlet weak var picker:UIDatePicker!
-
+    var delegate:PickerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.picker.minimumDate = Date()
@@ -21,14 +25,11 @@ class PickerViewVC: UIViewController {
     @IBAction func backAction(sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func DoneAction(sender: UIButton) {
+        let date = self.picker.date
+        delegate?.onSelectPicker(date: date)
+        self.dismiss(animated: true, completion: nil)
     }
-    */
 
 }
