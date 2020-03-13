@@ -11,12 +11,13 @@ import MapKit
 import GooglePlaces
 import Firebase
 
-class CabVC: UIViewController, SWRevealViewControllerDelegate, UITextFieldDelegate, GMSAutocompleteViewControllerDelegate {
+class CabVC: UIViewController, SWRevealViewControllerDelegate, UITextFieldDelegate, GMSAutocompleteViewControllerDelegate, PickerDelegate {
     
     @IBOutlet weak var txtPicupLocation:UITextField!
     @IBOutlet weak var txtDroupLocation:UITextField!
+    @IBOutlet weak var buttonDate:UIButton!
     @IBOutlet var indicator: UIActivityIndicatorView!
-
+    
     @IBOutlet weak var lblTruck:UILabel!
     @IBOutlet weak var lblCar:UILabel!
     @IBOutlet weak var lblCab:UILabel!
@@ -54,7 +55,8 @@ class CabVC: UIViewController, SWRevealViewControllerDelegate, UITextFieldDelega
         self.txtDroupLocation.delegate = self
         self.txtPicupLocationPopup.delegate = self
         self.txtDroupLocationPopup.delegate = self
-        
+        self.buttonDate.setTitleColor(grayColor, for: .normal)
+
         onTheWay(onTheWayBy: "car")
         self.vwPopup.isHidden = true
         menuButton.addTarget(revealViewController, action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
@@ -68,6 +70,13 @@ class CabVC: UIViewController, SWRevealViewControllerDelegate, UITextFieldDelega
     override func viewWillAppear(_ animated: Bool) {
         self.vwPopup.isHidden = true
         UserDefaults.standard.set(cabVC, forKey: "vc") 
+    }
+    
+    func onSelectPicker(date: Date) {
+        let a = getTimeFromTime(date: date)
+        bookingDict["date"] = date
+        self.buttonDate.setTitle(a, for: .normal)
+        self.buttonDate.setTitleColor(appColor, for: .normal)
     }
 }
 
@@ -93,22 +102,30 @@ fileprivate extension CabVC {
         }
     }
     
-    func validationForBooking() {
+    func basicValidationTrue() -> Bool {
         if self.txtPicupLocation.isEmptyText() {
             showAlertVC(title: kAlertTitle, message: "Please select pikup location.", controller: self)
+            return false
         } else if self.txtDroupLocation.isEmptyText() {
             showAlertVC(title: kAlertTitle, message: "Please select drop location.", controller: self)
+            return false
+        } else if self.buttonDate.currentTitle == "Select Picup Date & Time" {
+            showAlertVC(title: kAlertTitle, message: "Please select pikup Time.", controller: self)
+            return false
+        } else if (bookingDict["date"] as? Date ?? Date()) < Date() {
+            showAlertVC(title: kAlertTitle, message: "Please select valid Time.", controller: self)
+            return false
         } else {
-            
-            bookingDict["date"] = Date()
-            let distance = getDistanceOfTwoPoint(startPoint: bookingDict["pickupPoint"] as? String ?? "", endPoint: bookingDict["dropPoint"] as? String ?? "")
-            bookingDict["km"] = distance
-            self.sendBookingOnFirebase()
+            let distances = getDistanceOfTwoPoint(startPoint: bookingDict["pickupPoint"] as? String ?? "", endPoint: bookingDict["dropPoint"] as? String ?? "")
+            bookingDict["km"] = distances
+            self.lblPrice.text = "$" + String(getDistanceInInt()*2)
+            self.lblTimeDistance.text = "$\(getDistanceInInt()) KM, \(getDistanceInInt()) min"
+            return true
         }
     }
-     
+    
     func getDistanceInInt() -> Int {
-         let value = getDistanceOfTwoPointInDouble(startPoint: bookingDict["pickupPoint"] as? String ?? "", endPoint: bookingDict["dropPoint"] as? String ?? "")
+        let value = getDistanceOfTwoPointInDouble(startPoint: bookingDict["pickupPoint"] as? String ?? "", endPoint: bookingDict["dropPoint"] as? String ?? "")
         return Int(value)
     }
 }
@@ -192,7 +209,7 @@ extension CabVC {
         let amount = Int(distance*2)
         bookingDict["amount"] = amount
         self.indicator.isHidden = false
-
+        
         var ref: DocumentReference? = nil
         ref = db.collection("booking").addDocument(data: bookingDict) { err in
             if let _ = err {
@@ -205,7 +222,7 @@ extension CabVC {
                 self.txtPicupLocationPopup.text = ""
                 self.txtDroupLocation.text = ""
                 self.txtPicupLocation.text = ""
-                let vc = UIStoryboard.init(name: homeStoryBoard, bundle: Bundle.main).instantiateViewController(withIdentifier: waitingForDriverVC) as? WaitingForDriverVC
+                let vc = UIStoryboard.init(name: homeStoryBoard, bundle: Bundle.main).instantiateViewController(withIdentifier: myRidesVC) as? MyRidesVC
                 self.navigationController?.pushViewController(vc!, animated: true)
                 showAlertVC(title: kAlertTitle, message: "Booking successfully submited.", controller: self)
             }
@@ -213,8 +230,8 @@ extension CabVC {
     }
     
     func sendNotificationOnFirebase() {
-
-        let dictionary = ["bookingTime" : Date(),
+        
+        let dictionary = ["bookingTime" : bookingDict["date"] as! Date,
                           "create": Date(),
                           "dropLocation":bookingDict["drop"] as? String ?? "",
                           "pickup": bookingDict["pickupPoint"] as? String ?? "",
@@ -243,21 +260,12 @@ fileprivate extension CabVC {
     @IBAction func CancelRideLaterAction(sender: UIButton) {
         self.view.endEditing(true)
         self.vwPopup.isHidden = true
-        self.txtPicupLocationPopup.text = ""
-        self.txtDroupLocation.text = ""
-    }
+     }
     
     @IBAction func RideNowAction(sender: UIButton) {
         self.view.endEditing(true)
         bookingDict["ride"] = "now"
-        if self.txtPicupLocation.isEmptyText() {
-            showAlertVC(title: kAlertTitle, message: "Please select pikup location.", controller: self)
-        } else if self.txtDroupLocation.isEmptyText() {
-            showAlertVC(title: kAlertTitle, message: "Please select drop location.", controller: self)
-        } else {
-            bookingDict["km"] = distance
-            self.lblPrice.text = "$" + String(getDistanceInInt()*2)
-            self.lblTimeDistance.text = "$\(getDistanceInInt()) KM, \(getDistanceInInt()) min"
+        if self.basicValidationTrue() {
             self.vwPopup.isHidden = false
         }
     }
@@ -265,26 +273,24 @@ fileprivate extension CabVC {
     @IBAction func RideLaterAction(sender: UIButton) {
         self.view.endEditing(true)
         bookingDict["ride"] = "later"
-        if self.txtPicupLocation.isEmptyText() {
-            showAlertVC(title: kAlertTitle, message: "Please select pikup location.", controller: self)
-        } else if self.txtDroupLocation.isEmptyText() {
-            showAlertVC(title: kAlertTitle, message: "Please select drop location.", controller: self)
-        } else {
-            bookingDict["km"] = distance
-            self.lblPrice.text = "$" + String(getDistanceInInt())
-            self.lblTimeDistance.text = "$\(getDistanceInInt()) KM, \(getDistanceInInt()) min"
+        if self.basicValidationTrue() {
             self.vwPopup.isHidden = false
         }
     }
     
     @IBAction func ConfirmAction(sender: UIButton) {
         self.view.endEditing(true)
-        self.validationForBooking()
+        if self.basicValidationTrue() {
+            bookingDict["currentDate"] = Date()
+            self.sendBookingOnFirebase()
+        }
     }
+    
     @IBAction func selectTimeAction(sender: UIButton) {
         self.view.endEditing(true)
         if let vc = UIStoryboard.init(name: homeStoryBoard, bundle: Bundle.main).instantiateViewController(withIdentifier: "PickerViewVC") as? PickerViewVC {
-        self.present(vc, animated: true, completion: nil)
+            vc.delegate = self
+            self.present(vc, animated: true, completion: nil)
         }
     }
     

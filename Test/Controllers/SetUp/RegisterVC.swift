@@ -68,14 +68,16 @@ fileprivate extension RegisterVC {
                 "wallet":0,
                 "name":self.txtFullName.text ?? ""
                 ] as [String : Any]
-            UserDefaults.standard.set(dict, forKey: "userDetail")
-            UserDefaults.standard.set(true, forKey: "isLogin")
+
             ref = db.collection("user").addDocument(data: dict) { err in
                 self.indicator.isHidden = true
                 if let err = err {
                     print("Error adding document: \(err)")
                 } else {
                     print("Document added with ID: \(ref!.documentID)")
+                    UserDefaults.standard.set("\(ref!.documentID)", forKey: "userId")
+                    UserDefaults.standard.set(dict, forKey: "userDetail")
+                    UserDefaults.standard.set(true, forKey: "isLogin")
                 }
             }
         

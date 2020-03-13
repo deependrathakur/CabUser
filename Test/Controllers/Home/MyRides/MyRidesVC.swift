@@ -31,7 +31,7 @@ class MyRidesVC: UIViewController, UITableViewDelegate, UITableViewDataSource, S
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.getBookingList()
-        button1.setTitle("ONGOING", for: .normal)
+        button1.setTitle("UPCOMING", for: .normal)
         button2.setTitle("COMPLETED", for: .normal)
         button3.setTitle("CANCLED", for: .normal)
         changeSegmentAction(sender: button1)
@@ -67,6 +67,7 @@ extension MyRidesVC {
             cell.lblPicLocation.text = object.pickup
             cell.lblDropLocation.text = object.drop
             cell.lblPrice.text = "$" + object.amount
+            cell.lblDate.text = object.date
             return cell
         }
         return UITableViewCell()
