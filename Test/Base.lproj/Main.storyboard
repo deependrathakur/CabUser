@@ -35,7 +35,7 @@
         <!--LoginVC-->
         <scene sceneID="8v2-jS-J31">
             <objects>
-                <viewController storyboardIdentifier="LoginVC" id="NHM-d6-Xv3" customClass="LoginVC" customModule="Test" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVC" id="NHM-d6-Xv3" customClass="LoginVC" customModule="CabUser" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Iob-PE-VyN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -70,7 +70,7 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4T0-rz-TKS">
                                                                         <rect key="frame" x="0.0" y="0.0" width="364" height="46"/>
                                                                         <subviews>
-                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email/Mobile" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rmz-O9-KFM" customClass="textFieldBorder" customModule="Test" customModuleProvider="target">
+                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email/Mobile" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rmz-O9-KFM" customClass="textFieldBorder" customModule="CabUser" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="364" height="46"/>
                                                                                 <color key="backgroundColor" red="0.89410596529999997" green="0.88855251209999997" blue="0.89965941849999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <color key="tintColor" red="0.22352004049999999" green="0.047561280429999998" blue="0.060397692019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -98,7 +98,7 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6np-o0-OCR">
                                                                         <rect key="frame" x="0.0" y="66" width="364" height="46"/>
                                                                         <subviews>
-                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JEC-1J-HQv" customClass="textFieldBorder" customModule="Test" customModuleProvider="target">
+                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JEC-1J-HQv" customClass="textFieldBorder" customModule="CabUser" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="364" height="46"/>
                                                                                 <color key="backgroundColor" red="0.89410596529999997" green="0.88855251209999997" blue="0.89965941849999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <color key="tintColor" red="0.22352004049999999" green="0.047561280429999998" blue="0.060397692019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -126,7 +126,7 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="13j-5N-xKe">
                                                                         <rect key="frame" x="0.0" y="132" width="364" height="57"/>
                                                                         <subviews>
-                                                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QAN-TQ-dFj" customClass="buttonBorder" customModule="Test" customModuleProvider="target">
+                                                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QAN-TQ-dFj" customClass="buttonBorder" customModule="CabUser" customModuleProvider="target">
                                                                                 <rect key="frame" x="10" y="10" width="344" height="46"/>
                                                                                 <color key="backgroundColor" red="0.22352004049999999" green="0.047561280429999998" blue="0.060397692019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <constraints>
@@ -157,7 +157,7 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Swq-3R-cqq">
                                                                         <rect key="frame" x="0.0" y="209" width="364" height="80"/>
                                                                         <subviews>
-                                                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQV-tb-LgN" customClass="buttonBorder" customModule="Test" customModuleProvider="target">
+                                                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQV-tb-LgN" customClass="buttonBorder" customModule="CabUser" customModuleProvider="target">
                                                                                 <rect key="frame" x="10" y="0.0" width="344" height="46"/>
                                                                                 <color key="backgroundColor" red="0.22352004049999999" green="0.047561280429999998" blue="0.060397692019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <constraints>
@@ -224,13 +224,20 @@
                                                             <constraint firstAttribute="bottom" secondItem="3BA-Qa-fpY" secondAttribute="bottom" constant="10" id="xhc-Wh-oCI"/>
                                                         </constraints>
                                                     </view>
+                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="aGB-f3-hhN">
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.18447403169014084" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="color" red="0.22352941179999999" green="0.047058823530000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </activityIndicatorView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="gQG-vE-Ad7" firstAttribute="centerX" secondItem="sMG-du-Rab" secondAttribute="centerX" id="0UE-dH-Zow"/>
                                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="gQG-vE-Ad7" secondAttribute="bottom" constant="30" id="PEe-d0-40p"/>
                                                     <constraint firstAttribute="trailing" secondItem="gQG-vE-Ad7" secondAttribute="trailing" constant="5" id="Pdt-my-8gJ"/>
+                                                    <constraint firstItem="aGB-f3-hhN" firstAttribute="centerX" secondItem="sMG-du-Rab" secondAttribute="centerX" id="dFy-65-Hzr"/>
                                                     <constraint firstItem="gQG-vE-Ad7" firstAttribute="leading" secondItem="sMG-du-Rab" secondAttribute="leading" constant="5" id="m7p-tn-v28"/>
+                                                    <constraint firstItem="aGB-f3-hhN" firstAttribute="centerY" secondItem="sMG-du-Rab" secondAttribute="centerY" id="q8X-CP-5Yo"/>
                                                     <constraint firstItem="gQG-vE-Ad7" firstAttribute="centerY" secondItem="sMG-du-Rab" secondAttribute="centerY" id="u5L-Mt-Gks"/>
                                                 </constraints>
                                             </view>
@@ -238,6 +245,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="sMG-du-Rab" firstAttribute="centerY" secondItem="U6f-Ev-bMp" secondAttribute="centerY" priority="750" id="0fj-bR-UhM"/>
+                                            <constraint firstItem="aGB-f3-hhN" firstAttribute="height" secondItem="U6f-Ev-bMp" secondAttribute="height" id="Sd7-SE-pDh"/>
                                             <constraint firstAttribute="trailing" secondItem="sMG-du-Rab" secondAttribute="trailing" id="jcx-W0-xM5"/>
                                             <constraint firstItem="sMG-du-Rab" firstAttribute="top" secondItem="U6f-Ev-bMp" secondAttribute="top" id="jcz-Gj-gMv"/>
                                             <constraint firstItem="sMG-du-Rab" firstAttribute="leading" secondItem="U6f-Ev-bMp" secondAttribute="leading" id="oaN-Jv-3h4"/>
@@ -250,6 +258,7 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="U6f-Ev-bMp" secondAttribute="trailing" id="Fe5-kV-Zad"/>
                                     <constraint firstItem="U6f-Ev-bMp" firstAttribute="leading" secondItem="SlF-Ey-HKS" secondAttribute="leading" id="Oua-sR-PWp"/>
+                                    <constraint firstItem="aGB-f3-hhN" firstAttribute="width" secondItem="SlF-Ey-HKS" secondAttribute="width" id="hX9-Ja-gLp"/>
                                     <constraint firstItem="U6f-Ev-bMp" firstAttribute="top" secondItem="SlF-Ey-HKS" secondAttribute="top" id="pBW-nD-vmW"/>
                                     <constraint firstAttribute="bottom" secondItem="U6f-Ev-bMp" secondAttribute="bottom" id="xW5-S1-Lj9"/>
                                 </constraints>
@@ -268,6 +277,7 @@
                     <connections>
                         <outlet property="btnLogin" destination="QAN-TQ-dFj" id="80W-uL-mIY"/>
                         <outlet property="btnRegister" destination="dQV-tb-LgN" id="9sS-rg-rHh"/>
+                        <outlet property="indicator" destination="aGB-f3-hhN" id="doU-II-dVb"/>
                         <outlet property="txtEmailPhone" destination="Rmz-O9-KFM" id="UY7-uw-xX8"/>
                         <outlet property="txtPassword" destination="JEC-1J-HQv" id="T6i-5X-mNg"/>
                     </connections>
@@ -279,7 +289,7 @@
         <!--RegisterVC-->
         <scene sceneID="yji-mA-Pla">
             <objects>
-                <viewController storyboardIdentifier="RegisterVC" id="gcD-43-XZh" customClass="RegisterVC" customModule="Test" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterVC" id="gcD-43-XZh" customClass="RegisterVC" customModule="CabUser" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AYq-VV-Mov">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -314,7 +324,7 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l1Y-tP-hxI">
                                                                         <rect key="frame" x="0.0" y="0.0" width="364" height="46"/>
                                                                         <subviews>
-                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Full Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ouT-Z8-XJE" customClass="textFieldBorder" customModule="Test" customModuleProvider="target">
+                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Full Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ouT-Z8-XJE" customClass="textFieldBorder" customModule="CabUser" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="364" height="46"/>
                                                                                 <color key="backgroundColor" red="0.89410596529999997" green="0.88855251209999997" blue="0.89965941849999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <color key="tintColor" red="0.22352004049999999" green="0.047561280429999998" blue="0.060397692019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -342,7 +352,7 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RQT-N8-BbY">
                                                                         <rect key="frame" x="0.0" y="66" width="364" height="46"/>
                                                                         <subviews>
-                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lHL-06-PNk" customClass="textFieldBorder" customModule="Test" customModuleProvider="target">
+                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lHL-06-PNk" customClass="textFieldBorder" customModule="CabUser" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="364" height="46"/>
                                                                                 <color key="backgroundColor" red="0.89410596529999997" green="0.88855251209999997" blue="0.89965941849999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <color key="tintColor" red="0.22352004049999999" green="0.047561280429999998" blue="0.060397692019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -370,7 +380,7 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CKs-np-QMh">
                                                                         <rect key="frame" x="0.0" y="132" width="364" height="46"/>
                                                                         <subviews>
-                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mobile" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ysq-8V-bnA" customClass="textFieldBorder" customModule="Test" customModuleProvider="target">
+                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mobile" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ysq-8V-bnA" customClass="textFieldBorder" customModule="CabUser" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="364" height="46"/>
                                                                                 <color key="backgroundColor" red="0.89410596529999997" green="0.88855251209999997" blue="0.89965941849999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <color key="tintColor" red="0.22352004049999999" green="0.047561280429999998" blue="0.060397692019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -398,7 +408,7 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ihq-9e-mud">
                                                                         <rect key="frame" x="0.0" y="198" width="364" height="46"/>
                                                                         <subviews>
-                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="llT-w7-0X2" customClass="textFieldBorder" customModule="Test" customModuleProvider="target">
+                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="llT-w7-0X2" customClass="textFieldBorder" customModule="CabUser" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="364" height="46"/>
                                                                                 <color key="backgroundColor" red="0.89410596529999997" green="0.88855251209999997" blue="0.89965941849999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <color key="tintColor" red="0.22352004049999999" green="0.047561280429999998" blue="0.060397692019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -426,7 +436,7 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iCF-gd-HL9">
                                                                         <rect key="frame" x="0.0" y="264" width="364" height="46"/>
                                                                         <subviews>
-                                                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O1m-DT-44B" customClass="buttonBorder" customModule="Test" customModuleProvider="target">
+                                                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O1m-DT-44B" customClass="buttonBorder" customModule="CabUser" customModuleProvider="target">
                                                                                 <rect key="frame" x="10" y="0.0" width="344" height="46"/>
                                                                                 <color key="backgroundColor" red="0.22352004049999999" green="0.047561280429999998" blue="0.060397692019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <constraints>
@@ -457,7 +467,7 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ewn-1W-iJI">
                                                                         <rect key="frame" x="0.0" y="330" width="364" height="46"/>
                                                                         <subviews>
-                                                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ey-ij-6cB" customClass="buttonBorder" customModule="Test" customModuleProvider="target">
+                                                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ey-ij-6cB" customClass="buttonBorder" customModule="CabUser" customModuleProvider="target">
                                                                                 <rect key="frame" x="10" y="0.0" width="344" height="46"/>
                                                                                 <color key="backgroundColor" red="0.22352004049999999" green="0.047561280429999998" blue="0.060397692019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <constraints>
@@ -502,14 +512,21 @@
                                                             <constraint firstAttribute="trailing" secondItem="YXl-Bg-eyw" secondAttribute="trailing" constant="20" id="mRF-Qq-6s7"/>
                                                         </constraints>
                                                     </view>
+                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="oju-kk-SGw">
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.21564150528169015" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="color" red="0.22352941179999999" green="0.047058823530000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </activityIndicatorView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
+                                                    <constraint firstItem="oju-kk-SGw" firstAttribute="centerY" secondItem="Bwr-OJ-w1m" secondAttribute="centerY" id="JrD-go-Fy3"/>
                                                     <constraint firstAttribute="trailing" secondItem="7e1-iS-CWY" secondAttribute="trailing" constant="5" id="egF-Wo-1fD"/>
                                                     <constraint firstItem="7e1-iS-CWY" firstAttribute="centerY" secondItem="Bwr-OJ-w1m" secondAttribute="centerY" id="g0m-w6-cjA"/>
                                                     <constraint firstItem="7e1-iS-CWY" firstAttribute="centerX" secondItem="Bwr-OJ-w1m" secondAttribute="centerX" id="g8x-Mq-5dJ"/>
                                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="7e1-iS-CWY" secondAttribute="bottom" constant="30" id="iXM-h7-hAG"/>
                                                     <constraint firstItem="7e1-iS-CWY" firstAttribute="leading" secondItem="Bwr-OJ-w1m" secondAttribute="leading" constant="5" id="mlK-BH-luf"/>
+                                                    <constraint firstItem="oju-kk-SGw" firstAttribute="centerX" secondItem="Bwr-OJ-w1m" secondAttribute="centerX" id="w8Z-G3-lby"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -526,10 +543,12 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="oju-kk-SGw" firstAttribute="width" secondItem="JRd-Qb-n5Y" secondAttribute="width" id="KQ6-IS-DCm"/>
                                     <constraint firstAttribute="bottom" secondItem="2Sw-yA-3Kg" secondAttribute="bottom" id="VS6-Zt-o2b"/>
                                     <constraint firstItem="2Sw-yA-3Kg" firstAttribute="leading" secondItem="JRd-Qb-n5Y" secondAttribute="leading" id="axm-IN-Sd6"/>
                                     <constraint firstAttribute="trailing" secondItem="2Sw-yA-3Kg" secondAttribute="trailing" id="gqi-S2-8sB"/>
                                     <constraint firstItem="2Sw-yA-3Kg" firstAttribute="top" secondItem="JRd-Qb-n5Y" secondAttribute="top" id="jDo-SR-H1M"/>
+                                    <constraint firstItem="oju-kk-SGw" firstAttribute="height" secondItem="JRd-Qb-n5Y" secondAttribute="height" id="xqu-ch-xfH"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -546,6 +565,7 @@
                     <connections>
                         <outlet property="btnLogin" destination="8ey-ij-6cB" id="82f-tW-MkU"/>
                         <outlet property="btnRegister" destination="O1m-DT-44B" id="FHS-Rp-hFQ"/>
+                        <outlet property="indicator" destination="oju-kk-SGw" id="wNg-Id-Gky"/>
                         <outlet property="txtEmail" destination="lHL-06-PNk" id="xF8-Tu-K9A"/>
                         <outlet property="txtFullName" destination="ouT-Z8-XJE" id="EzX-r7-qeQ"/>
                         <outlet property="txtMobile" destination="Ysq-8V-bnA" id="32n-WN-1ZL"/>
@@ -559,7 +579,7 @@
         <!--OTPVC-->
         <scene sceneID="tns-6R-dtv">
             <objects>
-                <viewController storyboardIdentifier="OTPVC" id="xb4-dF-zuc" customClass="OTPVC" customModule="Test" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OTPVC" id="xb4-dF-zuc" customClass="OTPVC" customModule="CabUser" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ux8-SW-oLX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -594,7 +614,7 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5dh-7j-ytq">
                                                                         <rect key="frame" x="0.0" y="0.0" width="364" height="46"/>
                                                                         <subviews>
-                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="OTP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gC9-CW-OhE" customClass="textFieldBorder" customModule="Test" customModuleProvider="target">
+                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="OTP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gC9-CW-OhE" customClass="textFieldBorder" customModule="CabUser" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="364" height="46"/>
                                                                                 <color key="backgroundColor" red="0.89411764705882346" green="0.88855251209999997" blue="0.89965941849999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <color key="tintColor" red="0.22352004049999999" green="0.047561280429999998" blue="0.060397692019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -621,7 +641,7 @@
                                                                     </view>
                                                                 </subviews>
                                                             </stackView>
-                                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nyF-Vm-bsw" customClass="buttonBorder" customModule="Test" customModuleProvider="target">
+                                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nyF-Vm-bsw" customClass="buttonBorder" customModule="CabUser" customModuleProvider="target">
                                                                 <rect key="frame" x="30" y="244" width="344" height="46"/>
                                                                 <color key="backgroundColor" red="0.22352941176470587" green="0.047058823529411764" blue="0.058823529411764705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>

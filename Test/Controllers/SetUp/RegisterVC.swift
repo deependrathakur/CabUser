@@ -15,14 +15,14 @@ class RegisterVC: UIViewController {
     @IBOutlet weak var txtEmail:UITextField!
     @IBOutlet weak var txtMobile:UITextField!
     @IBOutlet weak var txtPassword:UITextField!
-    
+    @IBOutlet weak var indicator:UIActivityIndicatorView!
     @IBOutlet weak var btnLogin:UIButton!
     @IBOutlet weak var btnRegister:UIButton!
     let db = Firestore.firestore()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.indicator.isHidden = true
     }
 }
 
@@ -53,7 +53,8 @@ fileprivate extension RegisterVC {
         } else if self.txtPassword.isValidateEmail() {
             self.txtPassword.shakeTextField()
         } else {
-            
+            self.indicator.isHidden = false
+
             var ref: DocumentReference? = nil
             let dict = [
                 "created":Date(),//getCurrentTimeStampWOMiliseconds(dateToConvert: Date() as NSDate),
@@ -67,13 +68,16 @@ fileprivate extension RegisterVC {
                 "wallet":0,
                 "name":self.txtFullName.text ?? ""
                 ] as [String : Any]
-            UserDefaults.standard.set(dict, forKey: "userDetail")
-            UserDefaults.standard.set(true, forKey: "isLogin")
+
             ref = db.collection("user").addDocument(data: dict) { err in
+                self.indicator.isHidden = true
                 if let err = err {
                     print("Error adding document: \(err)")
                 } else {
                     print("Document added with ID: \(ref!.documentID)")
+                    UserDefaults.standard.set("\(ref!.documentID)", forKey: "userId")
+                    UserDefaults.standard.set(dict, forKey: "userDetail")
+                    UserDefaults.standard.set(true, forKey: "isLogin")
                 }
             }
         

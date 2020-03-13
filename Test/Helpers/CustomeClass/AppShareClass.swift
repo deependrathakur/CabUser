@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+import Firebase
 //colors
 let appColor = #colorLiteral(red: 0.2235200405, green: 0.04756128043, blue: 0.06039769202, alpha: 1)
 let grayColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
@@ -59,6 +59,16 @@ func getCurrentTimeStampWOMiliseconds(dateToConvert: NSDate) -> String {
     return strTimeStamp
 }
 
+func getTimeFromTime(date:Date) -> String {
+    let formatter  = DateFormatter()
+    formatter.dateFormat = "dd MMM yyyy hh:mm a"
+    formatter.dateFormat = "MMM DD yyyy hh:mm a"
+    formatter.dateFormat = "E, d MMM yyyy hh:mm a"
+
+    formatter.locale = NSLocale(localeIdentifier: "en_US_POSIX") as Locale
+    let formatedDate: String = formatter.string(from: date)
+    return formatedDate
+}
 
 func getDistanceOfTwoPoint(startPoint: String, endPoint: String) -> String {
     let arrStartPoint =  startPoint.components(separatedBy: ",")
@@ -90,6 +100,7 @@ func getDistanceOfTwoPointInDouble(startPoint: String, endPoint: String) -> Doub
     }
     return 0.00
 }
+
     func distance(lat1:Double, lon1:Double, lat2:Double, lon2:Double, unit:String) -> Double {
         let theta = lon1 - lon2
         var dist = sin(deg2rad(deg: lat1)) * sin(deg2rad(deg: lat2)) + cos(deg2rad(deg: lat1)) * cos(deg2rad(deg: lat2)) * cos(deg2rad(deg: theta))
@@ -126,7 +137,12 @@ func dictToStringKeyParam(dict: [String:Any], key: String) -> String {
         return String(value)
     } else if let value = dict[key] as? Float {
         return String(value)
-    } else { return "" }
+    } else if let stamp = dict[key] as? Timestamp {
+        return getTimeFromTime(date: stamp.dateValue())
+    } else {
+        return ""
+    }
 }
+
 
 

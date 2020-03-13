@@ -15,6 +15,7 @@ class LoginVC: UIViewController {
     @IBOutlet weak var txtPassword:UITextField!
     @IBOutlet weak var btnLogin:UIButton!
     @IBOutlet weak var btnRegister:UIButton!
+    @IBOutlet weak var indicator:UIActivityIndicatorView!
     let db = Firestore.firestore()
 
     override func viewDidLoad() {
@@ -25,6 +26,7 @@ class LoginVC: UIViewController {
 //MARK: - System Method extension
 extension LoginVC {
     override func viewWillAppear(_ animated: Bool) {
+        self.indicator.isHidden = true
         self.setNavigationRootStoryboard()
     }
 }
@@ -41,10 +43,12 @@ fileprivate extension LoginVC {
         } else if self.txtPassword.isEmptyText() {
             self.txtPassword.shakeTextField()
         } else {
+            self.indicator.isHidden = false
             db.collection("user").getDocuments() { (querySnapshot, err) in
                 var registeredUser = false
                 var dictUser = [String:Any]()
                 if let err = err {
+                    self.indicator.isHidden = true
                     print("Error getting documents: \(err)")
                 } else {
                     for document in querySnapshot!.documents {
@@ -56,11 +60,13 @@ fileprivate extension LoginVC {
                     }
                 }
                 if registeredUser {
+                    self.indicator.isHidden = true
                     UserDefaults.standard.set(true, forKey: "isLogin")
                     dictUser["created"] = ""
                     UserDefaults.standard.set(dictUser, forKey: "userDetail")
                     self.setNavigationRootStoryboard()
                 } else {
+                    self.indicator.isHidden = true
                     showAlertVC(title: kAlertTitle, message: "Please check your login detail", controller: self)
                 }
             }
