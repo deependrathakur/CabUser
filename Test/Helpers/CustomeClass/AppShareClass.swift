@@ -12,6 +12,8 @@ import Firebase
 import MapKit
 import GooglePlaces
 
+//MARK: - Identifire viewcontroller and storyboard
+
 //colors
 let appColor = #colorLiteral(red: 0.2235200405, green: 0.04756128043, blue: 0.06039769202, alpha: 1)
 let grayColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
@@ -39,6 +41,7 @@ let myMenuVC = "MyMenuVC"
 let myMenuCell = "MyMenuCell"
 let cellMyRides = "CellMyRides"
 
+//MARK: - Navigation Method
 func goToNextVC(storyBoardID: String, vc_id: String, currentVC: UIViewController) {
     let vc = UIStoryboard.init(name: storyBoardID, bundle: Bundle.main).instantiateViewController(withIdentifier: vc_id)
     currentVC.navigationController?.pushViewController(vc, animated: true)
@@ -52,6 +55,7 @@ func setRevelVC(storyBoardID: String, vc_id: String, currentVC: UIViewController
     currentVC.revealViewController().pushFrontViewController(navigationcontroller, animated: true)
 }
 
+////MARK: - DATE TIME PICKER
 func getCurrentTimeStampWOMiliseconds(dateToConvert: NSDate) -> String {
     let objDateformat: DateFormatter = DateFormatter()
     objDateformat.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS+00:00"
@@ -73,6 +77,7 @@ func getTimeFromTime(date:Date) -> String {
     return formatedDate
 }
 
+//MARK: - Logic Calculation
 func getDistanceOfTwoPoint(startPoint: String, endPoint: String) -> String {
     let arrStartPoint =  startPoint.components(separatedBy: ",")
     let arrEndPoint =  endPoint.components(separatedBy: ",")
@@ -128,7 +133,7 @@ func getDistanceOfTwoPointInDouble(arrStartPoint: [String], arrEndPoint: [String
         return rad * 180.0 / M_PI
     }
 
-////////////////////
+//MARK: - Data Parsing
 func dictToStringKeyParam(dict: [String:Any], key: String) -> String {
     if let value = dict[key] as? String {
         return value
@@ -145,8 +150,28 @@ func dictToStringKeyParam(dict: [String:Any], key: String) -> String {
     }
 }
 
+func getCordinate(dict: [String : Any], key: String) -> CLLocationCoordinate2D {
+    var value = CLLocationCoordinate2D()
+    if let obj = dict[key] as? CLLocationCoordinate2D {
+        value = obj
+    } else if let obj = dict[key] as? String {
+        let arrEndPoint =  obj.components(separatedBy: ",")
+        if arrEndPoint.count > 1 {
+            let lat = Double(arrEndPoint[0]) ?? 22.7195687
+            let long = Double(arrEndPoint[1]) ?? 75.8577258
+            value.latitude = lat
+            value.longitude = long
+        } else {
+            let lat =  22.7195687
+            let long = 75.8577258
+            value.latitude = lat
+            value.longitude = long
+        }
+    }
+    return value
+}
 
-
+//MARK: - Drow polyline
 func showRouteOnMap(pickupCoordinate: CLLocationCoordinate2D, destinationCoordinate: CLLocationCoordinate2D, mapView: MKMapView) -> MKMapView {
 
     let sourcePlacemark = MKPlacemark(coordinate: pickupCoordinate, addressDictionary: nil)

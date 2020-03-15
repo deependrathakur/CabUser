@@ -67,8 +67,12 @@ class CabVC: UIViewController, SWRevealViewControllerDelegate, UITextFieldDelega
         self.revealViewController().delegate = self
         revealViewController()?.rearViewRevealWidth = 60
         
-        bookingDict = ["amount": "123",  "date":"","driveId": "123132",
-                       "driverId": "0", "drop": "", "geopoint":  "", "km": "0", "pickup": "0",  "reviewComment": "",  "reviewStar": 3, "status": 3, "tax": "22"]
+        bookingDict = ["amount": "123",  "date":"",
+                       "driveId": "123132",
+                       "driverId": "0", "drop": "",
+                       "geopoint":  "", "km": "0",
+                       "reviewComment": "",
+                       "reviewStar": 3, "status": 3, "tax": "22"]
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -131,8 +135,7 @@ fileprivate extension CabVC {
             showAlertVC(title: kAlertTitle, message: "Please select valid Time.", controller: self)
             return false
         } else {
-            let distances = getDistanceOfTwoPoint(startPoint: bookingDict["pickupPoint"] as? String ?? "", endPoint: bookingDict["dropPoint"] as? String ?? "")
-            bookingDict["km"] = distances
+            bookingDict["km"] = String(format: "%.2f", getDistanceInInt())
             self.lblPrice.text = "$" + String(Int(getDistanceInInt()*2))
             let newDistances = String(format: "%.2f", getDistanceInInt())
             self.lblTimeDistance.text = "\(newDistances) KM, \(Int(getDistanceInInt())) min"
@@ -266,15 +269,18 @@ extension CabVC {
         let dictionary = ["bookingTime" : bookingDict["date"] as! Date,
                           "create": Date(),
                           "dropLocation":bookingDict["drop"] as? String ?? "",
-                          "pickup": bookingDict["pickupPoint"] as? String ?? "",
-                          "pickupLocation": bookingDict["picup"] as? String ?? "",
+                          "pickup": "\(String(describing: (bookingDict["pickupPoint"] as? CLLocationCoordinate2D)?.latitude)),\(String(describing: (bookingDict["pickupPoint"] as? CLLocationCoordinate2D)?.longitude))",
+                          "pickupLocation": bookingDict["pickup"] as? String ?? "",
                           "ride":bookingDict["ride"] as? String ?? "",
                           "status": 0,
                           "userId": "90er3wWq0"] as [String : Any]
         var ref: DocumentReference? = nil
         ref = db.collection("bookingAlert").addDocument(data: dictionary) { err in
+            
             if let _ = err {
+                
             } else {
+ 
             }
         }
     }
