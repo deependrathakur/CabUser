@@ -11,13 +11,15 @@ import MapKit
 import GooglePlaces
 import Firebase
 
-class CabVC: UIViewController, SWRevealViewControllerDelegate, UITextFieldDelegate, GMSAutocompleteViewControllerDelegate, PickerDelegate {
-    
+class CabVC: UIViewController, SWRevealViewControllerDelegate, UITextFieldDelegate, GMSAutocompleteViewControllerDelegate, PickerDelegate, MKMapViewDelegate {
+    var arrCordinate = [CLLocationCoordinate2D]()
+
     @IBOutlet weak var txtPicupLocation:UITextField!
     @IBOutlet weak var txtDroupLocation:UITextField!
     @IBOutlet weak var buttonDate:UIButton!
     @IBOutlet var indicator: UIActivityIndicatorView!
-    
+    @IBOutlet weak var mapView: MKMapView!
+
     @IBOutlet weak var lblTruck:UILabel!
     @IBOutlet weak var lblCar:UILabel!
     @IBOutlet weak var lblCab:UILabel!
@@ -39,7 +41,7 @@ class CabVC: UIViewController, SWRevealViewControllerDelegate, UITextFieldDelega
     @IBOutlet weak var txtPicupLocationPopup:UITextField!
     @IBOutlet weak var txtDroupLocationPopup:UITextField!
     
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var mapViewPopUp: MKMapView!
     @IBOutlet weak var menuButton: UIButton!
     
     fileprivate var placeForIndex = 1
@@ -49,6 +51,8 @@ class CabVC: UIViewController, SWRevealViewControllerDelegate, UITextFieldDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.mapView.delegate = self
+        self.mapViewPopUp.delegate = self
         self.indicator.isHidden = true
         self.getCurrentLocation()
         self.txtPicupLocation.delegate = self
@@ -77,6 +81,17 @@ class CabVC: UIViewController, SWRevealViewControllerDelegate, UITextFieldDelega
         bookingDict["date"] = date
         self.buttonDate.setTitle(a, for: .normal)
         self.buttonDate.setTitleColor(appColor, for: .normal)
+    }
+    
+    // MARK: MKMapViewDelegate
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if let polyline = overlay as? MKPolyline {
+            let polylineRenderer = MKPolylineRenderer(overlay: polyline)
+            polylineRenderer.strokeColor = .blue
+            polylineRenderer.lineWidth = 3
+            return polylineRenderer
+        }
+        return MKOverlayRenderer(overlay: overlay)
     }
 }
 
@@ -118,20 +133,34 @@ fileprivate extension CabVC {
         } else {
             let distances = getDistanceOfTwoPoint(startPoint: bookingDict["pickupPoint"] as? String ?? "", endPoint: bookingDict["dropPoint"] as? String ?? "")
             bookingDict["km"] = distances
-            self.lblPrice.text = "$" + String(getDistanceInInt()*2)
-            self.lblTimeDistance.text = "$\(getDistanceInInt()) KM, \(getDistanceInInt()) min"
+            self.lblPrice.text = "$" + String(Int(getDistanceInInt()*2))
+            let newDistances = String(format: "%.2f", getDistanceInInt())
+            self.lblTimeDistance.text = "\(newDistances) KM, \(Int(getDistanceInInt())) min"
             return true
         }
     }
     
-    func getDistanceInInt() -> Int {
-        let value = getDistanceOfTwoPointInDouble(startPoint: bookingDict["pickupPoint"] as? String ?? "", endPoint: bookingDict["dropPoint"] as? String ?? "")
-        return Int(value)
+    func getDistanceInInt() -> Double {
+        var arrStartPoint = [String]()
+        var arrEndPoint = [String]()
+        arrStartPoint.append(String(arrCordinate[0].latitude))
+        arrStartPoint.append(String(arrCordinate[0].longitude))
+        arrEndPoint.append(String(arrCordinate[1].latitude))
+        arrEndPoint.append(String(arrCordinate[1].longitude))
+        let value = getDistanceOfTwoPointInDouble(arrStartPoint: arrStartPoint, arrEndPoint: arrEndPoint)
+        return value
     }
 }
 
 //MARK: - location view extension
 extension CabVC : CLLocationManagerDelegate {
+    
+    func setupMap() {
+        self.mapView = showRouteOnMap(pickupCoordinate: self.arrCordinate[0], destinationCoordinate: self.arrCordinate[1], mapView: mapView)
+        self.mapViewPopUp = showRouteOnMap(pickupCoordinate: self.arrCordinate[0], destinationCoordinate: self.arrCordinate[1], mapView: mapViewPopUp)
+    }
+    
+    
     func getCurrentLocation() {
         self.locationManager.requestAlwaysAuthorization()
         
@@ -157,12 +186,15 @@ extension CabVC : CLLocationManagerDelegate {
             bookingDict["pickupPoint"] = "\(place.coordinate.latitude)," + "\(place.coordinate.longitude)"
             self.txtPicupLocation.text = bookingDict["pickup"] as? String ?? ""
             self.txtPicupLocationPopup.text = bookingDict["pickup"] as? String ?? ""
+            if arrCordinate.count > 0 { arrCordinate[0] = place.coordinate } else { arrCordinate.append(place.coordinate) }
             
         } else if placeForIndex == 2 {
             bookingDict["drop"] = "\(place.name ?? ""), " + "\(place.formattedAddress ?? "")"
             bookingDict["dropPoint"] = "\(place.coordinate.latitude)," + "\(place.coordinate.longitude)"
             self.txtDroupLocation.text = bookingDict["drop"] as? String ?? ""
             self.txtDroupLocationPopup.text = bookingDict["drop"] as? String ?? ""
+            if arrCordinate.count > 1 { arrCordinate[1] = place.coordinate } else { arrCordinate.append(place.coordinate) }
+            self.setupMap()
             
         } else if placeForIndex == 3 {
             bookingDict["pickup"] = "\(place.name ?? ""), " + "\(place.formattedAddress ?? "")"
@@ -205,7 +237,7 @@ extension CabVC : CLLocationManagerDelegate {
 extension CabVC {
     func sendBookingOnFirebase() {
         self.sendNotificationOnFirebase()
-        let distance = getDistanceOfTwoPointInDouble(startPoint: bookingDict["pickupPoint"] as? String ?? "", endPoint: bookingDict["dropPoint"] as? String ?? "")
+        let distance = getDistanceInInt()
         let amount = Int(distance*2)
         bookingDict["amount"] = amount
         self.indicator.isHidden = false

@@ -9,6 +9,9 @@
 import Foundation
 import UIKit
 import Firebase
+import MapKit
+import GooglePlaces
+
 //colors
 let appColor = #colorLiteral(red: 0.2235200405, green: 0.04756128043, blue: 0.06039769202, alpha: 1)
 let grayColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
@@ -86,9 +89,7 @@ func getDistanceOfTwoPoint(startPoint: String, endPoint: String) -> String {
 }
 
 
-func getDistanceOfTwoPointInDouble(startPoint: String, endPoint: String) -> Double {
-    let arrStartPoint =  startPoint.components(separatedBy: ",")
-    let arrEndPoint =  endPoint.components(separatedBy: ",")
+func getDistanceOfTwoPointInDouble(arrStartPoint: [String], arrEndPoint: [String]) -> Double {
     
     if arrStartPoint.count > 1 && arrEndPoint.count > 1 {
         let a = distance(lat1: Double(arrStartPoint[0])!,
@@ -145,4 +146,50 @@ func dictToStringKeyParam(dict: [String:Any], key: String) -> String {
 }
 
 
+
+func showRouteOnMap(pickupCoordinate: CLLocationCoordinate2D, destinationCoordinate: CLLocationCoordinate2D, mapView: MKMapView) -> MKMapView {
+
+    let sourcePlacemark = MKPlacemark(coordinate: pickupCoordinate, addressDictionary: nil)
+    let destinationPlacemark = MKPlacemark(coordinate: destinationCoordinate, addressDictionary: nil)
+
+    let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
+    let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
+
+    let sourceAnnotation = MKPointAnnotation()
+
+    if let location = sourcePlacemark.location {
+        sourceAnnotation.coordinate = location.coordinate
+    }
+
+    let destinationAnnotation = MKPointAnnotation()
+
+    if let location = destinationPlacemark.location {
+        destinationAnnotation.coordinate = location.coordinate
+    }
+
+    mapView.showAnnotations([sourceAnnotation,destinationAnnotation], animated: true )
+
+    let directionRequest = MKDirections.Request()
+    directionRequest.source = sourceMapItem
+    directionRequest.destination = destinationMapItem
+    directionRequest.transportType = .automobile
+    // Calculate the direction
+    let directions = MKDirections(request: directionRequest)
+    directions.calculate {
+        (response, error) -> Void in
+
+        guard let response = response else {
+            if let error = error {
+                print("Error: \(error)")
+            }
+
+            return
+        }
+        let route = response.routes[0]
+        mapView.addOverlay((route.polyline), level: MKOverlayLevel.aboveRoads)
+        let rect = route.polyline.boundingMapRect
+        mapView.setRegion(MKCoordinateRegion(rect), animated: true)
+    }
+    return mapView
+}
 
