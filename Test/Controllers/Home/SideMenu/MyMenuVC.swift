@@ -19,6 +19,7 @@ class MyMenuVC: UIViewController, UITableViewDelegate,UITableViewDataSource,SWRe
     override func viewDidLoad() {
         super.viewDidLoad()
         self.ConfigureView()
+        self.tableSide.backgroundColor = whiteColor
     }
     
     override func viewWillAppear(_ animated: Bool) {

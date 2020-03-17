@@ -40,7 +40,8 @@ class CabVC: UIViewController, SWRevealViewControllerDelegate, UITextFieldDelega
     
     @IBOutlet weak var txtPicupLocationPopup:UITextField!
     @IBOutlet weak var txtDroupLocationPopup:UITextField!
-    
+    @IBOutlet weak var vwDateTimePopup:UIView!
+
     @IBOutlet weak var mapViewPopUp: MKMapView!
     @IBOutlet weak var menuButton: UIButton!
     
@@ -127,12 +128,6 @@ fileprivate extension CabVC {
             return false
         } else if self.txtDroupLocation.isEmptyText() {
             showAlertVC(title: kAlertTitle, message: "Please select drop location.", controller: self)
-            return false
-        } else if self.buttonDate.currentTitle == "Select Picup Date & Time" {
-            showAlertVC(title: kAlertTitle, message: "Please select pikup Time.", controller: self)
-            return false
-        } else if (bookingDict["date"] as? Date ?? Date()) < Date() {
-            showAlertVC(title: kAlertTitle, message: "Please select valid Time.", controller: self)
             return false
         } else {
             bookingDict["km"] = String(format: "%.2f", getDistanceInInt())
@@ -266,10 +261,9 @@ extension CabVC {
     
     func sendNotificationOnFirebase() {
         
-        let dictionary = ["bookingTime" : bookingDict["date"] as! Date,
-                          "create": Date(),
+        let dictionary = ["create": Date(),
                           "dropLocation":bookingDict["drop"] as? String ?? "",
-                          "pickup": "\(String(describing: (bookingDict["pickupPoint"] as? CLLocationCoordinate2D)?.latitude)),\(String(describing: (bookingDict["pickupPoint"] as? CLLocationCoordinate2D)?.longitude))",
+                          "pickup": "\(arrCordinate[0].latitude), \(arrCordinate[0].longitude)",
                           "pickupLocation": bookingDict["pickup"] as? String ?? "",
                           "ride":bookingDict["ride"] as? String ?? "",
                           "status": 0,
@@ -304,6 +298,7 @@ fileprivate extension CabVC {
         self.view.endEditing(true)
         bookingDict["ride"] = "now"
         if self.basicValidationTrue() {
+            vwDateTimePopup.isHidden = true
             self.vwPopup.isHidden = false
         }
     }
@@ -312,6 +307,7 @@ fileprivate extension CabVC {
         self.view.endEditing(true)
         bookingDict["ride"] = "later"
         if self.basicValidationTrue() {
+            vwDateTimePopup.isHidden = false
             self.vwPopup.isHidden = false
         }
     }
@@ -319,8 +315,18 @@ fileprivate extension CabVC {
     @IBAction func ConfirmAction(sender: UIButton) {
         self.view.endEditing(true)
         if self.basicValidationTrue() {
-            bookingDict["currentDate"] = Date()
-            self.sendBookingOnFirebase()
+            
+            if (bookingDict["ride"] as? String ?? "") == "later" {
+                if self.buttonDate.currentTitle == "Select Picup Date & Time" {
+                    showAlertVC(title: kAlertTitle, message: "Please select pikup Time.", controller: self)
+                    return
+                } else if (bookingDict["date"] as? Date ?? Date()) < Date() {
+                    showAlertVC(title: kAlertTitle, message: "Please select valid Time.", controller: self)
+                    return
+                }
+            }
+                bookingDict["currentDate"] = Date()
+                self.sendBookingOnFirebase()
         }
     }
     
