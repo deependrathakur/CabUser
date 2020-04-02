@@ -9,6 +9,7 @@ target 'Test' do
   
   pod 'HCSStarRatingView'
   pod 'Firebase/Firestore'
+  pod 'Firebase/Auth'
   pod 'FirebaseFirestoreSwift'
   
   pod 'GooglePlaces'

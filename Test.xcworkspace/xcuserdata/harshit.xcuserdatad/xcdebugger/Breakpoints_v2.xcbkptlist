@@ -144,40 +144,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "253"
             endingLineNumber = "253"
-            landmarkName = "sendBookingOnFirebase()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "FF371D87-54A0-4E07-AB5C-008C1F7E3094 - 7049762ddebcf18d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CabUser.CabVC.sendBookingOnFirebase() -&gt; ()"
-                  moduleName = "CabUser"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harshit/Documents/CabUser/Test/Controllers/Home/Cab/CabVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "249"
-                  endingLineNumber = "249"
-                  offsetFromSymbolStart = "1184">
-               </Location>
-               <Location
-                  uuid = "FF371D87-54A0-4E07-AB5C-008C1F7E3094 - 45881583098bdc34"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in CabUser.CabVC.sendBookingOnFirebase() -&gt; ()"
-                  moduleName = "CabUser"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harshit/Documents/CabUser/Test/Controllers/Home/Cab/CabVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "250"
-                  endingLineNumber = "250"
-                  offsetFromSymbolStart = "106">
-               </Location>
-            </Locations>
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -304,40 +272,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "281"
             endingLineNumber = "281"
-            landmarkName = "CabVC"
-            landmarkType = "21">
-            <Locations>
-               <Location
-                  uuid = "4A1F803F-D57C-44F0-9016-A0E4D8B9D4F8 - d37bcfede45e7e68"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CabUser.CabVC.sendNotificationOnFirebase() -&gt; ()"
-                  moduleName = "CabUser"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harshit/Documents/CabUser/Test/Controllers/Home/Cab/CabVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "278"
-                  endingLineNumber = "278"
-                  offsetFromSymbolStart = "4577">
-               </Location>
-               <Location
-                  uuid = "4A1F803F-D57C-44F0-9016-A0E4D8B9D4F8 - e1159f1658631a04"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in CabUser.CabVC.sendNotificationOnFirebase() -&gt; ()"
-                  moduleName = "CabUser"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harshit/Documents/CabUser/Test/Controllers/Home/Cab/CabVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "280"
-                  endingLineNumber = "280"
-                  offsetFromSymbolStart = "39">
-               </Location>
-            </Locations>
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -352,8 +288,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "259"
             endingLineNumber = "259"
-            landmarkName = "sendBookingOnFirebase()"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -368,8 +304,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "284"
             endingLineNumber = "284"
-            landmarkName = "CabVC"
-            landmarkType = "21">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -384,7 +320,103 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "286"
             endingLineNumber = "286"
-            landmarkName = "placePickerAction(sender:)"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ADA20A4D-5563-482B-9E24-6F25A782B1A3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Test/Controllers/SetUp/RegisterVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "phoneVarification()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "ADA20A4D-5563-482B-9E24-6F25A782B1A3 - 46ce6e95d7da3f86"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CabUser.RegisterVC.(phoneVarification in _43E88848DF191BBA376C10B22B8F7DEC)() -&gt; ()"
+                  moduleName = "CabUser"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harshit/Documents/CabUser/Test/Controllers/SetUp/RegisterVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "91"
+                  endingLineNumber = "91"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "ADA20A4D-5563-482B-9E24-6F25A782B1A3 - 589163c51a15946a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in CabUser.RegisterVC.(phoneVarification in _43E88848DF191BBA376C10B22B8F7DEC)() -&gt; ()"
+                  moduleName = "CabUser"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harshit/Documents/CabUser/Test/Controllers/SetUp/RegisterVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "152">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3AFD783D-A2DD-4A46-A819-011A84A4B445"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Test/Controllers/SetUp/RegisterVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "phoneVarification()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1B5652DE-2816-4320-B00B-E3359C9258D2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Test/Controllers/SetUp/RegisterVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "phoneVarification()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "86BFED9A-D0F1-4695-BF23-E2CA685DC388"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Test/Controllers/SetUp/RegisterVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "phoneVarification()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

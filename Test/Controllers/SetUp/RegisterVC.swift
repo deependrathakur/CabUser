@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class RegisterVC: UIViewController {
     
@@ -53,37 +54,47 @@ fileprivate extension RegisterVC {
         } else if self.txtPassword.isValidateEmail() {
             self.txtPassword.shakeTextField()
         } else {
-            self.indicator.isHidden = false
-
-            var ref: DocumentReference? = nil
-            let dict = [
-                "created":Date(),//getCurrentTimeStampWOMiliseconds(dateToConvert: Date() as NSDate),
-                "email":self.txtEmail.text ?? "",
-                "mobile":self.txtMobile.text ?? "",
-                "mobileVerity":false,
-                "emailVerify":false,
-                "otp":"1234",
-                "password":self.txtPassword.text ?? "",
-                "userType":1,
-                "wallet":0,
-                "name":self.txtFullName.text ?? ""
-                ] as [String : Any]
-
-            ref = db.collection("user").addDocument(data: dict) { err in
-                self.indicator.isHidden = true
-                if let err = err {
-                    print("Error adding document: \(err)")
-                } else {
-                    print("Document added with ID: \(ref!.documentID)")
-                    UserDefaults.standard.set("\(ref!.documentID)", forKey: "userId")
-                    UserDefaults.standard.set(dict, forKey: "userDetail")
-                    UserDefaults.standard.set(true, forKey: "isLogin")
-                }
-            }
+            self.phoneVarification()
+//            self.indicator.isHidden = false
+//
+//            var ref: DocumentReference? = nil
+//            let dict = [ "created":Date(),
+//                         "email": self.txtEmail.text ?? "",
+//                         "mobile": self.txtMobile.text ?? "",
+//                         "mobileVerity": false,
+//                         "emailVerify": false,
+//                         "otp": "1234",
+//                         "password": self.txtPassword.text ?? "",
+//                         "userType": 1,
+//                         "wallet": 0,
+//                         "name": self.txtFullName.text ?? ""] as [String : Any]
+//
+//            ref = db.collection("user").addDocument(data: dict) { err in
+//                self.indicator.isHidden = true
+//                if let err = err {
+//                    print("Error adding document: \(err)")
+//                } else {
+//                    print("Document added with ID: \(ref!.documentID)")
+//                    UserDefaults.standard.set("\(ref!.documentID)", forKey: "userId")
+//                    UserDefaults.standard.set(dict, forKey: "userDetail")
+//                    UserDefaults.standard.set(true, forKey: "isLogin")
+//                }
+//            }
         
-            let sb: UIStoryboard = UIStoryboard(name: homeStoryBoard, bundle:Bundle.main)
-            let vcNew = sb.instantiateViewController(withIdentifier: "HomeNav") as? UINavigationController
-            UIApplication.shared.keyWindow?.rootViewController = vcNew
+//            let sb: UIStoryboard = UIStoryboard(name: homeStoryBoard, bundle:Bundle.main)
+//            let vcNew = sb.instantiateViewController(withIdentifier: "HomeNav") as? UINavigationController
+//            UIApplication.shared.keyWindow?.rootViewController = vcNew
+        }
+    }
+    
+    func phoneVarification() {
+        PhoneAuthProvider.provider().verifyPhoneNumber(self.txtMobile.text ?? "", uiDelegate: nil) { (verificationID, error) in
+            if let error = error {
+                showAlertVC(title: kAlertTitle, message: kErrorMessage, controller: self)
+            } else {
+                
+            }
         }
     }
 }
+
