@@ -49,7 +49,10 @@ class CabVC: UIViewController, SWRevealViewControllerDelegate, UITextFieldDelega
     fileprivate var bookingDict = [String:Any]()
     fileprivate let db = Firestore.firestore()
     fileprivate let locationManager = CLLocationManager()
-    
+    fileprivate var arrModelDriverList = [ModelDriverList]()
+    fileprivate var arrShortDriverList = [ModelDriverList]()
+    fileprivate var travelType = "car"
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.mapView.delegate = self
@@ -61,29 +64,45 @@ class CabVC: UIViewController, SWRevealViewControllerDelegate, UITextFieldDelega
         self.txtPicupLocationPopup.delegate = self
         self.txtDroupLocationPopup.delegate = self
         self.buttonDate.setTitleColor(grayColor, for: .normal)
-
         onTheWay(onTheWayBy: "car")
         self.vwPopup.isHidden = true
         menuButton.addTarget(revealViewController, action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
         self.revealViewController().delegate = self
         revealViewController()?.rearViewRevealWidth = 60
         
-        bookingDict = ["amount": "123",  "date":"",
-                       "driveId": "123132",
-                       "driverId": "0", "drop": "",
-                       "geopoint":  "", "km": "0",
-                       "reviewComment": "",
-                       "reviewStar": 3, "status": 3, "tax": "22"]
+        bookingDict = ["acceptedData": "",
+                       "amount":"0",
+                       "bookingLaterDate": "123132",
+                       "cardId": "",
+                       "completeDate": "",
+                       "createdData":  Date(),
+                       "driverId": "",
+                       "dropAddress": "",
+                       "dropLocation": "",
+                       "otp": "",
+                       "paymentId": "",
+                       "pickupLocation":"",
+                       "pickupAddress":"",
+                       "rattingStar":"",
+                       "reachedDate":"",
+                       "review":false,
+                       "reviewComment":"",
+                       "rideNow":true,
+                       "status":3,
+                       "totalDistanceKM":0,
+                       "totalTimeMinute":0,
+                       "userId":(UserDefaults.standard.value(forKey: "userId") as? String ?? "")]
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.vwPopup.isHidden = true
-        UserDefaults.standard.set(cabVC, forKey: "vc") 
+        UserDefaults.standard.set(cabVC, forKey: "vc")
+        self.getListDriver()
     }
     
     func onSelectPicker(date: Date) {
         let a = getTimeFromTime(date: date)
-        bookingDict["date"] = date
+        bookingDict["createdData"] = date
         self.buttonDate.setTitle(a, for: .normal)
         self.buttonDate.setTitleColor(appColor, for: .normal)
     }
@@ -103,6 +122,7 @@ class CabVC: UIViewController, SWRevealViewControllerDelegate, UITextFieldDelega
 //MARK: - Custome Method extension
 fileprivate extension CabVC {
     func onTheWay(onTheWayBy: String) {
+        travelType = onTheWayBy
         self.vwCab.backgroundColor = #colorLiteral(red: 0.8509803922, green: 0.8509803922, blue: 0.8509803922, alpha: 1)
         self.vwTruck.backgroundColor = #colorLiteral(red: 0.8509803922, green: 0.8509803922, blue: 0.8509803922, alpha: 1)
         self.vwCar.backgroundColor = #colorLiteral(red: 0.8509803922, green: 0.8509803922, blue: 0.8509803922, alpha: 1)
@@ -130,10 +150,11 @@ fileprivate extension CabVC {
             showAlertVC(title: kAlertTitle, message: "Please select drop location.", controller: self)
             return false
         } else {
-            bookingDict["km"] = String(format: "%.2f", getDistanceInInt())
+            bookingDict["totalDistanceKM"] = String(format: "%.2f", getDistanceInInt())
             self.lblPrice.text = "$" + String(Int(getDistanceInInt()*2))
             let newDistances = String(format: "%.2f", getDistanceInInt())
             self.lblTimeDistance.text = "\(newDistances) KM, \(Int(getDistanceInInt())) min"
+            bookingDict["totalTimeMinute"] = Int(getDistanceInInt())
             return true
         }
     }
@@ -180,31 +201,31 @@ extension CabVC : CLLocationManagerDelegate {
     
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         if placeForIndex == 1 {
-            bookingDict["pickup"] = "\(place.name ?? ""), " + "\(place.formattedAddress ?? "")"
+            bookingDict["pickupAddress"] = "\(place.name ?? ""), " + "\(place.formattedAddress ?? "")"
             bookingDict["pickupPoint"] = "\(place.coordinate.latitude)," + "\(place.coordinate.longitude)"
-            self.txtPicupLocation.text = bookingDict["pickup"] as? String ?? ""
-            self.txtPicupLocationPopup.text = bookingDict["pickup"] as? String ?? ""
+            self.txtPicupLocation.text = bookingDict["pickupAddress"] as? String ?? ""
+            self.txtPicupLocationPopup.text = bookingDict["pickupAddress"] as? String ?? ""
             if arrCordinate.count > 0 { arrCordinate[0] = place.coordinate } else { arrCordinate.append(place.coordinate) }
             
         } else if placeForIndex == 2 {
-            bookingDict["drop"] = "\(place.name ?? ""), " + "\(place.formattedAddress ?? "")"
+            bookingDict["dropAddress"] = "\(place.name ?? ""), " + "\(place.formattedAddress ?? "")"
             bookingDict["dropPoint"] = "\(place.coordinate.latitude)," + "\(place.coordinate.longitude)"
-            self.txtDroupLocation.text = bookingDict["drop"] as? String ?? ""
-            self.txtDroupLocationPopup.text = bookingDict["drop"] as? String ?? ""
+            self.txtDroupLocation.text = bookingDict["dropAddress"] as? String ?? ""
+            self.txtDroupLocationPopup.text = bookingDict["dropAddress"] as? String ?? ""
             if arrCordinate.count > 1 { arrCordinate[1] = place.coordinate } else { arrCordinate.append(place.coordinate) }
             self.setupMap()
             
         } else if placeForIndex == 3 {
-            bookingDict["pickup"] = "\(place.name ?? ""), " + "\(place.formattedAddress ?? "")"
+            bookingDict["pickupAddress"] = "\(place.name ?? ""), " + "\(place.formattedAddress ?? "")"
             bookingDict["pickupPoint"] = "\(place.coordinate.latitude)," + "\(place.coordinate.longitude)"
-            self.txtPicupLocationPopup.text = bookingDict["pickup"] as? String ?? ""
-            self.txtPicupLocation.text = bookingDict["pickup"] as? String ?? ""
+            self.txtPicupLocationPopup.text = bookingDict["pickupAddress"] as? String ?? ""
+            self.txtPicupLocation.text = bookingDict["pickupAddress"] as? String ?? ""
             
         } else if placeForIndex == 4 {
-            bookingDict["drop"] = "\(place.name ?? ""), " + "\(place.formattedAddress ?? "")"
+            bookingDict["dropAddress"] = "\(place.name ?? ""), " + "\(place.formattedAddress ?? "")"
             bookingDict["dropPoint"] = "\(place.coordinate.latitude)," + "\(place.coordinate.longitude)"
-            self.txtDroupLocationPopup.text = bookingDict["drop"] as? String ?? ""
-            self.txtDroupLocation.text = bookingDict["drop"] as? String ?? ""
+            self.txtDroupLocationPopup.text = bookingDict["dropAddress"] as? String ?? ""
+            self.txtDroupLocation.text = bookingDict["dropAddress"] as? String ?? ""
             
         } else {
             
@@ -262,12 +283,12 @@ extension CabVC {
     func sendNotificationOnFirebase() {
         
         let dictionary = ["create": Date(),
-                          "dropLocation":bookingDict["drop"] as? String ?? "",
-                          "pickup": "\(arrCordinate[0].latitude), \(arrCordinate[0].longitude)",
-                          "pickupLocation": bookingDict["pickup"] as? String ?? "",
+                          "dropLocation":bookingDict["dropAddress"] as? String ?? "",
+                          "pickupAddress": "\(arrCordinate[0].latitude), \(arrCordinate[0].longitude)",
+                          "pickupLocation": bookingDict["pickupAddress"] as? String ?? "",
                           "ride":bookingDict["ride"] as? String ?? "",
                           "status": 0,
-                          "userId": "90er3wWq0"] as [String : Any]
+                          "userId": (UserDefaults.standard.value(forKey: "userId") as? String ?? "")] as [String : Any]
         var ref: DocumentReference? = nil
         ref = db.collection("bookingAlert").addDocument(data: dictionary) { err in
             
@@ -296,7 +317,7 @@ fileprivate extension CabVC {
     
     @IBAction func RideNowAction(sender: UIButton) {
         self.view.endEditing(true)
-        bookingDict["ride"] = "now"
+        bookingDict["rideNow"] = true
         if self.basicValidationTrue() {
             vwDateTimePopup.isHidden = true
             self.vwPopup.isHidden = false
@@ -305,7 +326,7 @@ fileprivate extension CabVC {
     
     @IBAction func RideLaterAction(sender: UIButton) {
         self.view.endEditing(true)
-        bookingDict["ride"] = "later"
+        bookingDict["rideNow"] = false
         if self.basicValidationTrue() {
             vwDateTimePopup.isHidden = false
             self.vwPopup.isHidden = false
@@ -316,16 +337,15 @@ fileprivate extension CabVC {
         self.view.endEditing(true)
         if self.basicValidationTrue() {
             
-            if (bookingDict["ride"] as? String ?? "") == "later" {
+            if (bookingDict["rideNow"] as? Bool ?? false) == false {
                 if self.buttonDate.currentTitle == "Select Picup Date & Time" {
                     showAlertVC(title: kAlertTitle, message: "Please select pikup Time.", controller: self)
                     return
-                } else if (bookingDict["date"] as? Date ?? Date()) < Date() {
+                } else if (bookingDict["createdData"] as? Date ?? Date()) < Date() {
                     showAlertVC(title: kAlertTitle, message: "Please select valid Time.", controller: self)
                     return
                 }
             }
-                bookingDict["currentDate"] = Date()
                 self.sendBookingOnFirebase()
         }
     }
@@ -401,5 +421,61 @@ extension CabVC {
     }
     func sideMenuDidOpen() {
         print("sideMenuDidOpen")
+    }
+}
+
+//MARK: - Get driver list
+extension CabVC {
+    func getListDriver() {
+
+        db.collection("driver").getDocuments() { (querySnapshot, err) in
+            var dictUser = [String:Any]()
+            if let err = err {
+                self.indicator.isHidden = true
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let obj = ModelDriverList.init(dict: document.data())
+                    self.arrModelDriverList.append(obj)
+                }
+                self.parseShortData()
+            }
+        }
+    }
+    
+    func parseShortData() {
+        self.arrShortDriverList.removeAll()
+        for obj in self.arrModelDriverList {
+            if obj.cab_type == travelType {
+                self.arrShortDriverList.append(obj)
+            }
+        }
+    }
+    
+    func getDirections(enterdLocations:[String])  {
+        // array has the address strings
+        var locations = [MKPointAnnotation]()
+        for item in enterdLocations {
+            let geocoder = CLGeocoder()
+            geocoder.geocodeAddressString(item, completionHandler: {(placemarks, error) -> Void in
+                if((error) != nil){
+                    print("Error", error)
+                }
+                if let placemark = placemarks?.first {
+
+                    let coordinates:CLLocationCoordinate2D = placemark.location!.coordinate
+
+                    let dropPin = MKPointAnnotation()
+                    dropPin.coordinate = coordinates
+                    dropPin.title = item
+                    self.mapView.addAnnotation(dropPin)
+                    self.mapView.selectAnnotation( dropPin, animated: true)
+
+                    locations.append(dropPin)
+                    //add this if you want to show them all
+                    self.mapView.showAnnotations(locations, animated: true)
+                }
+            })
+        }
     }
 }

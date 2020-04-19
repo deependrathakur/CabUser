@@ -150,6 +150,40 @@ func dictToStringKeyParam(dict: [String:Any], key: String) -> String {
     }
 }
 
+func dictToBoolKeyParam(dict: [String:Any], key: String) -> Bool {
+    if let value = dict[key] as? Bool {
+        return value
+    } else if let value = dict[key] as? Int {
+        return (value == 0) ? false : true
+    } else if let value = dict[key] as? String {
+       return (value == "0") ? false : true
+    } else {
+        return false
+    }
+}
+
+func dictToDoubleKeyParam(dict: [String:Any], key: String) -> Double {
+    if let value = dict[key] as? Double {
+        return value
+    } else if let value = dict[key] as? Int {
+        return Double(value)
+    } else if let value = dict[key] as? String {
+        return Double(value) ?? 00.00
+    } else {
+        return 0.0
+    }
+}
+
+func dictToIntKeyParam(dict: [String:Any], key: String) -> Int {
+    if let value = dict[key] as? Int {
+        return value
+    } else if let value = dict[key] as? String {
+        return Int(value) ?? 0
+    } else {
+        return 0
+    }
+}
+
 func getCordinate(dict: [String : Any], key: String) -> CLLocationCoordinate2D {
     var value = CLLocationCoordinate2D()
     if let obj = dict[key] as? CLLocationCoordinate2D {

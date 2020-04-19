@@ -64,18 +64,18 @@ extension MyRidesVC {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: cellMyRides, for: indexPath as IndexPath) as? CellMyRides {
             let object = self.arrBooking[indexPath.row]
-            cell.lblPicLocation.text = object.pickup
-            cell.lblDropLocation.text = object.drop
+            cell.lblPicLocation.text = object.pickupAddress
+            cell.lblDropLocation.text = object.dropAddress
             cell.lblPrice.text = "$" + object.amount
-            cell.lblDate.text = object.date
+            cell.lblDate.text = object.createdData
             return cell
         }
         return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = UIStoryboard.init(name: homeStoryBoard, bundle: Bundle.main).instantiateViewController(withIdentifier: cabVC) as? CabVC
-        self.navigationController?.pushViewController(vc!, animated: true)
+      //  let vc = UIStoryboard.init(name: homeStoryBoard, bundle: Bundle.main).instantiateViewController(withIdentifier: cabVC) as? CabVC
+       // self.navigationController?.pushViewController(vc!, animated: true)
     }
 }
 
@@ -116,12 +116,14 @@ fileprivate extension MyRidesVC {
                 self.arrBooking.removeAll()
                 for document in querySnapshot!.documents {
                     let modelObject = ModelMyRides.init(dict: document.data())
-                    if self.selectSegment == 0 && modelObject.status == "3" {
-                        self.arrBooking.append(modelObject)
-                    } else if self.selectSegment == 1 && modelObject.status == "4" {
-                        self.arrBooking.append(modelObject)
-                    } else if self.selectSegment == 2 && modelObject.status == "5" {
-                        self.arrBooking.append(modelObject)
+                    if modelObject.userId == (UserDefaults.standard.value(forKey: "userId") as? String ?? "") {
+                        if self.selectSegment == 0 && modelObject.status == "3" {
+                            self.arrBooking.append(modelObject)
+                        } else if self.selectSegment == 1 && modelObject.status == "4" {
+                            self.arrBooking.append(modelObject)
+                        } else if self.selectSegment == 2 && modelObject.status == "5" {
+                            self.arrBooking.append(modelObject)
+                        }
                     }
                 }
                 self.tableView.reloadData()
