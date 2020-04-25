@@ -46,7 +46,6 @@ fileprivate extension LoginVC {
             self.indicator.isHidden = false
             db.collection("user").getDocuments() { (querySnapshot, err) in
                 var registeredUser = false
-                var dictUser = [String:Any]()
                 if let err = err {
                     self.indicator.isHidden = true
                     print("Error getting documents: \(err)")
@@ -55,15 +54,16 @@ fileprivate extension LoginVC {
                         let dict = document.data()
                         if (self.txtPassword.text == dict["password"] as? String ?? "") && ((self.txtEmailPhone.text == dict["email"] as? String ?? "") || (self.txtPassword.text == dict["mobile"] as? String ?? "")) {
                             registeredUser = true
-                            dictUser = dict
+                            DictUserDetails = dict
+                            DictUserDetails?["id"] = document.documentID
+                            UserDefaults.standard.set(document.documentID, forKey: "userId")
                         }
                     }
                 }
                 if registeredUser {
                     self.indicator.isHidden = true
                     UserDefaults.standard.set(true, forKey: "isLogin")
-                    dictUser["created"] = ""
-                    UserDefaults.standard.set(dictUser, forKey: "userDetail")
+                    modelUserDetail = ModelUserDetail.init(Dict: DictUserDetails ?? ["":""])
                     self.setNavigationRootStoryboard()
                 } else {
                     self.indicator.isHidden = true
@@ -85,6 +85,7 @@ fileprivate extension LoginVC {
     
     func setNavigationRootStoryboard() {
         if UserDefaults.standard.bool(forKey: "isLogin") as Bool == true {
+            AppDelegate().getUserDetailFromFirebase()
            let sb: UIStoryboard = UIStoryboard(name: homeStoryBoard, bundle:Bundle.main)
             let vcNew = sb.instantiateViewController(withIdentifier: "HomeNav") as? UINavigationController
             UIApplication.shared.keyWindow?.rootViewController = vcNew

@@ -77,7 +77,8 @@ fileprivate extension RegisterVC {
                     print("Document added with ID: \(ref!.documentID)")
                     UserDefaults.standard.set("\(ref!.documentID)", forKey: "userId")
                     self.db.collection("user").document("\(ref!.documentID)").updateData(["id":"\(ref!.documentID)"])
-                    UserDefaults.standard.set(dict, forKey: "userDetail")
+                    DictUserDetails = dict
+                    modelUserDetail = ModelUserDetail.init(Dict: DictUserDetails ?? ["":""])
                     UserDefaults.standard.set(true, forKey: "isLogin")
                 }
             }

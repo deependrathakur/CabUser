@@ -179,7 +179,6 @@ extension CabVC : CLLocationManagerDelegate {
         self.mapViewPopUp = showRouteOnMap(pickupCoordinate: self.arrCordinate[0], destinationCoordinate: self.arrCordinate[1], mapView: mapViewPopUp)
     }
     
-    
     func getCurrentLocation() {
         self.locationManager.requestAlwaysAuthorization()
         
@@ -202,14 +201,14 @@ extension CabVC : CLLocationManagerDelegate {
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         if placeForIndex == 1 {
             bookingDict["pickupAddress"] = "\(place.name ?? ""), " + "\(place.formattedAddress ?? "")"
-            bookingDict["pickupPoint"] = "\(place.coordinate.latitude)," + "\(place.coordinate.longitude)"
+            bookingDict["pickupLoication"] = GeoPoint.init(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
             self.txtPicupLocation.text = bookingDict["pickupAddress"] as? String ?? ""
             self.txtPicupLocationPopup.text = bookingDict["pickupAddress"] as? String ?? ""
             if arrCordinate.count > 0 { arrCordinate[0] = place.coordinate } else { arrCordinate.append(place.coordinate) }
             
         } else if placeForIndex == 2 {
             bookingDict["dropAddress"] = "\(place.name ?? ""), " + "\(place.formattedAddress ?? "")"
-            bookingDict["dropPoint"] = "\(place.coordinate.latitude)," + "\(place.coordinate.longitude)"
+            bookingDict["dropLocation"] = GeoPoint.init(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
             self.txtDroupLocation.text = bookingDict["dropAddress"] as? String ?? ""
             self.txtDroupLocationPopup.text = bookingDict["dropAddress"] as? String ?? ""
             if arrCordinate.count > 1 { arrCordinate[1] = place.coordinate } else { arrCordinate.append(place.coordinate) }
@@ -217,17 +216,15 @@ extension CabVC : CLLocationManagerDelegate {
             
         } else if placeForIndex == 3 {
             bookingDict["pickupAddress"] = "\(place.name ?? ""), " + "\(place.formattedAddress ?? "")"
-            bookingDict["pickupPoint"] = "\(place.coordinate.latitude)," + "\(place.coordinate.longitude)"
+            bookingDict["pickupLoication"] = GeoPoint.init(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
             self.txtPicupLocationPopup.text = bookingDict["pickupAddress"] as? String ?? ""
             self.txtPicupLocation.text = bookingDict["pickupAddress"] as? String ?? ""
             
         } else if placeForIndex == 4 {
             bookingDict["dropAddress"] = "\(place.name ?? ""), " + "\(place.formattedAddress ?? "")"
-            bookingDict["dropPoint"] = "\(place.coordinate.latitude)," + "\(place.coordinate.longitude)"
+            bookingDict["dropLocation"] = GeoPoint.init(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
             self.txtDroupLocationPopup.text = bookingDict["dropAddress"] as? String ?? ""
             self.txtDroupLocation.text = bookingDict["dropAddress"] as? String ?? ""
-            
-        } else {
             
         }
         dismiss(animated: true, completion: nil)
@@ -283,9 +280,10 @@ extension CabVC {
     func sendNotificationOnFirebase() {
         
         let dictionary = ["create": Date(),
-                          "dropLocation":bookingDict["dropAddress"] as? String ?? "",
-                          "pickupAddress": "\(arrCordinate[0].latitude), \(arrCordinate[0].longitude)",
-                          "pickupLocation": bookingDict["pickupAddress"] as? String ?? "",
+                          "dropLocation":bookingDict["dropLocation"] as? GeoPoint ?? commanGeoPoint,
+                          "dropAddress":bookingDict["dropAddress"] as? String ?? "",
+                          "pickupAddress": bookingDict["pickupLocation"] as? String ?? "",
+                          "pickupLocation": bookingDict["pickupLocation"] as? GeoPoint ?? commanGeoPoint,
                           "ride":bookingDict["ride"] as? String ?? "",
                           "status": 0,
                           "userId": (UserDefaults.standard.value(forKey: "userId") as? String ?? "")] as [String : Any]
@@ -446,10 +444,16 @@ extension CabVC {
     func parseShortData() {
         self.arrShortDriverList.removeAll()
         for obj in self.arrModelDriverList {
+            let newPin = MKPointAnnotation()
+            newPin.coordinate.latitude = obj.currentLocation?.latitude ?? commanGeoPoint.latitude
+            newPin.coordinate.longitude = obj.currentLocation?.longitude ?? commanGeoPoint.longitude
+            
+            mapView.addAnnotation(newPin)
             if obj.cab_type == travelType {
                 self.arrShortDriverList.append(obj)
             }
         }
+        //self.getDirections(enterdLocations: [arrModelDriverList[0].currentLocation])
     }
     
     func getDirections(enterdLocations:[String])  {

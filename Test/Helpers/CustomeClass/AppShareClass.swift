@@ -40,6 +40,9 @@ let myMenuVC = "MyMenuVC"
 //cell
 let myMenuCell = "MyMenuCell"
 let cellMyRides = "CellMyRides"
+let commanGeoPoint = GeoPoint.init(latitude: 22.7764, longitude: 75.9548)
+var modelUserDetail:ModelUserDetail?
+var DictUserDetails:[String:Any]?
 
 //MARK: - Navigation Method
 func goToNextVC(storyBoardID: String, vc_id: String, currentVC: UIViewController) {
@@ -149,7 +152,21 @@ func dictToStringKeyParam(dict: [String:Any], key: String) -> String {
         return ""
     }
 }
-
+func dictToGeoPointKeyParam(dict: [String:Any], key: String) -> GeoPoint {
+    let geoPoint = commanGeoPoint
+    if let value = dict[key] as? GeoPoint {
+        return value
+    } else {
+        return geoPoint
+    }
+}
+func dictToDateKeyParam(dict: [String:Any], key: String) -> Date {
+    if let value = dict[key] as? Date {
+        return value
+    } else {
+        return Date()
+    }
+}
 func dictToBoolKeyParam(dict: [String:Any], key: String) -> Bool {
     if let value = dict[key] as? Bool {
         return value
@@ -160,6 +177,14 @@ func dictToBoolKeyParam(dict: [String:Any], key: String) -> Bool {
     } else {
         return false
     }
+}
+
+func dictToGioPointKeyParam(dict: [String:Any], key: String) -> GeoPoint {
+    let geoPoint = commanGeoPoint
+    if let value = dict[key] as? GeoPoint {
+        return value
+    }
+    return geoPoint
 }
 
 func dictToDoubleKeyParam(dict: [String:Any], key: String) -> Double {

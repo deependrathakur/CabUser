@@ -30,6 +30,7 @@
 		EE71EF182406C25D00B6028D /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE71EF162406C25D00B6028D /* TPKeyboardAvoidingScrollView.m */; };
 		EE71EF1E2406DD6200B6028D /* customClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE71EF1D2406DD6200B6028D /* customClass.swift */; };
 		EE71EF202406E14700B6028D /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE71EF1F2406E14700B6028D /* RegisterVC.swift */; };
+		EEA736522454A90D008A60D3 /* ModelUserDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA736512454A90D008A60D3 /* ModelUserDetail.swift */; };
 		EED85439240556D900E225EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED85438240556D900E225EE /* AppDelegate.swift */; };
 		EED8543B240556D900E225EE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8543A240556D900E225EE /* SceneDelegate.swift */; };
 		EED8543D240556D900E225EE /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8543C240556D900E225EE /* LoginVC.swift */; };
@@ -96,6 +97,7 @@
 		EE71EF162406C25D00B6028D /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
 		EE71EF1D2406DD6200B6028D /* customClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customClass.swift; sourceTree = "<group>"; };
 		EE71EF1F2406E14700B6028D /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
+		EEA736512454A90D008A60D3 /* ModelUserDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelUserDetail.swift; sourceTree = "<group>"; };
 		EED85435240556D900E225EE /* CabUser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CabUser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EED85438240556D900E225EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EED8543A240556D900E225EE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 			children = (
 				EED8543C240556D900E225EE /* LoginVC.swift */,
 				EE71EF1F2406E14700B6028D /* RegisterVC.swift */,
+				EEA736512454A90D008A60D3 /* ModelUserDetail.swift */,
 				EEE496332407F55900C0734B /* OTPVC.swift */,
 			);
 			path = SetUp;
@@ -663,6 +666,7 @@
 				EE38A9EC240AA14100E97C34 /* MyMenuVC.swift in Sources */,
 				EE38A9EE240AA20800E97C34 /* MyMenuCell.swift in Sources */,
 				EEE496382408050F00C0734B /* MessageConstant.swift in Sources */,
+				EEA736522454A90D008A60D3 /* ModelUserDetail.swift in Sources */,
 				EE38A9F6240AC47E00E97C34 /* WriteReviewVC.swift in Sources */,
 				EE71EF172406C25D00B6028D /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				EEE496362407FD7C00C0734B /* AppShareClass.swift in Sources */,
@@ -861,6 +865,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = Deependra.Test;
 				PRODUCT_NAME = CabUser;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -885,6 +890,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = Deependra.Test;
 				PRODUCT_NAME = CabUser;
 				PROVISIONING_PROFILE_SPECIFIER = "";

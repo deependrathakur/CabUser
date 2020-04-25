@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Firebase
 class ModelDriverList: NSObject {
     var available = false
     var busy = false
@@ -15,7 +15,7 @@ class ModelDriverList: NSObject {
     var cabAdded = false
     var cab_type = ""
     var create = ""
-    var currentLocation = ""
+    var currentLocation:GeoPoint?
     var deviceToken = ""
     var documentAdded = false
     var documentFile = ModelDriverDocument(dict: [:])
@@ -36,7 +36,7 @@ class ModelDriverList: NSObject {
         cabAdded = dictToBoolKeyParam(dict: dict, key: "cabAdded")
         cab_type = dictToStringKeyParam(dict: dict, key: "cab_type")
         create = dictToStringKeyParam(dict: dict, key: "create")
-        currentLocation = dictToStringKeyParam(dict: dict, key: "currentLocation")
+        currentLocation = dictToGioPointKeyParam(dict: dict, key: "currentLocation")
         deviceToken = dictToStringKeyParam(dict: dict, key: "deviceToken")
         documentAdded = dictToBoolKeyParam(dict: dict, key: "documentAdded")
         documentFile = ModelDriverDocument(dict: dict["documentFile"] as? [String:Any] ?? [:])
