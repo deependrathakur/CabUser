@@ -66,7 +66,6 @@ class CabVC: UIViewController, SWRevealViewControllerDelegate, UITextFieldDelega
 extension CabVC {
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.ChatNotification(token: "cskYkdo5REi7uaHM78buId:APA91bG2wNdbEgZ3gRie5RRdU8NQFLvjTxe3ACiAkTt1Lop4NP8YRlpkToEBT5FO44sa5l-dF0NmpQ9WjsJX290uwlGZpxy6t-lcfezUaay01PH9y_cP7IcTU_aqJoJar3L8Bq4fZSp-")
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
@@ -88,7 +87,7 @@ extension CabVC {
         self.revealViewController().delegate = self
         revealViewController()?.rearViewRevealWidth = 60
         
-        bookingDict = ["acceptedData": "",
+        bookingDict = ["acceptedDate": "",
                        "amount":"0",
                        "bookingLaterDate": "123132",
                        "cardId": "",
@@ -106,7 +105,7 @@ extension CabVC {
                        "review":false,
                        "reviewComment":"",
                        "rideNow":true,
-                       "status":3,
+                       "status":0,
                        "totalDistanceKM":0,
                        "totalTimeMinute":0,
                        "userId":(UserDefaults.standard.value(forKey: "userId") as? String ?? "")]
@@ -115,7 +114,6 @@ extension CabVC {
     
     override func viewWillAppear(_ animated: Bool) {
         self.vwPopup.isHidden = true
-         self.ChatNotification(token: "cskYkdo5REi7uaHM78buId:APA91bG2wNdbEgZ3gRie5RRdU8NQFLvjTxe3ACiAkTt1Lop4NP8YRlpkToEBT5FO44sa5l-dF0NmpQ9WjsJX290uwlGZpxy6t-lcfezUaay01PH9y_cP7IcTU_aqJoJar3L8Bq4fZSp-")
         UserDefaults.standard.set(cabVC, forKey: "vc")
         self.getListDriver()
         AppDelegate().getUserDetailFromFirebase()
@@ -129,7 +127,7 @@ extension CabVC {
         let location = locations.last as! CLLocation
         currentLocationGeoPoint = GeoPoint.init(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
     }
-  
+    
     func checkCurrentLocation() {
         if self.txtPicupLocation.text == "" || self.txtPicupLocation.text == nil {
             self.txtPicupLocation.text = currentAddress
@@ -337,14 +335,11 @@ extension CabVC {
                 self.txtPicupLocationPopup.text = ""
                 self.txtDroupLocation.text = ""
                 self.txtPicupLocation.text = ""
-                self.sendBookingNotificationToAllDrivers()
+                self.sendBookingNotificationToAllDrivers(bookingId: "\(ref!.documentID)")
                 if (self.bookingDict["rideNow"] as? Bool ?? false) == true {
-                    let vc = UIStoryboard.init(name: homeStoryBoard, bundle: Bundle.main).instantiateViewController(withIdentifier: myRidesVC) as? MyRidesVC
-                    self.navigationController?.pushViewController(vc!, animated: true)
-                    showAlertVC(title: kAlertTitle, message: "Booking successfully submited.", controller: self)
+                    self.checkBookingStatus(bookingId: "\(ref!.documentID)")
                 } else {
-                    let vc = UIStoryboard.init(name: homeStoryBoard, bundle: Bundle.main).instantiateViewController(withIdentifier: waitingForDriverVC) as? WaitingForDriverVC
-                    vc?.bookingDict = self.bookingDict
+                    let vc = UIStoryboard.init(name: homeStoryBoard, bundle: Bundle.main).instantiateViewController(withIdentifier: myRidesVC) as? MyRidesVC
                     self.navigationController?.pushViewController(vc!, animated: true)
                     showAlertVC(title: kAlertTitle, message: "Booking successfully submited.", controller: self)
                 }
@@ -352,10 +347,37 @@ extension CabVC {
         }
     }
     
-    func sendBookingNotificationToAllDrivers() {
-       // for driver in self.arrShortDriverList {
-        for driver in self.arrModelDriverList {
-            self.ChatNotification(token:driver.deviceToken)
+    func checkBookingStatus(bookingId: String) {
+        self.indicator.isHidden = false
+        db.collection("booking").document(bookingId).addSnapshotListener { documentSnapshot, error in
+            guard let document = documentSnapshot else {
+                print("Error fetching document: \(error!)")
+                return
+            }
+            let source = document.metadata.hasPendingWrites ? "Local" : "Server"
+            print("\(source) data: \(document.data() ?? [:])")
+            let objModel = ModelMyRides.init(dict: document.data() ?? [:])
+            if objModel.status == "1" {
+                self.indicator.isHidden = true
+                let vc = UIStoryboard.init(name: homeStoryBoard, bundle: Bundle.main).instantiateViewController(withIdentifier: waitingForDriverVC) as? WaitingForDriverVC
+                vc?.bookingDict = objModel
+                vc?.bookingId = bookingId
+                vc?.rideStatus = Int(objModel.status) ?? 0
+                vc?.driverId = objModel.driverId
+                self.navigationController?.pushViewController(vc!, animated: true)
+                showAlertVC(title: kAlertTitle, message: "Booking successfully submited.", controller: self)
+            }
+        }
+        let deadlineTime = DispatchTime.now() + .seconds(60)
+        DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+            self.indicator.isHidden = true
+        }
+    }
+    
+    func sendBookingNotificationToAllDrivers(bookingId:String) {
+        // for driver in self.arrShortDriverList {
+        for driver in self.arrShortDriverList {
+            self.ChatNotification(token:driver.deviceToken, bookingId: bookingId)
         }
     }
     
@@ -607,33 +629,34 @@ extension CabVC {
 
 //MARK: - Notification method
 extension CabVC{
-    func ChatNotification(token:String){
+    func ChatNotification(token:String,bookingId:String){
         //Android
-            let messageDict = ["body": checkForNULL(obj: "booking"),
-                               "title": checkForNULL(obj: "CabBooking" ),
-                               "icon": "icon",
-                               "sound": "default",
-                               "badge": "1",
-                               "message": "booking",
-                               "notifincationType": "1",
-                               "type": "booking"]
-            //IOS
-            let notificationDict = ["body": checkForNULL(obj: "booking"),
-                                    "title": checkForNULL(obj: modelUserDetail?.name ?? "" ),
-                                    "icon": "icon",
-                                    "sound": "default",
-                                    "badge": "1",
-                                    "message": "booking",
-                                    "notifincationType": "1",
-                                    "type": "booking"]
-            
-            let finalDict = ["to":checkForNULL(obj:token),
-                             "data": checkForNULL(obj:messageDict),
-                             "priority" : "high",
-                             "notification": checkForNULL(obj:notificationDict),
-                             "sound": "default"] as [String : Any]
-            
-            self.sendNotificationWithDict(dictNotification:finalDict)
+        let messageDict = ["body": checkForNULL(obj: "booking"),
+                           "title": checkForNULL(obj: "CabBooking" ),
+                           "icon": "icon",
+                           "sound": "default",
+                           "badge": "1",
+                           "bookingId":bookingId,
+                           "message": "booking",
+                           "notifincationType": "1",
+                           "type": "booking"]
+        //IOS
+        let notificationDict = ["body": checkForNULL(obj: "booking"),
+                                "title": checkForNULL(obj: modelUserDetail?.name ?? "" ),
+                                "icon": "icon",
+                                "sound": "default",
+                                "badge": "1",
+                                "message": "booking",
+                                "notifincationType": "1",
+                                "type": "booking"]
+        
+        let finalDict = ["to":checkForNULL(obj:token),
+                         "data": checkForNULL(obj:messageDict),
+                         "priority" : "high",
+                         "notification": checkForNULL(obj:notificationDict),
+                         "sound": "default"] as [String : Any]
+        
+        self.sendNotificationWithDict(dictNotification:finalDict)
     }
     
     func sendNotificationWithDict(dictNotification:Dictionary<String, Any>){
@@ -651,6 +674,6 @@ extension CabVC{
             guard data != nil else {
                 return
             }
-            }.resume()
+        }.resume()
     }
 }

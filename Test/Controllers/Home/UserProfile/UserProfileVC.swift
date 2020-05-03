@@ -19,7 +19,7 @@ class UserProfileVC: UIViewController, SWRevealViewControllerDelegate,GMSAutocom
     @IBOutlet weak var txtAddress: UITextField!
     var userDict = [String:Any]()
     let db = Firestore.firestore()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         menuButton.addTarget(revealViewController, action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
@@ -31,9 +31,9 @@ class UserProfileVC: UIViewController, SWRevealViewControllerDelegate,GMSAutocom
     override func viewWillAppear(_ animated: Bool) {
         UserDefaults.standard.set(userProfileVC, forKey: "vc")
     }
-
+    
     func parseUserData() {
-
+        
         if let userDetail = DictUserDetails {
             self.txtName.text = dictToStringKeyParam(dict: userDetail, key: "name")
             self.txtEmail.text = dictToStringKeyParam(dict: userDetail, key: "email")
@@ -42,73 +42,73 @@ class UserProfileVC: UIViewController, SWRevealViewControllerDelegate,GMSAutocom
             userDict = userDetail
         }
     }
-
+    
     @IBAction func updateUserDetilAction(sender: UIButton) {
-          self.view.endEditing(true)
-          if self.txtEmail.isEmptyText() {
-              self.txtEmail.shakeTextField()
-          } else if !self.txtEmail.isValidateEmail() {
-              showAlertVC(title: kAlertTitle, message: InvalidEmail, controller: self)
-          } else if self.txtName.isEmptyText() {
-              self.txtName.shakeTextField()
-          } else if self.txtPhone.isEmptyText() {
-              self.txtPhone.shakeTextField()
-          } else if self.txtAddress.isEmptyText() {
-              self.txtAddress.shakeTextField()
-          } else {
+        self.view.endEditing(true)
+        if self.txtEmail.isEmptyText() {
+            self.txtEmail.shakeTextField()
+        } else if !self.txtEmail.isValidateEmail() {
+            showAlertVC(title: kAlertTitle, message: InvalidEmail, controller: self)
+        } else if self.txtName.isEmptyText() {
+            self.txtName.shakeTextField()
+        } else if self.txtPhone.isEmptyText() {
+            self.txtPhone.shakeTextField()
+        } else if self.txtAddress.isEmptyText() {
+            self.txtAddress.shakeTextField()
+        } else {
             userDict["name"] = self.txtName.text ?? ""
             userDict["email"] = self.txtEmail.text ?? ""
             userDict["address"] = self.txtAddress.text ?? ""
             userDict["mobile"] = self.txtPhone.text ?? ""
-                if let userId = UserDefaults.standard.string(forKey: "userId") {
-                    if userId != "" {
+            if let userId = UserDefaults.standard.string(forKey: "userId") {
+                if userId != "" {
                     self.db.collection("user").document(userId).updateData(userDict)
-                        DictUserDetails = userDict
-                        modelUserDetail = ModelUserDetail.init(Dict: DictUserDetails ?? ["":""])
-                        
+                    DictUserDetails = userDict
+                    modelUserDetail = ModelUserDetail.init(Dict: DictUserDetails ?? ["":""])
+                    
                     showAlertVC(title: kAlertTitle, message: "Profile update successfully.", controller: self)
                 }
             }
         }
-
+        
     }
     
     @IBAction func placePickerAction(sender: UIButton) {
-         let placePickerController = GMSAutocompleteViewController()
-         placePickerController.delegate = self
-         present(placePickerController, animated: true, completion: nil)
-     }
-    
-        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-            guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-            print("locations = \(locValue.latitude) \(locValue.longitude)")
-        }
-        
-        func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-            userDict["address"] = "\(place.name ?? ""), " + "\(place.formattedAddress ?? "")"
-            self.txtAddress.text = userDict["address"] as? String ?? ""
-            userDict["addressPoint"] = GeoPoint.init(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
-            dismiss(animated: true, completion: nil)
-        }
-        
-        func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
-            print("Error: ", error.localizedDescription)
-        }
-        
-        // User canceled the operation.
-        func wasCancelled(_ viewController: GMSAutocompleteViewController) {
-            dismiss(animated: true, completion: nil)
-        }
-        
-        // Turn the network activity indicator on and off again.
-        func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
-            UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        }
-        
-        func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
-        }
+        let placePickerController = GMSAutocompleteViewController()
+        placePickerController.delegate = self
+        present(placePickerController, animated: true, completion: nil)
     }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+    }
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        userDict["address"] = "\(place.name ?? ""), " + "\(place.formattedAddress ?? "")"
+        self.txtAddress.text = userDict["address"] as? String ?? ""
+        userDict["addressPoint"] = GeoPoint.init(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        print("Error: ", error.localizedDescription)
+    }
+    
+    // User canceled the operation.
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // Turn the network activity indicator on and off again.
+    func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+}
 
 // MARK: - ENSideMenu Delegate
 extension UserProfileVC {

@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 
 class MyRidesVC: UIViewController, UITableViewDelegate, UITableViewDataSource, SWRevealViewControllerDelegate {
-    
     @IBOutlet weak var button1:UIButton!
     @IBOutlet weak var button2:UIButton!
     @IBOutlet weak var button3:UIButton!
@@ -18,13 +17,12 @@ class MyRidesVC: UIViewController, UITableViewDelegate, UITableViewDataSource, S
     @IBOutlet weak var tableView:UITableView!
     @IBOutlet weak var noRecord:UILabel!
     @IBOutlet var indicator: UIActivityIndicatorView!
-
     @IBOutlet var viewForSide: UIView!
     
     var arrBooking = [ModelMyRides]()
     let db = Firestore.firestore()
     var selectSegment = 0
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.indicator.isHidden = true
@@ -64,7 +62,7 @@ extension MyRidesVC {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: cellMyRides, for: indexPath as IndexPath) as? CellMyRides {
             if arrBooking.count > indexPath.row {
-             let object = self.arrBooking[indexPath.row]
+                let object = self.arrBooking[indexPath.row]
                 cell.lblPicLocation.text = object.pickupAddress
                 cell.lblDropLocation.text = object.dropAddress
                 cell.lblPrice.text = "$" + object.amount
@@ -84,8 +82,15 @@ extension MyRidesVC {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-      //  let vc = UIStoryboard.init(name: homeStoryBoard, bundle: Bundle.main).instantiateViewController(withIdentifier: cabVC) as? CabVC
-       // self.navigationController?.pushViewController(vc!, animated: true)
+        let modelObject = self.arrBooking[indexPath.row]
+        if selectSegment == 0 && (modelObject.status == "1" || modelObject.status == "2" || modelObject.status == "3"){
+            let vc = UIStoryboard.init(name: homeStoryBoard, bundle: Bundle.main).instantiateViewController(withIdentifier: waitingForDriverVC) as? WaitingForDriverVC
+            vc?.bookingDict = modelObject
+            vc?.bookingId = modelObject.bookingId
+            vc?.rideStatus = Int(modelObject.status) ?? 0
+            vc?.driverId = modelObject.driverId
+            self.navigationController?.pushViewController(vc!, animated: true)
+        }
     }
     
     @objc func btnCancelRideAction(sender: UIButton!) {
@@ -134,7 +139,7 @@ fileprivate extension MyRidesVC {
                     let modelObject = ModelMyRides.init(dict: document.data())
                     modelObject.bookingId = document.documentID
                     if modelObject.userId == (UserDefaults.standard.value(forKey: "userId") as? String ?? "") {
-                        if self.selectSegment == 0 && (modelObject.status == "1" || modelObject.status == "2" || modelObject.status == "3" || modelObject.status == "6")  {
+                        if self.selectSegment == 0 && (modelObject.status == "1" || modelObject.status == "2" || modelObject.status == "3" || modelObject.status == "6") {
                             self.arrBooking.append(modelObject)
                         } else if self.selectSegment == 1 && modelObject.status == "4" {
                             self.arrBooking.append(modelObject)

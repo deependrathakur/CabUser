@@ -11,7 +11,7 @@ import GooglePlaces
 import Firebase
 
 class ModelMyRides: NSObject {
-    var acceptedData = ""
+    var acceptedDate = ""
     var bookingId = ""
     var cabId = ""
     var busy = false
@@ -57,7 +57,7 @@ class ModelMyRides: NSObject {
         status = dictToStringKeyParam(dict: dict, key: "status")
         tax = dictToStringKeyParam(dict: dict, key: "tax")
         bookingId = dictToStringKeyParam(dict: dict, key: "bookingId")
-        acceptedData = dictToStringKeyParam(dict: dict, key: "acceptedData")
+        acceptedDate = dictToStringKeyParam(dict: dict, key: "acceptedDate")
         cabId = dictToStringKeyParam(dict: dict, key: "cabId")
         busy = dictToBoolKeyParam(dict: dict, key: "busy")
         bookLaterDate = dictToStringKeyParam(dict: dict, key: "bookLaterDate")

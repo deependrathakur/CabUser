@@ -176,16 +176,17 @@
                                                             <rect key="frame" x="5" y="5" width="402" height="127"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="HbT-0B-sVz">
-                                                                    <rect key="frame" x="310" y="10" width="82" height="50"/>
+                                                                    <rect key="frame" x="299" y="10" width="93" height="52"/>
                                                                     <subviews>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MEv-aC-DF3">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="82" height="30"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="93" height="32"/>
+                                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                                             <state key="normal" title="Cancel Ride">
                                                                                 <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             </state>
                                                                         </button>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$12" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdi-of-y11">
-                                                                            <rect key="frame" x="0.0" y="30" width="82" height="20"/>
+                                                                            <rect key="frame" x="0.0" y="32" width="93" height="20"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="20" id="zfH-fQ-TT8"/>
                                                                             </constraints>
@@ -845,29 +846,29 @@
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dgf-Eb-Kx1">
-                                                <rect key="frame" x="40" y="72" width="334" height="510"/>
+                                                <rect key="frame" x="40" y="72.5" width="334" height="509.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$120" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nNz-n0-0iH">
-                                                        <rect key="frame" x="139" y="10" width="56" height="29.5"/>
+                                                        <rect key="frame" x="138.5" y="10" width="57" height="29"/>
                                                         <fontDescription key="fontDescription" name="Museo-700" family="Museo" pointSize="25"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$20 KM,20 min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mhg-d3-z9c">
-                                                        <rect key="frame" x="99" y="119.5" width="136" height="23.5"/>
+                                                        <rect key="frame" x="96" y="119" width="142.5" height="23.5"/>
                                                         <fontDescription key="fontDescription" name="Museo-700" family="Museo" pointSize="20"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="carWhite" translatesAutoresizingMaskIntoConstraints="NO" id="SrJ-X8-G7x">
-                                                        <rect key="frame" x="127" y="39.5" width="80" height="80"/>
+                                                        <rect key="frame" x="127" y="39" width="80" height="80"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="80" id="2Wq-SG-kof"/>
                                                             <constraint firstAttribute="height" constant="80" id="UYA-Qe-4O2"/>
                                                         </constraints>
                                                     </imageView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BcJ-OK-56H">
-                                                        <rect key="frame" x="0.0" y="151" width="334" height="359"/>
+                                                        <rect key="frame" x="0.0" y="150.5" width="334" height="359"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f31-PU-hFK" customClass="viewBorder" customModule="CabUser" customModuleProvider="target">
                                                                 <rect key="frame" x="8" y="8" width="318" height="122"/>
@@ -886,7 +887,7 @@
                                                                                         </constraints>
                                                                                     </view>
                                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rec" translatesAutoresizingMaskIntoConstraints="NO" id="acK-bL-TkB">
-                                                                                        <rect key="frame" x="10" y="11.5" width="20" height="15"/>
+                                                                                        <rect key="frame" x="10" y="11" width="20" height="15"/>
                                                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="width" constant="20" id="QvA-xA-xLz"/>
@@ -894,7 +895,7 @@
                                                                                         </constraints>
                                                                                     </imageView>
                                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pickup Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Vb-yY-Qgb">
-                                                                                        <rect key="frame" x="38" y="1.5" width="268" height="35"/>
+                                                                                        <rect key="frame" x="38" y="1" width="268" height="35"/>
                                                                                         <color key="tintColor" red="0.22352941179999999" green="0.047058823530000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="35" id="nrO-t4-o59"/>
@@ -904,14 +905,14 @@
                                                                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                                                     </textField>
                                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dot" translatesAutoresizingMaskIntoConstraints="NO" id="qVs-A8-sBw">
-                                                                                        <rect key="frame" x="10" y="27" width="20" height="19"/>
+                                                                                        <rect key="frame" x="10" y="26.5" width="20" height="19"/>
                                                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="width" constant="20" id="FIa-Fo-pbK"/>
                                                                                         </constraints>
                                                                                     </imageView>
                                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Cjo-wG-aqK">
-                                                                                        <rect key="frame" x="10" y="46.5" width="20" height="20"/>
+                                                                                        <rect key="frame" x="10" y="46" width="20" height="20"/>
                                                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="20" id="ICi-aI-Dcb"/>
@@ -919,7 +920,7 @@
                                                                                         </constraints>
                                                                                     </imageView>
                                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Dropup Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jIW-wM-AG9">
-                                                                                        <rect key="frame" x="38" y="39" width="268" height="35"/>
+                                                                                        <rect key="frame" x="38" y="38.5" width="268" height="35"/>
                                                                                         <color key="tintColor" red="0.22352941179999999" green="0.047058823530000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="35" id="D7Q-dg-mgP"/>
@@ -929,13 +930,13 @@
                                                                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                                                     </textField>
                                                                                     <button opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SQM-h5-e38">
-                                                                                        <rect key="frame" x="38" y="1.5" width="268" height="35"/>
+                                                                                        <rect key="frame" x="38" y="1" width="268" height="35"/>
                                                                                         <connections>
                                                                                             <action selector="placePickerActionWithSender:" destination="jbe-zU-zkU" eventType="touchUpInside" id="iEu-vZ-ekI"/>
                                                                                         </connections>
                                                                                     </button>
                                                                                     <button opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5rh-dy-g1O">
-                                                                                        <rect key="frame" x="38" y="39" width="268" height="35"/>
+                                                                                        <rect key="frame" x="38" y="38.5" width="268" height="35"/>
                                                                                         <connections>
                                                                                             <action selector="placePickerActionWithSender:" destination="jbe-zU-zkU" eventType="touchUpInside" id="pJd-Ze-GnR"/>
                                                                                         </connections>
@@ -1313,7 +1314,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting for Driver" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ot-wE-fbE">
-                                                <rect key="frame" x="71" y="15" width="185" height="28"/>
+                                                <rect key="frame" x="71" y="15" width="205.5" height="28"/>
                                                 <fontDescription key="fontDescription" name="Museo-700" family="Museo" pointSize="24"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -1335,10 +1336,10 @@
                                         <rect key="frame" x="0.0" y="58" width="414" height="760"/>
                                         <subviews>
                                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="YpG-IZ-KUY">
-                                                <rect key="frame" x="1" y="1" width="412" height="646"/>
+                                                <rect key="frame" x="1" y="1" width="412" height="599"/>
                                             </mapView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eqD-0R-arF">
-                                                <rect key="frame" x="0.0" y="648" width="414" height="112"/>
+                                                <rect key="frame" x="0.0" y="601" width="414" height="112"/>
                                                 <subviews>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ru-4t-vh3">
                                                         <rect key="frame" x="364" y="36" width="40" height="40"/>
@@ -1442,6 +1443,25 @@
                                                     <constraint firstItem="zUZ-O2-3fs" firstAttribute="centerY" secondItem="eqD-0R-arF" secondAttribute="centerY" id="uGl-V7-Xcx"/>
                                                 </constraints>
                                             </view>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="k5G-s2-IKa">
+                                                <rect key="frame" x="1" y="714" width="412" height="45"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sek-6P-HFd">
+                                                        <rect key="frame" x="0.0" y="0.0" width="412" height="45"/>
+                                                        <color key="backgroundColor" red="0.22352004049999999" green="0.047561280429999998" blue="0.060397692019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="45" id="pNs-u4-gD7"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Museo-700" family="Museo" pointSize="18"/>
+                                                        <state key="normal" title="CANCEL RIDE">
+                                                            <color key="titleColor" red="0.99598389860000003" green="0.99614673850000002" blue="0.99594932790000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="cancelActionWithSender:" destination="DGq-eI-XXB" eventType="touchUpInside" id="pug-n8-2Zy"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mPy-K6-YH6">
                                                 <rect key="frame" x="23" y="10" width="368" height="75"/>
                                                 <subviews>
@@ -1479,7 +1499,7 @@
                                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                     </textField>
-                                                    <textField opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Dropup Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UMw-iZ-3wY">
+                                                    <textField opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Dropup Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UMw-iZ-3wY">
                                                         <rect key="frame" x="38" y="38" width="320" height="30"/>
                                                         <color key="tintColor" red="0.22352941179999999" green="0.047058823530000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
@@ -1520,15 +1540,18 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="k5G-s2-IKa" secondAttribute="trailing" constant="1" id="1PA-Zl-zGE"/>
+                                            <constraint firstItem="k5G-s2-IKa" firstAttribute="top" secondItem="eqD-0R-arF" secondAttribute="bottom" constant="1" id="4kk-99-LvV"/>
                                             <constraint firstItem="YpG-IZ-KUY" firstAttribute="leading" secondItem="OT4-hf-UrU" secondAttribute="leading" constant="1" id="5Uq-48-eLq"/>
                                             <constraint firstItem="YpG-IZ-KUY" firstAttribute="top" secondItem="OT4-hf-UrU" secondAttribute="top" constant="1" id="6VZ-Z3-xq0"/>
                                             <constraint firstItem="mPy-K6-YH6" firstAttribute="top" secondItem="OT4-hf-UrU" secondAttribute="top" constant="10" id="GP3-bb-qIa"/>
+                                            <constraint firstAttribute="bottom" secondItem="k5G-s2-IKa" secondAttribute="bottom" constant="1" id="GZS-ki-Oa2"/>
                                             <constraint firstItem="eqD-0R-arF" firstAttribute="top" secondItem="YpG-IZ-KUY" secondAttribute="bottom" constant="1" id="HRI-GE-5j5"/>
                                             <constraint firstAttribute="trailing" secondItem="YpG-IZ-KUY" secondAttribute="trailing" constant="1" id="LKk-t1-Tpx"/>
+                                            <constraint firstItem="k5G-s2-IKa" firstAttribute="leading" secondItem="OT4-hf-UrU" secondAttribute="leading" constant="1" id="Y2n-fA-Y1a"/>
                                             <constraint firstItem="eqD-0R-arF" firstAttribute="leading" secondItem="OT4-hf-UrU" secondAttribute="leading" id="c6E-8Z-BIv"/>
                                             <constraint firstAttribute="trailing" secondItem="eqD-0R-arF" secondAttribute="trailing" id="g1M-SX-j9r"/>
                                             <constraint firstAttribute="trailing" secondItem="mPy-K6-YH6" secondAttribute="trailing" constant="23" id="nIW-6u-nZD"/>
-                                            <constraint firstAttribute="bottom" secondItem="eqD-0R-arF" secondAttribute="bottom" id="u8e-On-iUe"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1556,9 +1579,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="d71-yg-rFE"/>
                     <connections>
+                        <outlet property="btnCancel" destination="sek-6P-HFd" id="7mw-ek-O7v"/>
                         <outlet property="imgUser" destination="zUZ-O2-3fs" id="Xto-Cl-8CM"/>
+                        <outlet property="lblHeaser" destination="4ot-wE-fbE" id="X87-I0-lBK"/>
                         <outlet property="lblName" destination="XKH-jK-Ebn" id="5l4-tS-j4k"/>
                         <outlet property="lblNumberDetail" destination="KkZ-lj-jy3" id="brK-ft-76X"/>
+                        <outlet property="mapView" destination="YpG-IZ-KUY" id="Ele-tF-tX9"/>
                         <outlet property="menuButton" destination="R0j-BY-mEW" id="qLv-2f-f6r"/>
                         <outlet property="txtDroupLocation" destination="UMw-iZ-3wY" id="kUe-oM-NuJ"/>
                         <outlet property="txtPicupLocation" destination="jvx-Fe-QYA" id="X6J-7h-NZ6"/>
@@ -1566,7 +1592,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S2u-Ls-Fit" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-93" y="-370"/>
+            <point key="canvasLocation" x="-94.20289855072464" y="-370.3125"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="He9-2T-Yny">
@@ -1783,7 +1809,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Review You Ride" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WUN-sL-wNN">
-                                                                <rect key="frame" x="71" y="15" width="180" height="28"/>
+                                                                <rect key="frame" x="71" y="15" width="189" height="28"/>
                                                                 <fontDescription key="fontDescription" name="Museo-700" family="Museo" pointSize="24"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -1807,13 +1833,13 @@
                                                                 <color key="backgroundColor" red="0.22352941179999999" green="0.047058823530000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$120" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JyC-xV-het">
-                                                                <rect key="frame" x="179" y="10" width="56" height="29"/>
+                                                                <rect key="frame" x="178.5" y="10" width="57" height="29"/>
                                                                 <fontDescription key="fontDescription" name="Museo-700" family="Museo" pointSize="25"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today at 05:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hoa-6J-A7y">
-                                                                <rect key="frame" x="136" y="119" width="142.5" height="20"/>
+                                                                <rect key="frame" x="132" y="119" width="150.5" height="20"/>
                                                                 <fontDescription key="fontDescription" name="Museo-700" family="Museo" pointSize="17"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -1849,7 +1875,7 @@
                                                                                             <constraint firstAttribute="width" constant="20" id="N1f-h9-Lo9"/>
                                                                                         </constraints>
                                                                                     </imageView>
-                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pickup Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OJV-Zk-atj">
+                                                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pickup Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OJV-Zk-atj">
                                                                                         <rect key="frame" x="38" y="1" width="348" height="35"/>
                                                                                         <color key="tintColor" red="0.22352941179999999" green="0.047058823530000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         <constraints>
@@ -1874,7 +1900,7 @@
                                                                                             <constraint firstAttribute="width" constant="20" id="yni-Gf-RCq"/>
                                                                                         </constraints>
                                                                                     </imageView>
-                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Dropup Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1tN-pw-7fL">
+                                                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Dropup Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1tN-pw-7fL">
                                                                                         <rect key="frame" x="38" y="38.5" width="348" height="35"/>
                                                                                         <color key="tintColor" red="0.22352941179999999" green="0.047058823530000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         <constraints>
@@ -1957,12 +1983,23 @@
                                                                                     </userDefinedRuntimeAttribute>
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </view>
-                                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Write Comment" translatesAutoresizingMaskIntoConstraints="NO" id="dps-7s-WA7">
+                                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Write Comment" translatesAutoresizingMaskIntoConstraints="NO" id="dps-7s-WA7" customClass="textViewBorder" customModule="CabUser" customModuleProvider="target">
                                                                                 <rect key="frame" x="8" y="53" width="382" height="69"/>
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <color key="textColor" red="0.22352941179999999" green="0.047058823530000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                    </userDefinedRuntimeAttribute>
+                                                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                                        <real key="value" value="1"/>
+                                                                                    </userDefinedRuntimeAttribute>
+                                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                        <real key="value" value="5"/>
+                                                                                    </userDefinedRuntimeAttribute>
+                                                                                </userDefinedRuntimeAttributes>
                                                                             </textView>
                                                                         </subviews>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2105,7 +2142,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BBt-8r-35u">
-                                                <rect key="frame" x="71" y="14" width="70.5" height="29.5"/>
+                                                <rect key="frame" x="71" y="14.5" width="78" height="29"/>
                                                 <fontDescription key="fontDescription" name="Museo-700" family="Museo" pointSize="25"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
