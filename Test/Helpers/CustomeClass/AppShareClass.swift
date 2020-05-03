@@ -41,9 +41,13 @@ let myMenuVC = "MyMenuVC"
 let myMenuCell = "MyMenuCell"
 let cellMyRides = "CellMyRides"
 let commanGeoPoint = GeoPoint.init(latitude: 22.7764, longitude: 75.9548)
+var currentLocationGeoPoint = GeoPoint.init(latitude: 22.7764, longitude: 75.9548)
+var currentAddress = ""
 var modelUserDetail:ModelUserDetail?
 var DictUserDetails:[String:Any]?
-
+var kServerKey = "AAAA_DFNOHY:APA91bEaDgtdj3AcKgYjF7e0yEiOXHgF08LnUzQ03XDAafNYf2HJhIGJaNat808poAOy6DXKPClxudmXobIiSRgEaemP0qTE_5B_dubaaXZsZJs8ogV0R_SdpIsVjurBz5OVNARjx9Ce"
+var firebaseToken = ""
+var iosDeviceToken = ""
 //MARK: - Navigation Method
 func goToNextVC(storyBoardID: String, vc_id: String, currentVC: UIViewController) {
     let vc = UIStoryboard.init(name: storyBoardID, bundle: Bundle.main).instantiateViewController(withIdentifier: vc_id)
@@ -97,17 +101,14 @@ func getDistanceOfTwoPoint(startPoint: String, endPoint: String) -> String {
 }
 
 
-func getDistanceOfTwoPointInDouble(arrStartPoint: [String], arrEndPoint: [String]) -> Double {
+func getDistanceOfTwoPointInDouble(sourcePoint: GeoPoint, destinationPoint: GeoPoint) -> Double {
     
-    if arrStartPoint.count > 1 && arrEndPoint.count > 1 {
-        let a = distance(lat1: Double(arrStartPoint[0])!,
-                         lon1: Double(arrStartPoint[1])!,
-                         lat2: Double(arrEndPoint[0])!,
-                         lon2: Double(arrEndPoint[1])!, unit: "K")
+    let a = distance(lat1: sourcePoint.latitude,
+                     lon1:sourcePoint.longitude,
+                     lat2:destinationPoint.latitude,
+                     lon2: destinationPoint.longitude, unit: "K")
         let doubleStr = String(format: "%.2f", a)
         return Double(doubleStr) ?? 0.00
-    }
-    return 0.00
 }
 
     func distance(lat1:Double, lon1:Double, lat2:Double, lon2:Double, unit:String) -> Double {

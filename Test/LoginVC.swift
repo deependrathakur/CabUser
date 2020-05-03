@@ -38,8 +38,6 @@ fileprivate extension LoginVC {
         self.view.endEditing(true)
         if self.txtEmailPhone.isEmptyText() {
             self.txtEmailPhone.shakeTextField()
-        } else if !self.txtEmailPhone.isValidateEmail() {
-            showAlertVC(title: kAlertTitle, message: InvalidEmail, controller: self)
         } else if self.txtPassword.isEmptyText() {
             self.txtPassword.shakeTextField()
         } else {
@@ -52,11 +50,13 @@ fileprivate extension LoginVC {
                 } else {
                     for document in querySnapshot!.documents {
                         let dict = document.data()
-                        if (self.txtPassword.text == dict["password"] as? String ?? "") && ((self.txtEmailPhone.text == dict["email"] as? String ?? "") || (self.txtPassword.text == dict["mobile"] as? String ?? "")) {
+                        if (self.txtPassword.text == dict["password"] as? String ?? "") && (self.txtEmailPhone.text == dict["mobile"] as? String ?? "") {
                             registeredUser = true
                             DictUserDetails = dict
                             DictUserDetails?["id"] = document.documentID
                             UserDefaults.standard.set(document.documentID, forKey: "userId")
+                            self.db.collection("user").document("\(document.documentID)").updateData(["id":"\(document.documentID)","deviceToken":((firebaseToken == "" ? iosDeviceToken : firebaseToken))])
+
                         }
                     }
                 }

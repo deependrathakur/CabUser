@@ -12,6 +12,7 @@ import Firebase
 
 class ModelMyRides: NSObject {
     var acceptedData = ""
+    var bookingId = ""
     var cabId = ""
     var busy = false
     var bookLaterDate = ""
@@ -55,7 +56,7 @@ class ModelMyRides: NSObject {
         reviewStar = dictToStringKeyParam(dict: dict, key: "reviewStar")
         status = dictToStringKeyParam(dict: dict, key: "status")
         tax = dictToStringKeyParam(dict: dict, key: "tax")
-        
+        bookingId = dictToStringKeyParam(dict: dict, key: "bookingId")
         acceptedData = dictToStringKeyParam(dict: dict, key: "acceptedData")
         cabId = dictToStringKeyParam(dict: dict, key: "cabId")
         busy = dictToBoolKeyParam(dict: dict, key: "busy")

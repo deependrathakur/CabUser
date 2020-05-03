@@ -17,6 +17,7 @@ target 'Test' do
   pod 'GoogleMaps'
   pod 'Alamofire'
   pod 'AlamofireImage'
+  pod 'Firebase/Messaging'
 
   target 'TestTests' do
     inherit! :search_paths

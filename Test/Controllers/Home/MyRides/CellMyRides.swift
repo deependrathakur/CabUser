@@ -13,6 +13,7 @@ class CellMyRides: UITableViewCell {
     @IBOutlet weak var lblNo:UILabel!
     @IBOutlet weak var lblPrice:UILabel!
     @IBOutlet weak var lblPicLocation:UILabel!
+    @IBOutlet weak var btnCancelRide:UIButton!
     @IBOutlet weak var lblDropLocation:UILabel!
     @IBOutlet weak var imgUser:UIImageView!
 

@@ -63,11 +63,21 @@ extension MyRidesVC {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: cellMyRides, for: indexPath as IndexPath) as? CellMyRides {
-            let object = self.arrBooking[indexPath.row]
-            cell.lblPicLocation.text = object.pickupAddress
-            cell.lblDropLocation.text = object.dropAddress
-            cell.lblPrice.text = "$" + object.amount
-            cell.lblDate.text = object.createdData
+            if arrBooking.count > indexPath.row {
+             let object = self.arrBooking[indexPath.row]
+                cell.lblPicLocation.text = object.pickupAddress
+                cell.lblDropLocation.text = object.dropAddress
+                cell.lblPrice.text = "$" + object.amount
+                cell.lblDate.text = object.createdData
+                cell.btnCancelRide.addTarget(self, action:#selector(btnCancelRideAction(sender:)) , for: .touchUpInside)
+                if selectSegment == 0 {
+                    cell.lblPrice.isHidden = true
+                    cell.btnCancelRide.isHidden = false
+                } else {
+                    cell.lblPrice.isHidden = false
+                    cell.btnCancelRide.isHidden = true
+                }
+            }
             return cell
         }
         return UITableViewCell()
@@ -76,6 +86,12 @@ extension MyRidesVC {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
       //  let vc = UIStoryboard.init(name: homeStoryBoard, bundle: Bundle.main).instantiateViewController(withIdentifier: cabVC) as? CabVC
        // self.navigationController?.pushViewController(vc!, animated: true)
+    }
+    
+    @objc func btnCancelRideAction(sender: UIButton!) {
+        let bookingId = self.arrBooking[sender.tag].bookingId
+        self.db.collection("booking").document(bookingId).updateData(["status":5])
+        self.getBookingList()
     }
 }
 
@@ -116,8 +132,9 @@ fileprivate extension MyRidesVC {
                 self.arrBooking.removeAll()
                 for document in querySnapshot!.documents {
                     let modelObject = ModelMyRides.init(dict: document.data())
+                    modelObject.bookingId = document.documentID
                     if modelObject.userId == (UserDefaults.standard.value(forKey: "userId") as? String ?? "") {
-                        if self.selectSegment == 0 && modelObject.status == "3" {
+                        if self.selectSegment == 0 && (modelObject.status == "1" || modelObject.status == "2" || modelObject.status == "3" || modelObject.status == "6")  {
                             self.arrBooking.append(modelObject)
                         } else if self.selectSegment == 1 && modelObject.status == "4" {
                             self.arrBooking.append(modelObject)

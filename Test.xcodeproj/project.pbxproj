@@ -31,6 +31,7 @@
 		EE71EF1E2406DD6200B6028D /* customClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE71EF1D2406DD6200B6028D /* customClass.swift */; };
 		EE71EF202406E14700B6028D /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE71EF1F2406E14700B6028D /* RegisterVC.swift */; };
 		EEA736522454A90D008A60D3 /* ModelUserDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA736512454A90D008A60D3 /* ModelUserDetail.swift */; };
+		EEC6EACA245D91B000BC403C /* ModelTravel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC6EAC9245D91B000BC403C /* ModelTravel.swift */; };
 		EED85439240556D900E225EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED85438240556D900E225EE /* AppDelegate.swift */; };
 		EED8543B240556D900E225EE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8543A240556D900E225EE /* SceneDelegate.swift */; };
 		EED8543D240556D900E225EE /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8543C240556D900E225EE /* LoginVC.swift */; };
@@ -98,6 +99,7 @@
 		EE71EF1D2406DD6200B6028D /* customClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customClass.swift; sourceTree = "<group>"; };
 		EE71EF1F2406E14700B6028D /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		EEA736512454A90D008A60D3 /* ModelUserDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelUserDetail.swift; sourceTree = "<group>"; };
+		EEC6EAC9245D91B000BC403C /* ModelTravel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTravel.swift; sourceTree = "<group>"; };
 		EED85435240556D900E225EE /* CabUser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CabUser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EED85438240556D900E225EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EED8543A240556D900E225EE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 		EE3A3CE0240A30B100AB7C61 /* Cab */ = {
 			isa = PBXGroup;
 			children = (
+				EEC6EAC8245D917700BC403C /* Model */,
 				EEEC3A7124098E640036A75C /* CabVC.swift */,
 				EE43C83C2436630F00813A38 /* ModelDriverList.swift */,
 			);
@@ -304,6 +307,14 @@
 				EE71EF122406C25C00B6028D /* Test-Bridging-Header.h */,
 			);
 			path = ScrollingClass;
+			sourceTree = "<group>";
+		};
+		EEC6EAC8245D917700BC403C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EEC6EAC9245D91B000BC403C /* ModelTravel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		EED8542C240556D900E225EE = {
@@ -673,6 +684,7 @@
 				EED85439240556D900E225EE /* AppDelegate.swift in Sources */,
 				EE40FC6C2413CA98002A5076 /* ModelMyRides.swift in Sources */,
 				EE3AC770240EDCE300AD4779 /* helvetica.ttf in Sources */,
+				EEC6EACA245D91B000BC403C /* ModelTravel.swift in Sources */,
 				EE3AC76F240EDCE100AD4779 /* myriad.ttf in Sources */,
 				EE38A9F2240AA57900E97C34 /* SWRevealViewController.m in Sources */,
 				EE3AC76E240EDCDB00AD4779 /* museo700.ttf in Sources */,
@@ -906,7 +918,9 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DK3AS4BZRG;
 				INFOPLIST_FILE = TestTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -928,7 +942,9 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DK3AS4BZRG;
 				INFOPLIST_FILE = TestTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
