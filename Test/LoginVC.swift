@@ -9,15 +9,18 @@
 import UIKit
 import Firebase
 
-class LoginVC: UIViewController {
+class LoginVC: UIViewController,CountryCodeDelegate {
     
     @IBOutlet weak var txtEmailPhone:UITextField!
     @IBOutlet weak var txtPassword:UITextField!
     @IBOutlet weak var btnLogin:UIButton!
     @IBOutlet weak var btnRegister:UIButton!
+    @IBOutlet weak var btnCountryCode:UIButton!
     @IBOutlet weak var indicator:UIActivityIndicatorView!
     let db = Firestore.firestore()
-
+    func onSelectCountry(countryCode: String) {
+        self.btnCountryCode.setTitle(countryCode, for: .normal)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -50,7 +53,8 @@ fileprivate extension LoginVC {
                 } else {
                     for document in querySnapshot!.documents {
                         let dict = document.data()
-                        if (self.txtPassword.text == dict["password"] as? String ?? "") && (self.txtEmailPhone.text == dict["mobile"] as? String ?? "") {
+                        let mobileNo = (self.btnCountryCode.currentTitle ?? "+91") + (self.txtEmailPhone.text ?? "")
+                        if (self.txtPassword.text == dict["password"] as? String ?? "") && ((self.txtEmailPhone.text == dict["email"] as? String ?? "") || (self.txtEmailPhone.text == dict["mobile"] as? String ?? "") || (mobileNo == dict["mobile"] as? String ?? "")) {
                             registeredUser = true
                             DictUserDetails = dict
                             DictUserDetails?["id"] = document.documentID
@@ -81,6 +85,13 @@ fileprivate extension LoginVC {
     @IBAction func forgotAction(sender: UIButton) {
         self.view.endEditing(true)
         goToNextVC(storyBoardID: mainStoryBoard, vc_id: otpVC, currentVC: self)
+    }
+    
+    @IBAction func countruCodeAction(sender: UIButton) {
+        self.view.endEditing(true)
+         let vc = UIStoryboard.init(name: mainStoryBoard, bundle: Bundle.main).instantiateViewController(withIdentifier: "CountryCodeVC") as? CountryCodeVC
+        vc?.delegat = self
+        self.present(vc ?? CountryCodeVC(), animated: true, completion: nil)
     }
     
     func setNavigationRootStoryboard() {

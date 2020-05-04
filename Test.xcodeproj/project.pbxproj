@@ -31,6 +31,9 @@
 		EE71EF1E2406DD6200B6028D /* customClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE71EF1D2406DD6200B6028D /* customClass.swift */; };
 		EE71EF202406E14700B6028D /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE71EF1F2406E14700B6028D /* RegisterVC.swift */; };
 		EEA736522454A90D008A60D3 /* ModelUserDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA736512454A90D008A60D3 /* ModelUserDetail.swift */; };
+		EEC37CD42460198600D41EE8 /* CountryCodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC37CD32460198600D41EE8 /* CountryCodeCell.swift */; };
+		EEC37CD62460199300D41EE8 /* CountryCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC37CD52460199200D41EE8 /* CountryCodeVC.swift */; };
+		EEC37CD8246019A900D41EE8 /* countrycode.txt in Resources */ = {isa = PBXBuildFile; fileRef = EEC37CD7246019A900D41EE8 /* countrycode.txt */; };
 		EEC6EACA245D91B000BC403C /* ModelTravel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC6EAC9245D91B000BC403C /* ModelTravel.swift */; };
 		EED85439240556D900E225EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED85438240556D900E225EE /* AppDelegate.swift */; };
 		EED8543B240556D900E225EE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED8543A240556D900E225EE /* SceneDelegate.swift */; };
@@ -99,6 +102,9 @@
 		EE71EF1D2406DD6200B6028D /* customClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customClass.swift; sourceTree = "<group>"; };
 		EE71EF1F2406E14700B6028D /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		EEA736512454A90D008A60D3 /* ModelUserDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelUserDetail.swift; sourceTree = "<group>"; };
+		EEC37CD32460198600D41EE8 /* CountryCodeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryCodeCell.swift; sourceTree = "<group>"; };
+		EEC37CD52460199200D41EE8 /* CountryCodeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryCodeVC.swift; sourceTree = "<group>"; };
+		EEC37CD7246019A900D41EE8 /* countrycode.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = countrycode.txt; sourceTree = "<group>"; };
 		EEC6EAC9245D91B000BC403C /* ModelTravel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTravel.swift; sourceTree = "<group>"; };
 		EED85435240556D900E225EE /* CabUser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CabUser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EED85438240556D900E225EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -278,6 +284,7 @@
 		EE71EF0F2406C17B00B6028D /* SetUp */ = {
 			isa = PBXGroup;
 			children = (
+				EEC37CD22460197700D41EE8 /* CountryCode */,
 				EED8543C240556D900E225EE /* LoginVC.swift */,
 				EE71EF1F2406E14700B6028D /* RegisterVC.swift */,
 				EEA736512454A90D008A60D3 /* ModelUserDetail.swift */,
@@ -307,6 +314,16 @@
 				EE71EF122406C25C00B6028D /* Test-Bridging-Header.h */,
 			);
 			path = ScrollingClass;
+			sourceTree = "<group>";
+		};
+		EEC37CD22460197700D41EE8 /* CountryCode */ = {
+			isa = PBXGroup;
+			children = (
+				EEC37CD7246019A900D41EE8 /* countrycode.txt */,
+				EEC37CD52460199200D41EE8 /* CountryCodeVC.swift */,
+				EEC37CD32460198600D41EE8 /* CountryCodeCell.swift */,
+			);
+			path = CountryCode;
 			sourceTree = "<group>";
 		};
 		EEC6EAC8245D917700BC403C /* Model */ = {
@@ -501,6 +518,7 @@
 			files = (
 				EED85445240556E500E225EE /* LaunchScreen.storyboard in Resources */,
 				EED85442240556E500E225EE /* Assets.xcassets in Resources */,
+				EEC37CD8246019A900D41EE8 /* countrycode.txt in Resources */,
 				EE3E1DD624102E5D004AA01E /* GoogleService-Info.plist in Resources */,
 				EE3BC7BE2412B17F0075C28E /* museo700.ttf in Resources */,
 				EED85440240556D900E225EE /* Main.storyboard in Resources */,
@@ -687,12 +705,14 @@
 				EEC6EACA245D91B000BC403C /* ModelTravel.swift in Sources */,
 				EE3AC76F240EDCE100AD4779 /* myriad.ttf in Sources */,
 				EE38A9F2240AA57900E97C34 /* SWRevealViewController.m in Sources */,
+				EEC37CD42460198600D41EE8 /* CountryCodeCell.swift in Sources */,
 				EE3AC76E240EDCDB00AD4779 /* museo700.ttf in Sources */,
 				EE71EF202406E14700B6028D /* RegisterVC.swift in Sources */,
 				EEE4963D2408181000C0734B /* MyRidesVC.swift in Sources */,
 				EE677198240C2E2600DE8D25 /* UserProfileVC.swift in Sources */,
 				EEE4964024082D6D00C0734B /* CellMyRides.swift in Sources */,
 				EE71EF1E2406DD6200B6028D /* customClass.swift in Sources */,
+				EEC37CD62460199300D41EE8 /* CountryCodeVC.swift in Sources */,
 				EED8543B240556D900E225EE /* SceneDelegate.swift in Sources */,
 				EE53D4C7241977CD00111C7D /* PickerViewVC.swift in Sources */,
 			);

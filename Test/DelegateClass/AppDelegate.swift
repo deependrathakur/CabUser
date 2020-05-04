@@ -14,6 +14,7 @@ import UserNotifications
 import NotificationCenter
 import FirebaseMessaging
 import FirebaseInstanceID
+import MapKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,UNUserNotificationCenterDelegate,MessagingDelegate {
@@ -75,7 +76,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
         let location = locations.last
         let latitude = location?.coordinate.latitude ?? 00.00
         let longitude = location?.coordinate.longitude ?? 0.0
-        currentLocationGeoPoint = GeoPoint.init(latitude: latitude , longitude: longitude)
+        
+        let distanceFromLastLocation = getDistanceOfTwoPointInGeoPoint(startPoint: GeoPoint.init(latitude: latitude, longitude: longitude), endPoint: lastPointLocation)
+            let meter = (distanceFromLastLocation * 1000)
+            if meter > 3 {
+                lastPointLocation = GeoPoint.init(latitude: latitude, longitude: longitude)
+                currentLocationGeoPoint = GeoPoint.init(latitude: latitude, longitude: longitude)
+                if let userId = UserDefaults.standard.string(forKey: "userId") {
+                    if userId != "" {
+                        Firestore.firestore().collection("user").document(userId).updateData(["currentLocation":currentLocationGeoPoint])
+                   }
+                }
+            }
         
         if #available(iOS 11.0, *) {
             locationManager.showsBackgroundLocationIndicator = false

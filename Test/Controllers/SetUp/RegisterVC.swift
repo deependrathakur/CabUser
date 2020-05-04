@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class RegisterVC: UIViewController {
+class RegisterVC: UIViewController,CountryCodeDelegate {
     
     @IBOutlet weak var txtFullName:UITextField!
     @IBOutlet weak var txtEmail:UITextField!
@@ -19,8 +19,13 @@ class RegisterVC: UIViewController {
     @IBOutlet weak var indicator:UIActivityIndicatorView!
     @IBOutlet weak var btnLogin:UIButton!
     @IBOutlet weak var btnRegister:UIButton!
-    let db = Firestore.firestore()
+    @IBOutlet weak var btnCountryCode:UIButton!
 
+    let db = Firestore.firestore()
+    func onSelectCountry(countryCode: String) {
+        self.btnCountryCode.setTitle(countryCode, for: .normal)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.indicator.isHidden = true
@@ -41,6 +46,13 @@ fileprivate extension RegisterVC {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func countruCodeAction(sender: UIButton) {
+        self.view.endEditing(true)
+         let vc = UIStoryboard.init(name: mainStoryBoard, bundle: Bundle.main).instantiateViewController(withIdentifier: "CountryCodeVC") as? CountryCodeVC
+        vc?.delegat = self
+        self.present(vc ?? CountryCodeVC(), animated: true, completion: nil)
+    }
+    
     @IBAction func registeredAction(sender: UIButton) {
         self.view.endEditing(true)
         if self.txtFullName.isEmptyText() {
@@ -58,9 +70,10 @@ fileprivate extension RegisterVC {
             self.indicator.isHidden = false
 
             var ref: DocumentReference? = nil
+            let mobileNo = (self.btnCountryCode.currentTitle ?? "+91") + (self.txtMobile.text ?? "")
             let dict = [ "created":Date(),
                          "email": self.txtEmail.text ?? "",
-                         "mobile": self.txtMobile.text ?? "",
+                         "mobile": mobileNo,
                          "mobileVerity": false,
                          "emailVerify": false,
                          "otp": "1234",
@@ -89,6 +102,7 @@ fileprivate extension RegisterVC {
         }
     }
     /*
+     
     func phoneVarification() {
         Auth.auth().languageCode = "fr";
         PhoneAuthProvider.provider().verifyPhoneNumber(self.txtMobile.text ?? "", uiDelegate: nil) { (verificationID, error) in

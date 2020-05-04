@@ -42,6 +42,7 @@ let myMenuCell = "MyMenuCell"
 let cellMyRides = "CellMyRides"
 let commanGeoPoint = GeoPoint.init(latitude: 22.7764, longitude: 75.9548)
 var currentLocationGeoPoint = GeoPoint.init(latitude: 22.7764, longitude: 75.9548)
+var lastPointLocation = GeoPoint.init(latitude: 22.7764, longitude: 75.9548)
 var currentAddress = ""
 var modelUserDetail:ModelUserDetail?
 var DictUserDetails:[String:Any]?
@@ -100,7 +101,16 @@ func getDistanceOfTwoPoint(startPoint: String, endPoint: String) -> String {
     return "0"
 }
 
-
+func getDistanceOfTwoPointInGeoPoint(startPoint: GeoPoint, endPoint: GeoPoint) -> Double {
+    
+    let a = distance(lat1: startPoint.latitude,
+                     lon1: startPoint.longitude,
+                     lat2:endPoint.latitude,
+                     lon2: endPoint.longitude, unit: "K")
+        let doubleStr = String(format: "%.2f", a)
+        return Double(doubleStr) ?? 0.00
+    return 0.00
+}
 func getDistanceOfTwoPointInDouble(sourcePoint: GeoPoint, destinationPoint: GeoPoint) -> Double {
     
     let a = distance(lat1: sourcePoint.latitude,
