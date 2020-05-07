@@ -156,15 +156,15 @@ extension CabVC {
         var anView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
         if anView == nil {
             anView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            if travelType == "truck" {
-                anView?.image = #imageLiteral(resourceName: "car5")
-            } else  if travelType == "car" {
+//            if travelType == "truck" {
+//                anView?.image = #imageLiteral(resourceName: "car5")
+//            } else  if travelType == "car" {
                 anView?.image =  #imageLiteral(resourceName: "car5")
-            } else  if travelType == "cab" {
-                anView?.image = #imageLiteral(resourceName: "car5")
-            } else {
-                anView?.image = #imageLiteral(resourceName: "car5")
-            }
+//            } else  if travelType == "cab" {
+//                anView?.image = #imageLiteral(resourceName: "car5")
+//            } else {
+//                anView?.image = #imageLiteral(resourceName: "car5")
+//            }
             anView?.canShowCallout = true
         }
         else {
@@ -548,11 +548,12 @@ extension CabVC {
     
     func getListDriver() {
         self.arrModelDriverList.removeAll()
-        db.collection("driver").getDocuments() { (querySnapshot, err) in
+        db.collection("driver").addSnapshotListener { querySnapshot, error in
+      //  db.collection("driver").getDocuments() { (querySnapshot, err) in
             var dictUser = [String:Any]()
-            if let err = err {
+            if let err = error {
                 self.indicator.isHidden = true
-                print("Error getting documents: \(err)")
+                print("Error getting documents: \(error)")
             } else {
                 for document in querySnapshot!.documents {
                     let obj = ModelDriverList.init(dict: document.data())

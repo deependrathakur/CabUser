@@ -132,6 +132,11 @@ extension AppDelegate {
                 firebaseToken = "\(result.token)"
             }
         })
+        
+        let firebaseAuth = Auth.auth()
+          //At development time we use .sandbox
+          firebaseAuth.setAPNSToken(deviceToken, type: AuthAPNSTokenType.sandbox)
+
     }
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("APNs registration failed: \(error)")
@@ -143,6 +148,8 @@ extension AppDelegate {
         //      }
         
         // Print full message.
+        let firebaseAuth = Auth.auth()
+
         print(userInfo)
     }
     
@@ -155,7 +162,8 @@ extension AppDelegate {
         
         // Print full message.
         print(userInfo)
-        
+        let firebaseAuth = Auth.auth()
+
         completionHandler(UIBackgroundFetchResult.newData)
     }
 

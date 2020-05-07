@@ -73,7 +73,7 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="46h-ut-0go">
                                                                         <rect key="frame" x="0.0" y="0.0" width="364" height="46"/>
                                                                         <subviews>
-                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone number            . " textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u0n-Ra-SQ2" customClass="textFieldBorder" customModule="CabDriver" customModuleProvider="target">
+                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone number            . " textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u0n-Ra-SQ2" customClass="textFieldBorder" customModule="CabUser" customModuleProvider="target">
                                                                                 <rect key="frame" x="62" y="0.0" width="302" height="46"/>
                                                                                 <color key="backgroundColor" red="0.89410596529999997" green="0.88855251209999997" blue="0.89965941849999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <color key="tintColor" red="0.22352004049999999" green="0.047561280429999998" blue="0.060397692019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -89,7 +89,7 @@
                                                                                     </userDefinedRuntimeAttribute>
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </textField>
-                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nca-n3-wAq" customClass="buttonBorder" customModule="CabDriver" customModuleProvider="target">
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nca-n3-wAq" customClass="buttonBorder" customModule="CabUser" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="46"/>
                                                                                 <color key="backgroundColor" red="0.89411764709999997" green="0.89019607840000003" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <constraints>
@@ -406,7 +406,7 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gt7-ca-cxW">
                                                                         <rect key="frame" x="0.0" y="132" width="364" height="46"/>
                                                                         <subviews>
-                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mobile            . " textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UBU-ij-RAp" customClass="textFieldBorder" customModule="CabDriver" customModuleProvider="target">
+                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mobile            . " textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UBU-ij-RAp" customClass="textFieldBorder" customModule="CabUser" customModuleProvider="target">
                                                                                 <rect key="frame" x="62" y="0.0" width="302" height="46"/>
                                                                                 <color key="backgroundColor" red="0.89410596529999997" green="0.88855251209999997" blue="0.89965941849999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <color key="tintColor" red="0.22352004049999999" green="0.047561280429999998" blue="0.060397692019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -422,7 +422,7 @@
                                                                                     </userDefinedRuntimeAttribute>
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </textField>
-                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pWm-m7-e1z" customClass="buttonBorder" customModule="CabDriver" customModuleProvider="target">
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pWm-m7-e1z" customClass="buttonBorder" customModule="CabUser" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="46"/>
                                                                                 <color key="backgroundColor" red="0.89411764709999997" green="0.89019607840000003" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <constraints>
@@ -774,10 +774,19 @@
                                             <constraint firstItem="nDI-kC-64Y" firstAttribute="leading" secondItem="yaW-bn-IrX" secondAttribute="leading" constant="15" id="vve-Lq-mlL"/>
                                         </constraints>
                                     </scrollView>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="qix-oE-N67">
+                                        <rect key="frame" x="1" y="1" width="412" height="816"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.21564150530000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="color" red="0.22352941179999999" green="0.047058823530000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="yaW-bn-IrX" firstAttribute="top" secondItem="HL8-Pw-xLK" secondAttribute="top" id="8gv-0W-cwZ"/>
+                                    <constraint firstItem="qix-oE-N67" firstAttribute="leading" secondItem="HL8-Pw-xLK" secondAttribute="leading" constant="1" id="Dbj-AC-6gt"/>
+                                    <constraint firstItem="qix-oE-N67" firstAttribute="top" secondItem="HL8-Pw-xLK" secondAttribute="top" constant="1" id="Es6-uh-6z9"/>
+                                    <constraint firstAttribute="trailing" secondItem="qix-oE-N67" secondAttribute="trailing" constant="1" id="PUn-kV-D2G"/>
+                                    <constraint firstAttribute="bottom" secondItem="qix-oE-N67" secondAttribute="bottom" constant="1" id="Q7R-Oh-8uD"/>
                                     <constraint firstAttribute="bottom" secondItem="yaW-bn-IrX" secondAttribute="bottom" id="fwm-Vs-YpD"/>
                                     <constraint firstAttribute="trailing" secondItem="yaW-bn-IrX" secondAttribute="trailing" id="jR0-fn-yHJ"/>
                                     <constraint firstItem="yaW-bn-IrX" firstAttribute="leading" secondItem="HL8-Pw-xLK" secondAttribute="leading" id="lZ4-58-Ho7"/>
@@ -796,6 +805,7 @@
                     <navigationItem key="navigationItem" id="krW-Fx-pc8"/>
                     <connections>
                         <outlet property="btnVerify" destination="nyF-Vm-bsw" id="wT2-6X-CBF"/>
+                        <outlet property="indicator" destination="qix-oE-N67" id="Zec-YD-PGd"/>
                         <outlet property="lblMobile" destination="u5T-Bf-V9g" id="ahy-kn-kwn"/>
                         <outlet property="txtOTP" destination="gC9-CW-OhE" id="fqW-QH-Est"/>
                     </connections>
@@ -807,7 +817,7 @@
         <!--Country CodeVC-->
         <scene sceneID="Bux-Zp-Nd9">
             <objects>
-                <viewController storyboardIdentifier="CountryCodeVC" id="0BQ-XS-SpX" customClass="CountryCodeVC" customModule="CabDriver" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CountryCodeVC" id="0BQ-XS-SpX" customClass="CountryCodeVC" customModule="CabUser" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="y9T-nq-lRp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -869,7 +879,7 @@
                                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CountryCodeCell" rowHeight="50" id="fp7-Qz-MZl" customClass="CountryCodeCell" customModule="CabDriver" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CountryCodeCell" rowHeight="50" id="fp7-Qz-MZl" customClass="CountryCodeCell" customModule="CabUser" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="28" width="396" height="50"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fp7-Qz-MZl" id="FVj-YU-DRA">
