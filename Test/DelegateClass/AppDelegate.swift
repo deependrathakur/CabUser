@@ -65,6 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
                         let dict = document?.data()
                         UserDefaults.standard.set(document?.documentID, forKey: "userId")
                         DictUserDetails = dict
+                        UserDefaults.standard.set(true, forKey: "isLogin")
                         modelUserDetail = ModelUserDetail.init(Dict: DictUserDetails ?? ["":""])
                     }
                 }

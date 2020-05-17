@@ -20,10 +20,12 @@ class RegisterVC: UIViewController,CountryCodeDelegate,AuthUIDelegate {
     @IBOutlet weak var btnLogin:UIButton!
     @IBOutlet weak var btnRegister:UIButton!
     @IBOutlet weak var btnCountryCode:UIButton!
-
+    var countryCodes = "+91"
     let db = Firestore.firestore()
-    func onSelectCountry(countryCode: String) {
-        self.btnCountryCode.setTitle(countryCode, for: .normal)
+    
+    func onSelectCountry(countryCode: String,countryName: String) {
+        countryCodes = countryCode
+        self.btnCountryCode.setTitle("(\(countryName)) \(countryCode)", for: .normal)
     }
     
     override func viewDidLoad() {
@@ -70,7 +72,7 @@ fileprivate extension RegisterVC {
             self.indicator.isHidden = false
 
             var ref: DocumentReference? = nil
-            let mobileNo = (self.btnCountryCode.currentTitle ?? "+91") + (self.txtMobile.text ?? "")
+            let mobileNo = self.countryCodes + (self.txtMobile.text ?? "")
             let dict = [ "created":Date(),
                          "email": self.txtEmail.text ?? "",
                          "mobile": mobileNo,
@@ -86,12 +88,16 @@ fileprivate extension RegisterVC {
     }
      
     func phoneVarification(mobile: String,Dict: [String:Any]) {
-        self.indicator.isHidden = true
+        self.indicator.isHidden = false
         PhoneAuthProvider.provider().verifyPhoneNumber(mobile, uiDelegate: self) { (verificationID, error) in
             if ((error) != nil) {
+                self.indicator.isHidden = true
+
                   // Verification code not sent.
                   print(error)
             } else {
+                self.indicator.isHidden = true
+
                   UserDefaults.standard.set(verificationID, forKey: "firebase_verification")
                   UserDefaults.standard.synchronize()
                 if let vc = UIStoryboard.init(name: mainStoryBoard, bundle: Bundle.main).instantiateViewController(withIdentifier: otpVC) as? OTPVC {

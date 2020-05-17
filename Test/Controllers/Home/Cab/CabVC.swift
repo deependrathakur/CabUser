@@ -87,28 +87,32 @@ extension CabVC {
         self.revealViewController().delegate = self
         revealViewController()?.rearViewRevealWidth = 60
         
-        bookingDict = ["acceptedDate": "",
-                       "amount":"0",
-                       "bookingLaterDate": "123132",
-                       "cardId": "",
-                       "completeDate": "",
-                       "createdData":  Date(),
-                       "driverId": "",
-                       "dropAddress": "",
-                       "dropLocation": "",
-                       "otp": "",
-                       "paymentId": "",
-                       "pickupLocation":"",
-                       "pickupAddress":"",
-                       "rattingStar":"",
-                       "reachedDate":"",
-                       "review":false,
-                       "reviewComment":"",
-                       "rideNow":true,
-                       "status":0,
-                       "totalDistanceKM":0,
-                       "totalTimeMinute":0,
-                       "userId":(UserDefaults.standard.value(forKey: "userId") as? String ?? "")]
+        bookingDict = ["cabId":"",
+            "id":"",
+            "isReview":false,
+            "paymentType":"",
+            "acceptedDate": "",
+            "amount":"0",
+            "bookingLaterDate": "123132",
+            "cardId": "",
+            "completeDate": "",
+            "createdData":  Date(),
+            "driverId": "",
+            "dropAddress": "",
+            "dropLocation": "",
+            "otp": "",
+            "paymentId": "",
+            "pickupLocation":"",
+            "pickupAddress":"",
+            "rattingStar":0.0,
+            "reachedDate":"",
+            "review":false,
+            "reviewComment":"",
+            "rideNow":true,
+            "status":0,
+            "totalDistanceKM":0.0,
+            "totalTimeMinute":0.0,
+            "userId":(UserDefaults.standard.value(forKey: "userId") as? String ?? "")]
         self.checkCurrentLocation()
     }
     
@@ -137,15 +141,15 @@ extension CabVC {
     }
     
     // MARK: MKMapViewDelegate
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        if let polyline = overlay as? MKPolyline {
-            let polylineRenderer = MKPolylineRenderer(overlay: polyline)
-            polylineRenderer.strokeColor = .blue
-            polylineRenderer.lineWidth = 3
-            return polylineRenderer
-        }
-        return MKOverlayRenderer(overlay: overlay)
-    }
+//    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+//        if let polyline = overlay as? MKPolyline {
+//            let polylineRenderer = MKPolylineRenderer(overlay: polyline)
+//            polylineRenderer.strokeColor = .blue
+//            polylineRenderer.lineWidth = 0
+//            return polylineRenderer
+//        }
+//        return MKOverlayRenderer(overlay: overlay)
+//    }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if !(annotation is MKPointAnnotation) {
@@ -156,15 +160,7 @@ extension CabVC {
         var anView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
         if anView == nil {
             anView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-//            if travelType == "truck" {
-//                anView?.image = #imageLiteral(resourceName: "car5")
-//            } else  if travelType == "car" {
-                anView?.image =  #imageLiteral(resourceName: "car5")
-//            } else  if travelType == "cab" {
-//                anView?.image = #imageLiteral(resourceName: "car5")
-//            } else {
-//                anView?.image = #imageLiteral(resourceName: "car5")
-//            }
+            anView?.image =  #imageLiteral(resourceName: "car5")
             anView?.canShowCallout = true
         }
         else {
@@ -183,7 +179,7 @@ fileprivate extension CabVC {
         self.vwTruck.backgroundColor = #colorLiteral(red: 0.8509803922, green: 0.8509803922, blue: 0.8509803922, alpha: 1)
         self.vwCar.backgroundColor = #colorLiteral(red: 0.8509803922, green: 0.8509803922, blue: 0.8509803922, alpha: 1)
         self.getListDriver()
-        self.imgCab.image = #imageLiteral(resourceName: "carGray")
+        self.imgCab.image = #imageLiteral(resourceName: "busG")
         self.imgCar.image = #imageLiteral(resourceName: "nanoGray")
         self.imgTruck.image = #imageLiteral(resourceName: "truckGray")
         if onTheWayBy == "truck" {
@@ -193,7 +189,7 @@ fileprivate extension CabVC {
             self.imgCar.image = #imageLiteral(resourceName: "nanoWhite")
             self.vwCar.backgroundColor = appColor
         } else if onTheWayBy == "cab" {
-            self.imgCab.image = #imageLiteral(resourceName: "carWhite")
+            self.imgCab.image = #imageLiteral(resourceName: "busW")
             self.vwCab.backgroundColor = appColor
         }
         self.checkCurrentLocation()
@@ -549,7 +545,7 @@ extension CabVC {
     func getListDriver() {
         self.arrModelDriverList.removeAll()
         db.collection("driver").addSnapshotListener { querySnapshot, error in
-      //  db.collection("driver").getDocuments() { (querySnapshot, err) in
+            //  db.collection("driver").getDocuments() { (querySnapshot, err) in
             var dictUser = [String:Any]()
             if let err = error {
                 self.indicator.isHidden = true
@@ -557,7 +553,10 @@ extension CabVC {
             } else {
                 for document in querySnapshot!.documents {
                     let obj = ModelDriverList.init(dict: document.data())
-                    self.arrModelDriverList.append(obj)
+                    let distanceFromLastLocation = getDistanceOfTwoPointInGeoPoint(startPoint: obj.currentLocation ?? commanGeoPoint, endPoint: lastPointLocation)
+                    if distanceFromLastLocation < 16 {
+                        self.arrModelDriverList.append(obj)
+                    }
                 }
                 self.parseShortData()
             }

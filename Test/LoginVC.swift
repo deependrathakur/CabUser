@@ -18,11 +18,17 @@ class LoginVC: UIViewController,CountryCodeDelegate {
     @IBOutlet weak var btnCountryCode:UIButton!
     @IBOutlet weak var indicator:UIActivityIndicatorView!
     let db = Firestore.firestore()
-    func onSelectCountry(countryCode: String) {
-        self.btnCountryCode.setTitle(countryCode, for: .normal)
+    var countryCodes = "+91"
+    func onSelectCountry(countryCode: String, countryName: String) {
+        self.btnCountryCode.setTitle("(\(countryName)) \(countryCode) ▾", for: .normal)
+        self.btnCountryCode.setTitleColor(appColor, for: .normal)
+        countryCodes = countryCode
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.btnCountryCode.setTitle("(India) \(+91) ▾", for: .normal)
+        self.btnCountryCode.setTitleColor(appColor, for: .normal)
+        countryCodes = "+91"
     }
 }
 
@@ -53,7 +59,7 @@ fileprivate extension LoginVC {
                 } else {
                     for document in querySnapshot!.documents {
                         let dict = document.data()
-                        let mobileNo = (self.btnCountryCode.currentTitle ?? "+91") + (self.txtEmailPhone.text ?? "")
+                        let mobileNo = self.countryCodes + (self.txtEmailPhone.text ?? "")
                         if (self.txtPassword.text == dict["password"] as? String ?? "") && ((self.txtEmailPhone.text == dict["email"] as? String ?? "") || (self.txtEmailPhone.text == dict["mobile"] as? String ?? "") || (mobileNo == dict["mobile"] as? String ?? "")) {
                             registeredUser = true
                             DictUserDetails = dict

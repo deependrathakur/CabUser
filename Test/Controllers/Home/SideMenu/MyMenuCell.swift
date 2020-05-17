@@ -12,6 +12,7 @@ class MyMenuCell: UITableViewCell {
 
     @IBOutlet weak var viewOption: UIView!
     @IBOutlet weak var imgOption: UIImageView!
+    @IBOutlet weak var lblTitle: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,13 +21,4 @@ class MyMenuCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-//    override var isSelected: Bool {
-//        get {
-//            return super.isSelected
-//        }
-//        set {
-//            //do something
-//            super.isSelected = newValue
-//        }
-//    }
 }

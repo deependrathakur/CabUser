@@ -11,6 +11,14 @@ import GooglePlaces
 import Firebase
 
 class ModelMyRides: NSObject {
+    
+    var isReview = false
+    var accessAmount = 0.0
+    var wallet = 0.0
+    var pickupDate = ""
+    var paymentType = ""
+ 
+    
     var acceptedDate = ""
     var bookingId = ""
     var cabId = ""
@@ -27,7 +35,7 @@ class ModelMyRides: NSObject {
     var dropAddress = ""
     var pickupLocation:GeoPoint?
     var dropLocation:GeoPoint?
-    var rattingStar = 0
+    var rattingStar = 0.0
     var reachedDate = ""
     var review = false
     var rideNow = false
@@ -46,7 +54,12 @@ class ModelMyRides: NSObject {
     var tax = ""
 
     init(dict: [String : Any]) {
-        amount = dictToStringKeyParam(dict: dict, key: "amount")
+        paymentType = dictToStringKeyParam(dict: dict, key: "paymentType")
+        pickupDate = dictToStringKeyParam(dict: dict, key: "pickupDate")
+        accessAmount = dictToDoubleKeyParam(dict: dict, key: "accessAmount")
+        isReview = dictToBoolKeyParam(dict: dict, key: "isReview")
+        wallet = dictToDoubleKeyParam(dict: dict, key: "wallet")
+ 
         date = dictToStringKeyParam(dict: dict, key: "date")
         driveId = dictToStringKeyParam(dict: dict, key: "driveId")
         driverId = dictToStringKeyParam(dict: dict, key: "driverId")
@@ -72,7 +85,7 @@ class ModelMyRides: NSObject {
         dropAddress = dictToStringKeyParam(dict: dict, key: "dropAddress")
         pickupLocation = dictToGioPointKeyParam(dict: dict, key: "pickupLocation")
         dropLocation = dictToGioPointKeyParam(dict: dict, key: "dropLocation")
-        rattingStar = dictToIntKeyParam(dict: dict, key: "rattingStar")
+        rattingStar = dictToDoubleKeyParam(dict: dict, key: "rattingStar")
         reachedDate = dictToStringKeyParam(dict: dict, key: "reachedDate")
         review = dictToBoolKeyParam(dict: dict, key: "review")
         rideNow = dictToBoolKeyParam(dict: dict, key: "rideNow")
