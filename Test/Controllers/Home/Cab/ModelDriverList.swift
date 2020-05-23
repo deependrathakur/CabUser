@@ -27,6 +27,7 @@ class ModelDriverList: NSObject {
     var password = ""
     var status = ""
     var verified = false
+    var distanceFromCurrentPoint = 0.0
 
     init(dict: [String : Any]) {
         

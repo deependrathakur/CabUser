@@ -33,7 +33,7 @@ class WaitingForDriverVC: UIViewController, SWRevealViewControllerDelegate,MKMap
         self.btnCancel.isHidden = false
         menuButton.addTarget(revealViewController, action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
         self.revealViewController().delegate = self
-        revealViewController()?.rearViewRevealWidth = 60
+        revealViewController()?.rearViewRevealWidth = 80
         parseData()
     }
     

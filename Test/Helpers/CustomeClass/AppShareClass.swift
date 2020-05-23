@@ -288,3 +288,10 @@ func showRouteOnMap(pickupCoordinate: CLLocationCoordinate2D, destinationCoordin
     return mapView
 }
 
+func imageToData(image: UIImage) -> Data? {
+    if let uploadImageData = (image).pngData(){
+        return uploadImageData
+    }
+    return nil
+}
+

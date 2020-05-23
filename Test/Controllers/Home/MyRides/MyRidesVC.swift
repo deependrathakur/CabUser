@@ -35,7 +35,7 @@ class MyRidesVC: UIViewController, UITableViewDelegate, UITableViewDataSource, S
         changeSegmentAction(sender: button1)
         menuButton.addTarget(revealViewController, action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
         self.revealViewController().delegate=self
-        revealViewController()?.rearViewRevealWidth = 60
+        revealViewController()?.rearViewRevealWidth = 80
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -65,7 +65,7 @@ extension MyRidesVC {
                 let object = self.arrBooking[indexPath.row]
                 cell.lblPicLocation.text = object.pickupAddress
                 cell.lblDropLocation.text = object.dropAddress
-                cell.lblPrice.text = "$" + object.amount
+                cell.lblPrice.text = "N$" + object.amount
                 cell.lblDate.text = object.createdData
                 cell.btnCancelRide.addTarget(self, action:#selector(btnCancelRideAction(sender:)) , for: .touchUpInside)
                 if selectSegment == 0 {

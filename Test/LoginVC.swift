@@ -26,7 +26,7 @@ class LoginVC: UIViewController,CountryCodeDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.btnCountryCode.setTitle("(India) \(+91) ▾", for: .normal)
+        self.btnCountryCode.setTitle("(IND) \(+91) ▾", for: .normal)
         self.btnCountryCode.setTitleColor(appColor, for: .normal)
         countryCodes = "+91"
     }
@@ -66,7 +66,6 @@ fileprivate extension LoginVC {
                             DictUserDetails?["id"] = document.documentID
                             UserDefaults.standard.set(document.documentID, forKey: "userId")
                             self.db.collection("user").document("\(document.documentID)").updateData(["id":"\(document.documentID)","deviceToken":((firebaseToken == "" ? iosDeviceToken : firebaseToken))])
-
                         }
                     }
                 }

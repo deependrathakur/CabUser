@@ -35,7 +35,7 @@ class WriteReviewVC: UIViewController {
     func parseData() {
         self.txtDroupLocation.text = self.bookingDict.dropAddress
         self.txtPicupLocation.text = self.bookingDict.pickupAddress
-        self.lblPrice.text = "$" + self.bookingDict.amount
+        self.lblPrice.text = "N$" + self.bookingDict.amount
         self.lblTimeDate.text = String(self.bookingDict.totalDistanceKM) + "KM " + self.bookingDict.totalTimeMinute + "Min"
     }
 }

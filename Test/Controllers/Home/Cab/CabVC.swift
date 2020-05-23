@@ -41,11 +41,14 @@ class CabVC: UIViewController, SWRevealViewControllerDelegate, UITextFieldDelega
     @IBOutlet weak var txtPicupLocationPopup:UITextField!
     @IBOutlet weak var txtDroupLocationPopup:UITextField!
     @IBOutlet weak var vwDateTimePopup:UIView!
-    
+    @IBOutlet weak var menuButton:UIButton!
+
     @IBOutlet weak var mapViewPopUp: MKMapView!
-    @IBOutlet weak var menuButton: UIButton!
     var locationManager = CLLocationManager()
     
+    @IBOutlet weak var vwWaiting:UIView!
+    @IBOutlet weak var lblWaiting:UILabel!
+
     fileprivate var placeForIndex = 1
     fileprivate var bookingDict = [String:Any]()
     fileprivate let db = Firestore.firestore()
@@ -66,6 +69,7 @@ class CabVC: UIViewController, SWRevealViewControllerDelegate, UITextFieldDelega
 extension CabVC {
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.vwWaiting.isHidden = true
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
@@ -85,7 +89,7 @@ extension CabVC {
         self.vwPopup.isHidden = true
         menuButton.addTarget(revealViewController, action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
         self.revealViewController().delegate = self
-        revealViewController()?.rearViewRevealWidth = 60
+        revealViewController()?.rearViewRevealWidth = 80
         
         bookingDict = ["cabId":"",
             "id":"",
@@ -93,7 +97,7 @@ extension CabVC {
             "paymentType":"",
             "acceptedDate": "",
             "amount":"0",
-            "bookingLaterDate": "123132",
+            "bookingLaterDate": "",
             "cardId": "",
             "completeDate": "",
             "createdData":  Date(),
@@ -114,10 +118,12 @@ extension CabVC {
             "totalTimeMinute":0.0,
             "userId":(UserDefaults.standard.value(forKey: "userId") as? String ?? "")]
         self.checkCurrentLocation()
+        self.lblWaiting.text = "Please wait...\nRequesting to driver..."
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.vwPopup.isHidden = true
+        self.getAllCabDetail()
         UserDefaults.standard.set(cabVC, forKey: "vc")
         self.getListDriver()
         AppDelegate().getUserDetailFromFirebase()
@@ -204,7 +210,7 @@ fileprivate extension CabVC {
             return false
         } else {
             bookingDict["totalDistanceKM"] = String(format: "%.2f", getDistanceInInt())
-            self.lblPrice.text = "$" + String(Int(getDistanceInInt()*2))
+            self.lblPrice.text = "N$" + String(Int(getDistanceInInt()*2))
             let newDistances = String(format: "%.2f", getDistanceInInt())
             self.lblTimeDistance.text = "\(newDistances) KM, \(Int(getDistanceInInt()*2)) min"
             bookingDict["totalTimeMinute"] = Int(getDistanceInInt()*2)
@@ -217,10 +223,10 @@ fileprivate extension CabVC {
     func calculationDistanceAndTime() {
         if Int(getDistanceInInt()) > cabOverView.startKM {
             let price = (cabOverView.startPrice + ((Int(getDistanceInInt()) - cabOverView.startKM) * cabOverView.pricePerKM) + (Int(getDistanceInInt()*2) * cabOverView.perMin))
-            self.lblPrice.text = "$" + "\(price)"
+            self.lblPrice.text = "N$" + "\(price)"
             bookingDict["amount"] = price
         }else{
-            self.lblPrice.text = "$\(cabOverView.startPrice)"
+            self.lblPrice.text = "N$\(cabOverView.startPrice)"
             bookingDict["amount"] = cabOverView.startPrice
         }
     }
@@ -345,6 +351,7 @@ extension CabVC {
     
     func checkBookingStatus(bookingId: String) {
         self.indicator.isHidden = false
+        self.vwWaiting.isHidden = false
         db.collection("booking").document(bookingId).addSnapshotListener { documentSnapshot, error in
             guard let document = documentSnapshot else {
                 print("Error fetching document: \(error!)")
@@ -355,6 +362,7 @@ extension CabVC {
             let objModel = ModelMyRides.init(dict: document.data() ?? [:])
             if objModel.status == "1" {
                 self.indicator.isHidden = true
+                self.vwWaiting.isHidden = true
                 let vc = UIStoryboard.init(name: homeStoryBoard, bundle: Bundle.main).instantiateViewController(withIdentifier: waitingForDriverVC) as? WaitingForDriverVC
                 vc?.bookingDict = objModel
                 vc?.bookingId = bookingId
@@ -366,14 +374,16 @@ extension CabVC {
         }
         let deadlineTime = DispatchTime.now() + .seconds(60)
         DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+            self.db.collection("booking").document(bookingId).setData([:])
             self.indicator.isHidden = true
+            self.vwWaiting.isHidden = true
         }
     }
     
     func sendBookingNotificationToAllDrivers(bookingId:String) {
         // for driver in self.arrShortDriverList {
         for driver in self.arrShortDriverList {
-            self.ChatNotification(token:driver.deviceToken, bookingId: bookingId)
+            self.ChatNotification(token:driver.deviceToken, bookingId: bookingId, userId:driver.id)
         }
     }
     
@@ -408,6 +418,7 @@ fileprivate extension CabVC {
         placeForIndex = sender.tag
         let placePickerController = GMSAutocompleteViewController()
         placePickerController.delegate = self
+        placePickerController.tableCellBackgroundColor = appColor
         present(placePickerController, animated: true, completion: nil)
     }
     
@@ -420,8 +431,12 @@ fileprivate extension CabVC {
         self.view.endEditing(true)
         bookingDict["rideNow"] = true
         if self.basicValidationTrue() {
+            if self.arrShortDriverList.count == 0 {
+                showAlertVC(title: kAlertTitle, message: "\(travelType.capitalized) not available.", controller: self)
+            } else {
             vwDateTimePopup.isHidden = true
             self.vwPopup.isHidden = false
+        }
         }
     }
     
@@ -499,7 +514,6 @@ extension CabVC {
             
         case FrontViewPosition.rightMost:
             print("RightMost")
-            
         case FrontViewPosition.rightMostRemoved:
             print("RightMostRemoved")
         @unknown default:
@@ -529,6 +543,41 @@ extension CabVC {
 
 //MARK: - Get driver list
 extension CabVC {
+    func getAllCabDetail() {
+        var arrCabList = [Int]()
+        var arrCarList = [Int]()
+        var arrTruckList = [Int]()
+        for dict in self.arrModelDriverList {
+            if dict.cab_type == "micro" {
+                arrCabList.append(Int(dict.distanceFromCurrentPoint))
+            } else if dict.cab_type == "mini" {
+                arrCarList.append(Int(dict.distanceFromCurrentPoint))
+            } else if dict.cab_type == "sedan" {
+                arrTruckList.append(Int(dict.distanceFromCurrentPoint))
+            }
+        }
+        arrCabList = arrCabList.sorted()
+        arrCarList = arrCarList.sorted()
+        arrTruckList = arrTruckList.sorted()
+        
+        if arrCabList.count > 0, arrCabList[0] >= 0  {
+            self.lblCab.text = "Bus \(arrCabList[0]) min"
+        } else {
+            self.lblCab.text = "Bus \nNo Cab"
+        }
+        if arrCarList.count > 0 , arrCarList[0] > 0 {
+            self.lblCar.text = "Car \(arrCarList[0]) min"
+        } else {
+            self.lblCar.text = "Bus \nNo Cab"
+        }
+        
+        if arrTruckList.count > 0 , arrTruckList[0] > 0 {
+            self.lblTruck.text = "Truck \(arrTruckList[0]) min"
+        } else {
+            self.lblTruck.text = "Truck \nNo Cab"
+        }
+    }
+
     func getCabDetail(type:String) {
         db.collection("cabs").document(type).getDocument { (querySnapshot, err) in
             var dictUser = [String:Any]()
@@ -555,13 +604,16 @@ extension CabVC {
                     let obj = ModelDriverList.init(dict: document.data())
                     let distanceFromLastLocation = getDistanceOfTwoPointInGeoPoint(startPoint: obj.currentLocation ?? commanGeoPoint, endPoint: lastPointLocation)
                     if distanceFromLastLocation < 16 {
+                        obj.distanceFromCurrentPoint = distanceFromLastLocation
                         self.arrModelDriverList.append(obj)
                     }
                 }
                 self.parseShortData()
+                self.getAllCabDetail()
             }
         }
     }
+    
     
     func parseShortData() {
         self.arrShortDriverList.removeAll()
@@ -629,13 +681,14 @@ extension CabVC {
 
 //MARK: - Notification method
 extension CabVC{
-    func ChatNotification(token:String,bookingId:String){
+    func ChatNotification(token:String,bookingId:String, userId:String){
         //Android
         let messageDict = ["body": checkForNULL(obj: "booking"),
                            "title": checkForNULL(obj: "CabBooking" ),
                            "icon": "icon",
                            "sound": "default",
                            "badge": "1",
+                           "userId":userId,
                            "bookingId":bookingId,
                            "message": "booking",
                            "notifincationType": "1",

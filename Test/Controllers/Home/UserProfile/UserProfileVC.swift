@@ -9,9 +9,11 @@
 import UIKit
 import GooglePlaces
 import Firebase
+import AlamofireImage
 
 class UserProfileVC: UIViewController, SWRevealViewControllerDelegate,GMSAutocompleteViewControllerDelegate {
-    
+
+    @IBOutlet weak var imgUserProfile:UIImageView!
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var txtName: UITextField!
     @IBOutlet weak var txtEmail: UITextField!
@@ -24,7 +26,7 @@ class UserProfileVC: UIViewController, SWRevealViewControllerDelegate,GMSAutocom
         super.viewDidLoad()
         menuButton.addTarget(revealViewController, action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
         self.revealViewController().delegate = self
-        revealViewController()?.rearViewRevealWidth = 60
+        revealViewController()?.rearViewRevealWidth = 80
         self.parseUserData()
     }
     
@@ -39,13 +41,20 @@ class UserProfileVC: UIViewController, SWRevealViewControllerDelegate,GMSAutocom
             self.txtEmail.text = dictToStringKeyParam(dict: userDetail, key: "email")
             self.txtPhone.text = dictToStringKeyParam(dict: userDetail, key: "mobile")
             self.txtAddress.text = dictToStringKeyParam(dict: userDetail, key: "address")
+            if let imgData = userDetail["profileImage"] as? Data {
+                self.imgUserProfile.image = UIImage(data: imgData)
+            } else if let url = URL(string: userDetail["profileImage"] as? String ?? "") {
+                self.imgUserProfile.af.setImage(withURL: url)
+            }
             userDict = userDetail
         }
     }
     
     @IBAction func updateUserDetilAction(sender: UIButton) {
         self.view.endEditing(true)
-        if self.txtEmail.isEmptyText() {
+        if self.imgUserProfile.image == #imageLiteral(resourceName: "user_ico_setting") || self.imgUserProfile.image == nil {
+            showAlertVC(title: kAlertTitle, message: "Please select profile image.", controller: self)
+        } else if self.txtEmail.isEmptyText() {
             self.txtEmail.shakeTextField()
         } else if !self.txtEmail.isValidateEmail() {
             showAlertVC(title: kAlertTitle, message: InvalidEmail, controller: self)
@@ -60,6 +69,19 @@ class UserProfileVC: UIViewController, SWRevealViewControllerDelegate,GMSAutocom
             userDict["email"] = self.txtEmail.text ?? ""
             userDict["address"] = self.txtAddress.text ?? ""
             userDict["mobile"] = self.txtPhone.text ?? ""
+            
+            if let imgData = DictUserDetails?["profileImage"] as? Data {
+                if self.imgUserProfile.image != UIImage(data: imgData) {
+                    userDict["profileImage"] = imageToData(image: self.imgUserProfile.image!)
+                }
+            } else if let url = URL(string: DictUserDetails?["profileImage"] as? String ?? "") {
+                let imageView = UIImageView()
+                imageView.af.setImage(withURL: url)
+                if imageView.image != imgUserProfile.image {
+                    userDict["profileImage"] = imageToData(image: self.imgUserProfile.image!)
+                }
+            }
+
             if let userId = UserDefaults.standard.string(forKey: "userId") {
                 if userId != "" {
                     self.db.collection("user").document(userId).updateData(userDict)
@@ -76,6 +98,7 @@ class UserProfileVC: UIViewController, SWRevealViewControllerDelegate,GMSAutocom
     @IBAction func placePickerAction(sender: UIButton) {
         let placePickerController = GMSAutocompleteViewController()
         placePickerController.delegate = self
+        placePickerController.tableCellBackgroundColor = appColor
         present(placePickerController, animated: true, completion: nil)
     }
     
@@ -156,5 +179,58 @@ extension UserProfileVC {
     }
     func sideMenuDidOpen() {
         print("sideMenuDidOpen")
+    }
+}
+
+//MARK: - Image picker Method extension
+extension UserProfileVC: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    
+    @IBAction func imageAction(sender: UIButton) {
+        self.view.endEditing(true)
+        self.selectProfileImage()
+    }
+    
+    func selectProfileImage() {
+        let selectImage = UIAlertController(title: "Select Profile Image", message: nil, preferredStyle: .actionSheet)
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        let btn0 = UIAlertAction(title: "Cancel", style: .cancel, handler: {(_ action: UIAlertAction) -> Void in
+        })
+        let btn1 = UIAlertAction(title: "Camera", style: .default, handler: {(_ action: UIAlertAction) -> Void in
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                imagePicker.sourceType = .camera
+                imagePicker.showsCameraControls = true
+                imagePicker.allowsEditing = true;
+                self.present(imagePicker, animated: true)
+            }
+        })
+        let btn2 = UIAlertAction(title: "Photo Library", style: .default, handler: {(_ action: UIAlertAction) -> Void in
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+                imagePicker.sourceType = .photoLibrary
+                imagePicker.allowsEditing = true;
+                self.present(imagePicker, animated: true)
+            }
+        })
+        selectImage.addAction(btn0)
+        selectImage.addAction(btn1)
+        selectImage.addAction(btn2)
+        present(selectImage, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let newImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        self.imgUserProfile.image = newImage
+        picker.dismiss(animated: true)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true)
+    }
+    
+    func imageToData(image: UIImage) -> Data? {
+        if let uploadImageData = (image).pngData(){
+            return uploadImageData
+        }
+        return nil
     }
 }
