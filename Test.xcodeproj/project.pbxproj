@@ -86,6 +86,7 @@
 		EE38A9F0240AA57900E97C34 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		EE38A9F1240AA57900E97C34 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		EE38A9F5240AC47E00E97C34 /* WriteReviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewVC.swift; sourceTree = "<group>"; };
+		EE3AAD37247985C3009356AE /* CabUser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CabUser.entitlements; sourceTree = "<group>"; };
 		EE3E1DD524102E5D004AA01E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EE40FC6B2413CA98002A5076 /* ModelMyRides.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelMyRides.swift; sourceTree = "<group>"; };
 		EE43C83C2436630F00813A38 /* ModelDriverList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDriverList.swift; sourceTree = "<group>"; };
@@ -293,7 +294,7 @@
 			path = SetUp;
 			sourceTree = "<group>";
 		};
-		EE71EF102406C23700B6028D /* Helpers */ = {
+		EE71EF102406C23700B6028D /* HelpersUser */ = {
 			isa = PBXGroup;
 			children = (
 				EE67719B240C31E700DE8D25 /* CustomeClass */,
@@ -301,7 +302,7 @@
 				EE677199240C31C500DE8D25 /* Font */,
 				EE71EF112406C24100B6028D /* ScrollingClass */,
 			);
-			path = Helpers;
+			path = HelpersUser;
 			sourceTree = "<group>";
 		};
 		EE71EF112406C24100B6028D /* ScrollingClass */ = {
@@ -359,7 +360,8 @@
 		EED85437240556D900E225EE /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				EE71EF102406C23700B6028D /* Helpers */,
+				EE3AAD37247985C3009356AE /* CabUser.entitlements */,
+				EE71EF102406C23700B6028D /* HelpersUser */,
 				EE71EF0E2406C15C00B6028D /* DelegateClass */,
 				EE71EF0D2406C14400B6028D /* Controllers */,
 				EED85441240556E500E225EE /* Assets.xcassets */,
@@ -889,6 +891,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Test/CabUser.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DK3AS4BZRG;
@@ -901,7 +904,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Deependra.Test;
 				PRODUCT_NAME = CabUser;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = /Users/harshit/Documents/CabUser/Test/BridgeHeader.h;
+				SWIFT_OBJC_BRIDGING_HEADER = /Users/harshit/Documents/NewCabUser/CabUser/Test/BridgeHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -914,6 +917,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Test/CabUser.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DK3AS4BZRG;
@@ -926,7 +930,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Deependra.Test;
 				PRODUCT_NAME = CabUser;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = /Users/harshit/Documents/CabUser/Test/BridgeHeader.h;
+				SWIFT_OBJC_BRIDGING_HEADER = /Users/harshit/Documents/NewCabUser/CabUser/Test/BridgeHeader.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

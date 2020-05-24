@@ -38,7 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate,
             // Fallback on earlier versions
         }
         locationManager.startUpdatingLocation()
-        
         return true
     }
     
@@ -182,7 +181,6 @@ extension AppDelegate {
         }
         UIApplication.shared.registerForRemoteNotifications()
     }
-
 
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         // Note: This callback is fired at each app startup and whenever a new token is generated.
