@@ -882,38 +882,6 @@
             endingLineNumber = "199"
             landmarkName = "tokenRefreshNotification(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "760134C5-173E-4445-8827-3D64A815719C - a5de7845887d6f0e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CabUser.AppDelegate.tokenRefreshNotification(Foundation.Notification) -&gt; ()"
-                  moduleName = "CabUser"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harshit/Documents/NewCabUser/CabUser/Test/DelegateClass/AppDelegate.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "199"
-                  endingLineNumber = "199"
-                  offsetFromSymbolStart = "34">
-               </Location>
-               <Location
-                  uuid = "760134C5-173E-4445-8827-3D64A815719C - a6b0b59d1ca6ab10"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRInstanceIDResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in CabUser.AppDelegate.tokenRefreshNotification(Foundation.Notification) -&gt; ()"
-                  moduleName = "CabUser"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harshit/Documents/NewCabUser/CabUser/Test/DelegateClass/AppDelegate.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "200"
-                  endingLineNumber = "200"
-                  offsetFromSymbolStart = "247">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -930,38 +898,6 @@
             endingLineNumber = "215"
             landmarkName = "ConnectToFCM()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "4B227124-6CE0-4CA9-988F-B47C741C3DF0 - 3da5a74f7eeb0fc3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CabUser.AppDelegate.ConnectToFCM() -&gt; ()"
-                  moduleName = "CabUser"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harshit/Documents/NewCabUser/CabUser/Test/DelegateClass/AppDelegate.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "215"
-                  endingLineNumber = "215"
-                  offsetFromSymbolStart = "20">
-               </Location>
-               <Location
-                  uuid = "4B227124-6CE0-4CA9-988F-B47C741C3DF0 - 2352d6adf2e717b1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRInstanceIDResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in CabUser.AppDelegate.ConnectToFCM() -&gt; ()"
-                  moduleName = "CabUser"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harshit/Documents/NewCabUser/CabUser/Test/DelegateClass/AppDelegate.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "216"
-                  endingLineNumber = "216"
-                  offsetFromSymbolStart = "247">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
