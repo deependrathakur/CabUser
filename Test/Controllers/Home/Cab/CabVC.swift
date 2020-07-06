@@ -418,7 +418,10 @@ fileprivate extension CabVC {
         placeForIndex = sender.tag
         let placePickerController = GMSAutocompleteViewController()
         placePickerController.delegate = self
-        placePickerController.tableCellBackgroundColor = appColor
+        placePickerController.tableCellBackgroundColor = whiteColor
+        placePickerController.tintColor = appColor
+        placePickerController.primaryTextColor = appColor
+        placePickerController.secondaryTextColor = blackColor
         present(placePickerController, animated: true, completion: nil)
     }
     

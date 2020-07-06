@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "21C51D02-6040-4B60-9456-AE2D81ABC94A"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "85C097AB-3E25-4791-AD10-EEABE64CD3AF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Test/DelegateClass/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "214"
+            endingLineNumber = "214"
+            landmarkName = "ConnectToFCM()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "85C097AB-3E25-4791-AD10-EEABE64CD3AF - 2731973e3429be8c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TJ.AppDelegate.ConnectToFCM() -&gt; ()"
+                  moduleName = "TJ"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rails/Documents/NewCab/CabUser/Test/DelegateClass/AppDelegate.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "214"
+                  endingLineNumber = "214"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "85C097AB-3E25-4791-AD10-EEABE64CD3AF - e6582d8f230e1eb9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRInstanceIDResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in TJ.AppDelegate.ConnectToFCM() -&gt; ()"
+                  moduleName = "TJ"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rails/Documents/NewCab/CabUser/Test/DelegateClass/AppDelegate.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "215"
+                  endingLineNumber = "215"
+                  offsetFromSymbolStart = "247">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9BEED8EF-FEDB-4E42-8BE9-A8579C9036B7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Test/DelegateClass/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
+            landmarkName = "tokenRefreshNotification(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9BEED8EF-FEDB-4E42-8BE9-A8579C9036B7 - 8874d1cf1cb65d11"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TJ.AppDelegate.tokenRefreshNotification(Foundation.Notification) -&gt; ()"
+                  moduleName = "TJ"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rails/Documents/NewCab/CabUser/Test/DelegateClass/AppDelegate.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "198"
+                  endingLineNumber = "198"
+                  offsetFromSymbolStart = "34">
+               </Location>
+               <Location
+                  uuid = "9BEED8EF-FEDB-4E42-8BE9-A8579C9036B7 - 1bb8684f993bb5af"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRInstanceIDResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in TJ.AppDelegate.tokenRefreshNotification(Foundation.Notification) -&gt; ()"
+                  moduleName = "TJ"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rails/Documents/NewCab/CabUser/Test/DelegateClass/AppDelegate.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "199"
+                  endingLineNumber = "199"
+                  offsetFromSymbolStart = "247">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DF782D87-671A-4585-8EFA-E9B2041D9D23"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Test/DelegateClass/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
+            landmarkName = "messaging(_:didRefreshRegistrationToken:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9D93D736-6344-4190-B012-BE2595484D3B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Test/DelegateClass/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
+            landmarkName = "messaging(_:didReceiveRegistrationToken:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

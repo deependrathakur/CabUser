@@ -98,7 +98,10 @@ class UserProfileVC: UIViewController, SWRevealViewControllerDelegate,GMSAutocom
     @IBAction func placePickerAction(sender: UIButton) {
         let placePickerController = GMSAutocompleteViewController()
         placePickerController.delegate = self
-        placePickerController.tableCellBackgroundColor = appColor
+        placePickerController.tableCellBackgroundColor = whiteColor
+        placePickerController.tintColor = appColor
+        placePickerController.primaryTextColor = appColor
+        placePickerController.secondaryTextColor = blackColor
         present(placePickerController, animated: true, completion: nil)
     }
     

@@ -32,5 +32,13 @@
 	<string>1:1083158902902:ios:116341d80890e1bc054757</string>
 	<key>DATABASE_URL</key>
 	<string>https://cab7-84952.firebaseio.com</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string></string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string></string>
+	<key>NSLocationUsageDescription</key>
+	<string></string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string></string>
 </dict>
 </plist>
